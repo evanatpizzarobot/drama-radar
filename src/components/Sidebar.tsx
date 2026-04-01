@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SHOW_TAGS } from "@/lib/constants";
 import { DramaTracker } from "./DramaTracker";
-import { SubscribeAlert } from "./SubscribeAlert";
+import { PushAlertBanner } from "./PushAlertBanner";
 import { XTimeline } from "./XTimeline";
 import { AdUnit } from "./AdUnit";
 import type { TrendingData } from "@/lib/types";
@@ -18,8 +18,8 @@ export function Sidebar({ trending }: SidebarProps) {
       {/* Drama Tracker */}
       <DramaTracker data={trending} />
 
-      {/* Subscribe alerts */}
-      <SubscribeAlert compact />
+      {/* Push notification alerts */}
+      <PushAlertBanner compact />
 
       {/* X Timeline */}
       <XTimeline />

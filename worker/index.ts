@@ -23,6 +23,7 @@ import { handleAdminRequest } from "./admin";
 import { handleDramaDesk } from "./drama-desk";
 import { autoPost, handleManualTweet, forcePost, botStatus } from "./twitter";
 import { handleSubscribe, handleUnsubscribe, sendBreakingAlerts } from "./email";
+import { handlePushSubscribe, handlePushUnsubscribe, sendPushAlerts } from "./push";
 
 // CORS headers applied to every response
 const CORS_HEADERS: Record<string, string> = {
@@ -516,6 +517,14 @@ async function handleFetchRequest(
     return handleUnsubscribe(url, env);
   }
 
+  if (path === "/api/push/subscribe" && request.method === "POST") {
+    return handlePushSubscribe(request, env);
+  }
+
+  if (path === "/api/push/unsubscribe" && request.method === "DELETE") {
+    return handlePushUnsubscribe(request, env);
+  }
+
   if (path === "/api/health" && request.method === "GET") {
     return handleHealth(env);
   }
@@ -583,8 +592,9 @@ async function handleScheduled(
     { expirationTtl: 24 * 60 * 60 }
   );
 
-  // Step 7: Send breaking alerts to email subscribers
+  // Step 7: Send breaking alerts (email + push)
   await sendBreakingAlerts(categorizedItems, env);
+  await sendPushAlerts(categorizedItems, env);
 
   // Step 8: Auto-post to X (scheduled, ~15-20 tweets per day)
   await autoPost(env);

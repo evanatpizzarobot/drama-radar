@@ -28,7 +28,8 @@
       "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\);const j=JSON.parse\\(d\\);console.log\\('Current total:', j.total\\)\")",
       "Bash(node scripts/rename-slugs.js)",
       "Bash(ls -la public/images/*.png)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(node scripts/generate-vapid-keys.js)"
     ]
   }
 }
