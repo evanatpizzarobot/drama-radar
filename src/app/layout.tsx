@@ -58,12 +58,13 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem("dramaradar-theme");if(!t){t=window.matchMedia("(prefers-color-scheme:light)").matches?"light":"dark"}document.documentElement.setAttribute("data-theme",t)}catch(e){}})();`,
           }}
         />
-        {/* Google AdSense: uncomment and add your pub ID when ready */}
-        {/* <script
+        {/* Google AdSense */}
+        <meta name="google-adsense-account" content="ca-pub-7224757913262984" />
+        <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7224757913262984"
           crossOrigin="anonymous"
-        /> */}
+        />
       </head>
       <body className="min-h-screen bg-dr-bg font-sans text-dr-text antialiased">
         <Header />
