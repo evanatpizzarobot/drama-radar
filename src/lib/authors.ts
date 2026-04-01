@@ -10,21 +10,13 @@ export interface Author {
 }
 
 export const AUTHORS: Record<string, Author> = {
-  "the-drama-desk": {
-    key: "the-drama-desk",
-    displayName: "The Drama Desk",
-    bio: "DramaRadar's editorial team. We see everything. We judge accordingly.",
-    avatar: "/images/avatars/drama-desk.svg",
-    role: "Editorial Team",
-    isDefault: true,
-  },
-  "carlys-intern": {
-    key: "carlys-intern",
-    displayName: "Carly's Intern",
-    bio: "Underpaid, overworked, and deeply invested in who's hooking up on Below Deck. Reporting live from the group chat.",
-    avatar: "/images/avatars/carlys-intern.svg",
-    role: "Junior Correspondent",
-    signoff: "Back to scrolling.",
+  "carly": {
+    key: "carly",
+    displayName: "Carly",
+    bio: "Founder and Editor-in-Chief of DramaRadar. Has been watching Bravo since before it was cool. Runs this operation with an iron remote and a full glass of wine.",
+    avatar: "/images/avatars/carly.svg",
+    role: "Editor-in-Chief",
+    signoff: "Stay messy.",
   },
   "bb": {
     key: "bb",
@@ -42,13 +34,21 @@ export const AUTHORS: Record<string, Author> = {
     role: "Research & Receipts",
     signoff: "Receipts attached.",
   },
-  "the-producer": {
-    key: "the-producer",
-    displayName: "The Producer",
-    bio: "Sees the bigger picture. Knows the edit. Understands why they showed that confessional AFTER the dinner party.",
-    avatar: "/images/avatars/the-producer.svg",
-    role: "Industry Analyst",
-    signoff: "Cut to confessional.",
+  "carlys-intern": {
+    key: "carlys-intern",
+    displayName: "Carly's Intern",
+    bio: "Underpaid, overworked, and deeply invested in who's hooking up on Below Deck. Reporting live from the group chat.",
+    avatar: "/images/avatars/carlys-intern.svg",
+    role: "Junior Correspondent",
+    signoff: "Back to scrolling.",
+  },
+  "the-drama-desk": {
+    key: "the-drama-desk",
+    displayName: "The Drama Desk",
+    bio: "DramaRadar's editorial team. We see everything. We judge accordingly.",
+    avatar: "/images/avatars/drama-desk.svg",
+    role: "Editorial Team",
+    isDefault: true,
   },
   "guest": {
     key: "guest",

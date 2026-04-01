@@ -74,13 +74,13 @@ export default function AboutPage() {
             Our Team
           </h2>
           <p className="mb-4 text-sm leading-relaxed text-[#A0A0B0]">
-            Behind DramaRadar is <span className="font-semibold text-[#F5F5F5]">The Drama Desk</span>,
-            our editorial team of writers, analysts, and self-proclaimed chaos
-            agents. You will see bylines from voices like BB, Carly&apos;s
-            Intern, The Producer, and BB&apos;s Assistant, each bringing a
-            unique perspective to the reality TV universe. Some of us are here
-            for the strategy. Some of us are here for the mess. All of us are
-            here for the drama.
+            DramaRadar is led by <span className="font-semibold text-[#F5F5F5]">Carly</span>,
+            our Editor-in-Chief, alongside a team of writers, analysts, and
+            self-proclaimed chaos agents. You will see bylines from voices like
+            BB, BB&apos;s Assistant, Carly&apos;s Intern, and The Drama Desk
+            collective, each bringing a unique perspective to the reality TV
+            universe. Some of us are here for the strategy. Some of us are here
+            for the mess. All of us are here for the drama.
           </p>
           <p className="text-sm leading-relaxed text-[#A0A0B0]">
             Want to know who is behind the takes?{" "}
