@@ -78,13 +78,7 @@ export function AdUnit({ slot, className = "" }: AdUnitProps) {
     .join(" ");
 
   if (!ADSENSE_ACTIVE || !ADSENSE_PUB_ID) {
-    // Render an empty placeholder with subtle dashed border
-    return (
-      <div
-        className={`overflow-hidden rounded-lg border border-dashed border-[#2A2A3E] ${wrapperClass}`}
-        aria-hidden="true"
-      />
-    );
+    return null;
   }
 
   // Active AdSense rendering
