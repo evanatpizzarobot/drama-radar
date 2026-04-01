@@ -1,10 +1,58 @@
-// Twitter/X posting module for DramaRadar
-// Uses OAuth 1.0a to post tweets via the X API v2
+// Twitter/X posting bot for DramaRadar
+// Full scheduled posting strategy: 15-20 tweets/day across article, news, prediction, and engagement types
 
-import type { Env, FeedItem, EditorialArticle } from "./types";
+import type { Env, FeedItem, EditorialArticle, Prediction } from "./types";
 import { SHOW_TAGS } from "./categorize";
 
 const X_API_URL = "https://api.x.com/2/tweets";
+
+// ============================================================
+// Eastern Time Helpers
+// ============================================================
+
+function getEasternNow(): { date: string; hour: number; minute: number } {
+  const now = new Date();
+  // EDT is UTC-4 (spring/summer)
+  const etMs = now.getTime() - 4 * 60 * 60 * 1000;
+  const et = new Date(etMs);
+  return {
+    date: et.toISOString().slice(0, 10),
+    hour: et.getUTCHours(),
+    minute: et.getUTCMinutes(),
+  };
+}
+
+// ============================================================
+// Posting Schedule (Eastern Time)
+// ============================================================
+
+type TweetType = "article" | "breaking" | "tier2" | "prediction" | "engagement";
+
+interface PostSlot {
+  hour: number;
+  minute: number;
+  type: TweetType;
+  id: string;
+}
+
+const POSTING_SCHEDULE: PostSlot[] = [
+  { hour: 7,  minute: 0,  type: "article",    id: "07-00-article" },
+  { hour: 9,  minute: 0,  type: "breaking",   id: "09-00-breaking" },
+  { hour: 10, minute: 30, type: "tier2",       id: "10-30-tier2" },
+  { hour: 12, minute: 0,  type: "article",    id: "12-00-article" },
+  { hour: 13, minute: 30, type: "breaking",   id: "13-30-breaking" },
+  { hour: 15, minute: 0,  type: "tier2",       id: "15-00-tier2" },
+  { hour: 15, minute: 15, type: "prediction", id: "15-15-prediction" },
+  { hour: 16, minute: 30, type: "article",    id: "16-30-article" },
+  { hour: 18, minute: 0,  type: "breaking",   id: "18-00-breaking" },
+  { hour: 19, minute: 30, type: "engagement", id: "19-30-engagement" },
+  { hour: 20, minute: 0,  type: "breaking",   id: "20-00-breaking" },
+  { hour: 20, minute: 30, type: "tier2",       id: "20-30-tier2" },
+  { hour: 21, minute: 0,  type: "breaking",   id: "21-00-breaking" },
+  { hour: 21, minute: 30, type: "article",    id: "21-30-article" },
+  { hour: 22, minute: 30, type: "breaking",   id: "22-30-breaking" },
+  { hour: 23, minute: 30, type: "breaking",   id: "23-30-breaking" },
+];
 
 // ============================================================
 // OAuth 1.0a Signature Generation
@@ -58,23 +106,16 @@ async function generateOAuthHeader(
     oauth_version: "1.0",
   };
 
-  // Build parameter string (sorted)
   const paramString = Object.keys(oauthParams)
     .sort()
     .map((k) => `${percentEncode(k)}=${percentEncode(oauthParams[k])}`)
     .join("&");
 
-  // Build signature base string
   const baseString = `${method.toUpperCase()}&${percentEncode(url)}&${percentEncode(paramString)}`;
-
-  // Build signing key
   const signingKey = `${percentEncode(env.X_API_SECRET)}&${percentEncode(env.X_ACCESS_TOKEN_SECRET)}`;
-
-  // Generate signature
   const signature = await hmacSha1(signingKey, baseString);
   oauthParams.oauth_signature = signature;
 
-  // Build Authorization header
   const authHeader = Object.keys(oauthParams)
     .sort()
     .map((k) => `${percentEncode(k)}="${percentEncode(oauthParams[k])}"`)
@@ -84,10 +125,13 @@ async function generateOAuthHeader(
 }
 
 // ============================================================
-// Tweet Posting
+// Core Tweet Posting
 // ============================================================
 
-async function postTweet(text: string, env: Env): Promise<{ success: boolean; tweetId?: string; error?: string }> {
+async function postTweet(
+  text: string,
+  env: Env
+): Promise<{ success: boolean; tweetId?: string; error?: string }> {
   if (!env.X_API_KEY || !env.X_API_SECRET || !env.X_ACCESS_TOKEN || !env.X_ACCESS_TOKEN_SECRET) {
     return { success: false, error: "X API credentials not configured" };
   }
@@ -120,7 +164,7 @@ async function postTweet(text: string, env: Env): Promise<{ success: boolean; tw
 }
 
 // ============================================================
-// Tweet Formatting
+// Show Hashtag Mapping
 // ============================================================
 
 const SHOW_HASHTAGS: Record<string, string> = {
@@ -144,67 +188,139 @@ const SHOW_HASHTAGS: Record<string, string> = {
   "married-at-first-sight": "#MAFS",
 };
 
-function buildShowHashtags(showTags: string[]): string {
-  const tags = showTags
+function buildShowHashtags(showTags: string[], limit: number = 2): string {
+  return showTags
     .map((t) => SHOW_HASHTAGS[t])
     .filter(Boolean)
-    .slice(0, 3);
-  return tags.join(" ");
+    .slice(0, limit)
+    .join(" ");
 }
+
+// Author display names for tweet bylines
+const AUTHOR_NAMES: Record<string, string> = {
+  carly: "Carly",
+  bb: "BB",
+  "bbs-assistant": "BB's Assistant",
+  betsy: "Betsy",
+  felicia: "Felicia",
+  "the-drama-desk": "The Drama Desk",
+  guest: "Guest Contributor",
+};
+
+// ============================================================
+// Tweet Formatters (by type)
+// ============================================================
 
 function formatArticleTweet(article: EditorialArticle): string {
-  const hashtags = buildShowHashtags(article.showTags);
-  const base = article.isExclusive ? "EXCLUSIVE" : "NEW";
+  const authorName = AUTHOR_NAMES[article.author] || "The Drama Desk";
+  const showTags = buildShowHashtags(article.showTags);
   const url = `https://dramaradar.com/articles/view?slug=${article.slug}`;
 
-  // Keep under 280 chars
-  let tweet = `${base}: ${article.title}\n\n${url}`;
-  if (hashtags) {
-    tweet += `\n\n${hashtags} #BravoTV #DramaRadar`;
+  let tweet = `\u{1F525} NEW on DramaRadar: ${article.title}\n\nBy ${authorName}\n\n\u{1F449} ${url}\n\n`;
+
+  if (showTags) {
+    tweet += `${showTags} #BravoTV #RealityTV #DramaRadar`;
   } else {
-    tweet += "\n\n#BravoTV #RealityTV #DramaRadar";
-  }
-
-  if (tweet.length > 280) {
-    // Truncate title if needed
-    const maxTitle = 280 - (tweet.length - article.title.length) - 3;
-    const shortTitle = article.title.slice(0, maxTitle) + "...";
-    tweet = `${base}: ${shortTitle}\n\n${url}`;
-    if (hashtags) {
-      tweet += `\n\n${hashtags} #DramaRadar`;
-    } else {
-      tweet += "\n\n#DramaRadar";
-    }
-  }
-
-  return tweet;
-}
-
-const FEED_TEMPLATES = [
-  (item: FeedItem) => `${item.title}\n\nvia ${item.source}\n${item.url}`,
-  (item: FeedItem) => `BREAKING: ${item.title}\n\n${item.url}\n\nvia ${item.source}`,
-  (item: FeedItem) => `The latest from ${item.source}:\n\n${item.title}\n\n${item.url}`,
-];
-
-function formatFeedTweet(item: FeedItem): string {
-  const template = FEED_TEMPLATES[Math.floor(Math.random() * FEED_TEMPLATES.length)];
-  let tweet = template(item);
-
-  const hashtags = buildShowHashtags(item.showTags);
-  if (hashtags) {
-    tweet += `\n\n${hashtags}`;
+    tweet += "#BravoTV #RealityTV #DramaRadar";
   }
 
   // Trim to 280
   if (tweet.length > 280) {
-    tweet = tweet.slice(0, 277) + "...";
+    const maxTitle = article.title.length - (tweet.length - 280) - 3;
+    if (maxTitle > 20) {
+      const shortTitle = article.title.slice(0, maxTitle) + "...";
+      tweet = `\u{1F525} NEW on DramaRadar: ${shortTitle}\n\nBy ${authorName}\n\n\u{1F449} ${url}\n\n`;
+      tweet += showTags ? `${showTags} #DramaRadar` : "#DramaRadar";
+    }
   }
 
-  return tweet;
+  return tweet.slice(0, 280);
 }
 
+function formatBreakingTweet(item: FeedItem): string {
+  const showTags = buildShowHashtags(item.showTags);
+
+  let tweet = `\u{1F6A8} ${item.title}\n\n\u{1F4E1} Source: ${item.source}\n\nFull story + more drama: https://dramaradar.com\n\n`;
+
+  if (showTags) {
+    tweet += `${showTags} #BravoTV #RealityTV`;
+  } else {
+    tweet += "#BravoTV #RealityTV #CelebGossip";
+  }
+
+  if (tweet.length > 280) {
+    const maxTitle = item.title.length - (tweet.length - 280) - 3;
+    if (maxTitle > 20) {
+      tweet = `\u{1F6A8} ${item.title.slice(0, maxTitle)}...\n\n\u{1F4E1} ${item.source}\n\nhttps://dramaradar.com\n\n`;
+      tweet += showTags ? `${showTags} #BravoTV` : "#BravoTV #RealityTV";
+    }
+  }
+
+  return tweet.slice(0, 280);
+}
+
+function formatTier2Tweet(item: FeedItem): string {
+  const showTags = buildShowHashtags(item.showTags);
+
+  let tweet = `\u{1F4FA} ${item.title}\n\n\u{1F4E1} Source: ${item.source}\n\nFull story + more drama: https://dramaradar.com\n\n`;
+
+  if (showTags) {
+    tweet += `${showTags} #BravoTV #RealityTV`;
+  } else {
+    tweet += "#RealityTV #BravoTV";
+  }
+
+  if (tweet.length > 280) {
+    const maxTitle = item.title.length - (tweet.length - 280) - 3;
+    if (maxTitle > 20) {
+      tweet = `\u{1F4FA} ${item.title.slice(0, maxTitle)}...\n\n\u{1F4E1} ${item.source}\n\nhttps://dramaradar.com\n\n`;
+      tweet += showTags ? `${showTags} #BravoTV` : "#RealityTV";
+    }
+  }
+
+  return tweet.slice(0, 280);
+}
+
+function formatPredictionTweet(prediction: Prediction): string {
+  const authorName = AUTHOR_NAMES[prediction.authorKey] || "The Drama Desk";
+  const showTags = buildShowHashtags(prediction.showTags);
+
+  let tweet = `\u{1F4E1} DramaRadar PREDICTION:\n\n${prediction.prediction}\n\n-- ${authorName}\n\nAll predictions: https://dramaradar.com/predictions\n\n`;
+
+  if (showTags) {
+    tweet += `${showTags} #DramaRadar`;
+  } else {
+    tweet += "#BravoTV #DramaRadar";
+  }
+
+  if (tweet.length > 280) {
+    const maxPred = prediction.prediction.length - (tweet.length - 280) - 3;
+    if (maxPred > 30) {
+      tweet = `\u{1F4E1} DramaRadar PREDICTION:\n\n${prediction.prediction.slice(0, maxPred)}...\n\n-- ${authorName}\n\nhttps://dramaradar.com/predictions\n\n#DramaRadar`;
+    }
+  }
+
+  return tweet.slice(0, 280);
+}
+
+// Pre-written engagement tweets (no links, designed for interaction)
+const ENGAGEMENT_POOL: string[] = [
+  "\u2615 DramaRadar wants to know:\n\nWho's handling the Summer House drama worst?\n\n\u{1F501} RT for Amanda\n\u2764\uFE0F Like for West\n\n#SummerHouse #BravoTV",
+  "\u{1F4E1} The radar is picking up MAJOR activity tonight. Who else is watching? Drop your show below \u{1F447}\n\n#BravoTV #RealityTV",
+  "\u2615 Hot take time:\n\nWhat's the most underrated Real Housewives franchise right now?\n\n#RealHousewives #BravoTV #DramaRadar",
+  "\u{1F4E1} Quick poll: Best Bravo show of 2026 so far?\n\n\u{1F501} RT for Summer House\n\u2764\uFE0F Like for RHOBH\n\u{1F4AC} Reply for something else\n\n#BravoTV #DramaRadar",
+  "\u2615 We need to settle this:\n\nBest reunion moment of all time?\n\nWe said what we said. Now it's your turn \u{1F447}\n\n#BravoTV #RealityTV #DramaRadar",
+  "\u{1F4E1} DramaRadar is ALWAYS scanning.\n\nWhat show are you most excited about this week?\n\n#BravoTV #RealityTV",
+  "\u2615 Honest question:\n\nWhich Bravo cast member would survive the longest on a desert island?\n\nWrong answers only \u{1F447}\n\n#BravoTV #DramaRadar",
+  "\u{1F4E1} The radar just lit up.\n\nSomething big is about to break. Stay tuned.\n\n#BravoTV #RealityTV #DramaRadar",
+  "\u2615 Rate your current reality TV obsession level:\n\n1\uFE0F\u20E3 Casual viewer\n2\uFE0F\u20E3 Weekly watcher\n3\uFE0F\u20E3 Follow the cast on IG\n4\uFE0F\u20E3 Read the Reddit threads at 2am\n5\uFE0F\u20E3 DramaRadar is my homepage\n\n#BravoTV",
+  "\u{1F4E1} Name a reality TV villain who was actually right all along.\n\nWe'll go first: Phaedra. (Controversial? Maybe. But the receipts are there.)\n\n#BravoTV #RealityTV #DramaRadar",
+  "\u2615 If you could only watch ONE Real Housewives franchise for the rest of your life, which one?\n\nChoose wisely \u{1F447}\n\n#RealHousewives #BravoTV",
+  "\u{1F4E1} It's a Bravo night. Snacks are ready. Phone is charged. Group chat is open.\n\nWho's watching with us?\n\n#BravoTV #RealityTV #DramaRadar",
+];
+
 // ============================================================
-// Dedup Tracking
+// Dedup and Rate Limit Tracking
 // ============================================================
 
 async function hasBeenPosted(key: string, env: Env): Promise<boolean> {
@@ -213,64 +329,86 @@ async function hasBeenPosted(key: string, env: Env): Promise<boolean> {
 }
 
 async function markAsPosted(key: string, env: Env): Promise<void> {
-  // 7-day TTL for dedup tracking
   await env.DRAMARADAR_CACHE.put(`posted:${key}`, "1", {
-    expirationTtl: 7 * 24 * 60 * 60,
+    expirationTtl: 7 * 24 * 60 * 60, // 7-day TTL
   });
 }
 
-// ============================================================
-// Auto-posting Logic (called from cron)
-// ============================================================
-
-export async function autoPost(env: Env): Promise<void> {
-  // Skip if credentials not set
-  if (!env.X_API_KEY) return;
-
-  // Only post ~15% of cron runs (roughly 10-20 tweets per day from 144 daily cron runs)
-  if (Math.random() > 0.15) return;
-
-  // Try posting a new article first, then fall back to a feed item
-  const posted = await tryPostArticle(env) || await tryPostFeedItem(env);
-
-  if (posted) {
-    console.log("Auto-posted tweet successfully");
-  }
+async function getDailyCount(date: string, env: Env): Promise<number> {
+  const raw = await env.DRAMARADAR_CACHE.get(`xbot:daily-count:${date}`);
+  return raw ? parseInt(raw, 10) : 0;
 }
 
-async function tryPostArticle(env: Env): Promise<boolean> {
+async function incrementDailyCount(date: string, env: Env): Promise<void> {
+  const current = await getDailyCount(date, env);
+  await env.DRAMARADAR_CACHE.put(
+    `xbot:daily-count:${date}`,
+    String(current + 1),
+    { expirationTtl: 48 * 60 * 60 } // 48h TTL so yesterday's count is still readable
+  );
+}
+
+async function hasSlotBeenPosted(date: string, slotId: string, env: Env): Promise<boolean> {
+  const result = await env.DRAMARADAR_CACHE.get(`xbot:slot:${date}:${slotId}`);
+  return result !== null;
+}
+
+async function markSlotPosted(date: string, slotId: string, env: Env): Promise<void> {
+  await env.DRAMARADAR_CACHE.put(
+    `xbot:slot:${date}:${slotId}`,
+    "1",
+    { expirationTtl: 24 * 60 * 60 }
+  );
+}
+
+// ============================================================
+// Content Selection
+// ============================================================
+
+async function selectArticle(env: Env): Promise<EditorialArticle | null> {
   const indexRaw = await env.DRAMARADAR_ARTICLES.get("articles:index");
-  if (!indexRaw) return false;
+  if (!indexRaw) return null;
 
   const slugs: string[] = JSON.parse(indexRaw);
 
+  // Priority: featured/exclusive unposted articles first, then any unposted
+  const articles: EditorialArticle[] = [];
   for (const slug of slugs) {
-    const key = `article:${slug}`;
-    if (await hasBeenPosted(key, env)) continue;
-
     const raw = await env.DRAMARADAR_ARTICLES.get(`article:${slug}`, "json");
-    if (!raw) continue;
-
-    const article = raw as EditorialArticle;
-    const tweet = formatArticleTweet(article);
-    const result = await postTweet(tweet, env);
-
-    if (result.success) {
-      await markAsPosted(key, env);
-      return true;
-    }
+    if (raw) articles.push(raw as EditorialArticle);
   }
 
-  return false;
+  // Sort: unposted featured/exclusive first, then unposted, then oldest posted
+  const withStatus: Array<{ article: EditorialArticle; posted: boolean }> = [];
+  for (const article of articles) {
+    const posted = await hasBeenPosted(`article:${article.slug}`, env);
+    withStatus.push({ article, posted });
+  }
+
+  // Unposted featured/exclusive first
+  const unpostedFeatured = withStatus.filter(
+    (a) => !a.posted && (a.article.isFeatured || a.article.isExclusive)
+  );
+  if (unpostedFeatured.length > 0) return unpostedFeatured[0].article;
+
+  // Then any unposted
+  const unposted = withStatus.filter((a) => !a.posted);
+  if (unposted.length > 0) return unposted[0].article;
+
+  // All posted, return null (will re-post after 7-day dedup expires)
+  return null;
 }
 
-async function tryPostFeedItem(env: Env): Promise<boolean> {
+async function selectFeedItem(
+  maxPriority: number,
+  env: Env
+): Promise<FeedItem | null> {
   const indexRaw = await env.DRAMARADAR_CACHE.get("feed:index");
-  if (!indexRaw) return false;
+  if (!indexRaw) return null;
 
   const keys: string[] = JSON.parse(indexRaw);
-  // Look at the 20 most recent items
-  const recentKeys = keys.slice(0, 20);
+  // Check the 50 most recent items
+  const recentKeys = keys.slice(0, 50);
 
   for (const itemKey of recentKeys) {
     if (await hasBeenPosted(itemKey, env)) continue;
@@ -279,19 +417,151 @@ async function tryPostFeedItem(env: Env): Promise<boolean> {
     if (!raw) continue;
 
     const item = raw as FeedItem;
-    // Prefer higher priority items
-    if (item.priority > 2) continue;
+    if (item.priority > maxPriority) continue;
 
-    const tweet = formatFeedTweet(item);
-    const result = await postTweet(tweet, env);
-
-    if (result.success) {
-      await markAsPosted(itemKey, env);
-      return true;
-    }
+    return item;
   }
 
-  return false;
+  return null;
+}
+
+async function selectPrediction(env: Env): Promise<Prediction | null> {
+  const indexRaw = await env.DRAMARADAR_ARTICLES.get("predictions:index");
+  if (!indexRaw) return null;
+
+  const ids: string[] = JSON.parse(indexRaw);
+
+  for (const id of ids) {
+    if (await hasBeenPosted(`prediction:${id}`, env)) continue;
+
+    const raw = await env.DRAMARADAR_ARTICLES.get(`prediction:${id}`, "json");
+    if (!raw) continue;
+
+    return raw as Prediction;
+  }
+
+  return null;
+}
+
+function selectEngagementTweet(): string {
+  const index = Math.floor(Math.random() * ENGAGEMENT_POOL.length);
+  return ENGAGEMENT_POOL[index];
+}
+
+// ============================================================
+// Scheduled Auto-Posting (called from cron)
+// ============================================================
+
+export async function autoPost(env: Env): Promise<void> {
+  // Skip if credentials not set
+  if (!env.X_API_KEY) return;
+
+  const et = getEasternNow();
+  const dailyCount = await getDailyCount(et.date, env);
+
+  // Hard cap: 20 tweets per day
+  if (dailyCount >= 20) {
+    console.log(`X bot: daily cap reached (${dailyCount}/20), skipping`);
+    return;
+  }
+
+  // Find slots that are due (within 10-min window of current time)
+  const currentMinutes = et.hour * 60 + et.minute;
+
+  for (const slot of POSTING_SCHEDULE) {
+    const slotMinutes = slot.hour * 60 + slot.minute;
+
+    // Check if current time is within [slot, slot+10min)
+    if (currentMinutes < slotMinutes || currentMinutes >= slotMinutes + 10) {
+      continue;
+    }
+
+    // Check if this slot has already been posted today
+    if (await hasSlotBeenPosted(et.date, slot.id, env)) {
+      continue;
+    }
+
+    // Re-check daily cap
+    const count = await getDailyCount(et.date, env);
+    if (count >= 20) break;
+
+    console.log(`X bot: posting for slot ${slot.id} (type: ${slot.type})`);
+
+    const success = await postForSlot(slot.type, env);
+
+    if (success) {
+      await markSlotPosted(et.date, slot.id, env);
+      await incrementDailyCount(et.date, env);
+      console.log(`X bot: slot ${slot.id} posted successfully (daily count: ${count + 1})`);
+    } else {
+      console.log(`X bot: slot ${slot.id} failed or no content available`);
+    }
+  }
+}
+
+async function postForSlot(type: TweetType, env: Env): Promise<boolean> {
+  switch (type) {
+    case "article": {
+      const article = await selectArticle(env);
+      if (!article) return false;
+      const tweet = formatArticleTweet(article);
+      const result = await postTweet(tweet, env);
+      if (result.success) {
+        await markAsPosted(`article:${article.slug}`, env);
+        return true;
+      }
+      return false;
+    }
+
+    case "breaking": {
+      // Tier 1 sources only (priority 1)
+      const item = await selectFeedItem(1, env);
+      if (!item) return false;
+      const tweet = formatBreakingTweet(item);
+      const result = await postTweet(tweet, env);
+      if (result.success) {
+        const timestamp = new Date(item.publishedAt).getTime();
+        await markAsPosted(`item:${timestamp}:${item.id}`, env);
+        return true;
+      }
+      return false;
+    }
+
+    case "tier2": {
+      // Tier 1 and 2 sources (priority 1-2)
+      const item = await selectFeedItem(2, env);
+      if (!item) return false;
+      const tweet = formatTier2Tweet(item);
+      const result = await postTweet(tweet, env);
+      if (result.success) {
+        const timestamp = new Date(item.publishedAt).getTime();
+        await markAsPosted(`item:${timestamp}:${item.id}`, env);
+        return true;
+      }
+      return false;
+    }
+
+    case "prediction": {
+      const prediction = await selectPrediction(env);
+      if (!prediction) return false;
+      const tweet = formatPredictionTweet(prediction);
+      const result = await postTweet(tweet, env);
+      if (result.success) {
+        await markAsPosted(`prediction:${prediction.id}`, env);
+        return true;
+      }
+      return false;
+    }
+
+    case "engagement": {
+      const tweet = selectEngagementTweet();
+      const result = await postTweet(tweet, env);
+      return result.success;
+    }
+
+    default:
+      return false;
+  }
 }
 
 // ============================================================
@@ -302,9 +572,9 @@ export async function handleManualTweet(
   request: Request,
   env: Env
 ): Promise<Response> {
-  let body: { text?: string; slug?: string; type?: string };
+  let body: { text?: string; slug?: string };
   try {
-    body = (await request.json()) as { text?: string; slug?: string; type?: string };
+    body = (await request.json()) as { text?: string; slug?: string };
   } catch {
     return new Response(
       JSON.stringify({ error: "Invalid JSON body", status: 400 }),
@@ -315,10 +585,8 @@ export async function handleManualTweet(
   let tweetText: string;
 
   if (body.text) {
-    // Direct text tweet
     tweetText = body.text;
   } else if (body.slug) {
-    // Tweet an article by slug
     const raw = await env.DRAMARADAR_ARTICLES.get(`article:${body.slug}`, "json");
     if (!raw) {
       return new Response(
@@ -344,6 +612,9 @@ export async function handleManualTweet(
     if (body.slug) {
       await markAsPosted(`article:${body.slug}`, env);
     }
+    const et = getEasternNow();
+    await incrementDailyCount(et.date, env);
+
     return new Response(
       JSON.stringify({ message: "Tweet posted", tweetId: result.tweetId, text: tweetText }),
       { status: 200, headers: { "Content-Type": "application/json" } }
