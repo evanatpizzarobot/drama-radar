@@ -30,7 +30,7 @@ export function Footer() {
 
         <div className="mt-4 flex flex-wrap items-center justify-center gap-x-1 gap-y-1 text-center">
           {[
-            { label: "Contact", email: "contact@dramaradar.com" },
+            { label: "Support", email: "support@dramaradar.com" },
             { label: "Advertising", email: "advertise@dramaradar.com" },
             { label: "Legal", email: "legal@dramaradar.com" },
             { label: "Tips", email: "tips@dramaradar.com" },
