@@ -77,7 +77,7 @@ export function DramaDeskChat() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 group flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#E84393] to-[#A855F7] shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
+          className="fixed bottom-6 right-4 z-50 group flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#E84393] to-[#A855F7] shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 sm:right-6"
           aria-label="Ask the Drama Desk"
         >
           {/* Radar/sonar SVG icon */}
@@ -97,8 +97,8 @@ export function DramaDeskChat() {
             <line x1="12" y1="2" x2="12" y2="12" />
           </svg>
 
-          {/* Tooltip */}
-          <span className="absolute right-16 whitespace-nowrap bg-[#1A1A2E] text-[#F5F5F5] text-sm px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-[#A855F7]/30">
+          {/* Tooltip (desktop only) */}
+          <span className="absolute right-16 hidden whitespace-nowrap bg-[#1A1A2E] text-[#F5F5F5] text-sm px-3 py-1.5 rounded-lg sm:block opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-[#A855F7]/30">
             Ask the Drama Desk
           </span>
         </button>

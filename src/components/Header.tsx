@@ -34,7 +34,7 @@ export function Header() {
             {/* Sweep beam */}
             <div className="absolute inset-0 animate-[radar-sweep_3.5s_linear_infinite]">
               <div
-                className="absolute left-1/2 top-0 h-1/2 w-[2px] origin-bottom"
+                className="absolute left-1/2 top-0 h-1/2 w-[2px] -translate-x-1/2 origin-bottom"
                 style={{
                   background: "linear-gradient(to top, #E84393, transparent)",
                 }}
