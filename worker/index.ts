@@ -289,6 +289,28 @@ async function handleShows(env: Env): Promise<Response> {
 }
 
 /**
+ * GET /api/agent
+ * AI agent discovery endpoint. Returns structured metadata about available APIs and tracked shows.
+ */
+function handleAgent(env: Env): Response {
+  return jsonResponse({
+    name: "DramaRadar",
+    description: "Real-time reality TV and celebrity gossip aggregator with original editorial content",
+    url: "https://dramaradar.com",
+    feeds: {
+      all: "/api/feed",
+      breaking: "/api/feed/breaking",
+      articles: "/api/articles",
+      predictions: "/api/predictions",
+      trending: "/api/trending",
+      horoscope: "/api/horoscope?sign={sign}&period={daily|weekly|monthly}",
+    },
+    shows: Object.keys(SHOW_TAGS),
+    updated: new Date().toISOString(),
+  });
+}
+
+/**
  * GET /api/health
  * Basic health check endpoint.
  */
@@ -468,6 +490,10 @@ async function handleFetchRequest(
 
   if (path === "/api/horoscope" && request.method === "GET") {
     return handleHoroscope(url, env);
+  }
+
+  if (path === "/api/agent" && request.method === "GET") {
+    return handleAgent(env);
   }
 
   if (path === "/api/health" && request.method === "GET") {

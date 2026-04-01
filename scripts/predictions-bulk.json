@@ -1,0 +1,26 @@
+[
+  {
+    "key": "prediction:pred-seed-1",
+    "value": "{\"id\":\"pred-seed-1\",\"prediction\":\"Amanda and West will still be together by the reunion. They're going to walk in holding hands just to watch the world burn.\",\"context\":\"They didn't put out that joint statement to back down now. These two are digging in. The matching sweatshirts were just the beginning.\",\"authorKey\":\"bb\",\"showTags\":[\"summer-house\"],\"createdAt\":\"2026-03-28T14:00:00Z\",\"status\":\"pending\",\"resolvedAt\":null}"
+  },
+  {
+    "key": "prediction:pred-seed-2",
+    "value": "{\"id\":\"pred-seed-2\",\"prediction\":\"Ciara Miller is about to become the most followed Summer House cast member by the end of April.\",\"context\":\"The internet has fully rallied behind her. Every sympathy follow, every supportive comment, it's all adding up. She's the main character now whether she wanted to be or not.\",\"authorKey\":\"betsy\",\"showTags\":[\"summer-house\"],\"createdAt\":\"2026-03-29T10:30:00Z\",\"status\":\"pending\",\"resolvedAt\":null}"
+  },
+  {
+    "key": "prediction:pred-seed-3",
+    "value": "{\"id\":\"pred-seed-3\",\"prediction\":\"Bravo is going to announce a Summer House spinoff or reboot before Season 11. The current format can't survive this.\",\"context\":\"When Deuxmoi reports the network is exploring contingency plans including cancellation, that's not gossip. That's a leak. They're testing public reaction before making a move.\",\"authorKey\":\"carly\",\"showTags\":[\"summer-house\"],\"createdAt\":\"2026-03-30T16:00:00Z\",\"status\":\"developing\",\"resolvedAt\":null}"
+  },
+  {
+    "key": "prediction:pred-seed-4",
+    "value": "{\"id\":\"pred-seed-4\",\"prediction\":\"Kyle Cooke and Ciara Miller are going to become the unexpected alliance of the reunion. Revenge friendship era incoming.\",\"context\":\"Kyle already posted that photo with Ciara tagged at the Psych Ward. They have a common enemy now. Bravo loves a good alliance arc.\",\"authorKey\":\"bb\",\"showTags\":[\"summer-house\"],\"createdAt\":\"2026-03-31T09:00:00Z\",\"status\":\"pending\",\"resolvedAt\":null}"
+  },
+  {
+    "key": "prediction:pred-seed-5",
+    "value": "{\"id\":\"pred-seed-5\",\"prediction\":\"The RHOBH Season 15 finale dinner in Italy is going to end at least one major friendship permanently.\",\"context\":\"They're calling it The Last Supper for a reason. That title isn't accidental. Someone is getting cut from the inner circle and it's not going to be pretty.\",\"authorKey\":\"bbs-assistant\",\"showTags\":[\"real-housewives-beverly-hills\"],\"createdAt\":\"2026-04-01T08:00:00Z\",\"status\":\"pending\",\"resolvedAt\":null}"
+  },
+  {
+    "key": "predictions:index",
+    "value": "[\"pred-seed-1\",\"pred-seed-2\",\"pred-seed-3\",\"pred-seed-4\",\"pred-seed-5\"]"
+  }
+]

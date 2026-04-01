@@ -39,9 +39,11 @@ export function ShowCard({ show }: ShowCardProps) {
           {show.fullName}
         </h3>
 
-        {/* Article count */}
+        {/* Article count or CTA */}
         <p className="text-[10px] text-dr-text-dim">
-          {show.articleCount} {show.articleCount === 1 ? "article" : "articles"}
+          {show.articleCount > 0
+            ? `${show.articleCount} ${show.articleCount === 1 ? "article" : "articles"}`
+            : "View latest news \u2192"}
         </p>
       </div>
     </Link>

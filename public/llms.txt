@@ -1,0 +1,30 @@
+# DramaRadar
+> Reality TV and celebrity gossip news aggregator. Breaking news, original editorial content, predictions, and daily horoscopes.
+
+## About
+DramaRadar is a real-time reality TV and celebrity gossip aggregator covering Bravo, major dating shows, and celebrity drama. We publish original editorial articles, cast predictions, and daily horoscopes for all 12 zodiac signs. Our live feed monitors 22+ entertainment news sources updating every 10 minutes.
+
+## Coverage
+- Real Housewives (Beverly Hills, Atlanta, New Jersey, New York, Salt Lake City, Miami, Potomac, Dubai, Rhode Island)
+- Vanderpump Rules
+- Summer House
+- The Valley
+- Below Deck
+- Southern Charm
+- The Bachelor / The Bachelorette
+- Love Island
+- 90 Day Fiance
+- Selling Sunset
+- Married at First Sight
+- Ladies of London
+
+## Content
+- Breaking news feed: https://dramaradar.com/api/feed
+- Original articles: https://dramaradar.com/api/articles
+- Predictions: https://dramaradar.com/api/predictions
+- Show-specific feeds: https://dramaradar.com/api/feed?show={show-tag}
+- Trending drama: https://dramaradar.com/api/trending
+- Daily horoscopes: https://dramaradar.com/api/horoscope?sign={sign}&period=daily
+
+## Contact
+contact@dramaradar.com

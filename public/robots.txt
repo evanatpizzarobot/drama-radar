@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
 Sitemap: https://dramaradar.com/sitemap.xml
+
+# AI Agent Discovery
+# llms.txt: https://dramaradar.com/llms.txt
+# Agent API: https://dramaradar.com/api/agent
