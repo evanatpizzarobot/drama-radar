@@ -16,8 +16,10 @@ export function Sidebar({ trending }: SidebarProps) {
       {/* Drama Tracker */}
       <DramaTracker data={trending} />
 
-      {/* Ad Unit */}
-      <AdUnit slot="sidebar-top" className="min-h-[250px]" />
+      {/* Sidebar ad */}
+      <div className="sticky top-20">
+        <AdUnit slot="sidebar" />
+      </div>
 
       {/* Show Hub quick links */}
       <div className="rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 p-4">

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { fetchArticles } from "@/lib/api";
 import { SHOW_TAGS } from "@/lib/constants";
 import { ArticleCard } from "@/components/ArticleCard";
+import { AdUnit } from "@/components/AdUnit";
 import type { EditorialArticle } from "@/lib/types";
 
 const showOptions = Object.values(SHOW_TAGS);
@@ -80,6 +81,11 @@ export default function ArticlesPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+      {/* Leaderboard ad */}
+      <div className="mb-6">
+        <AdUnit slot="leaderboard" />
+      </div>
+
       {/* Page header */}
       <div className="mb-6">
         <h1 className="mb-2 text-3xl font-extrabold text-[#F5F5F5]">

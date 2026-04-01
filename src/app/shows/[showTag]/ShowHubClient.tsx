@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SHOW_TAGS } from "@/lib/constants";
 import { fetchFeed } from "@/lib/api";
 import { FeedList } from "@/components/FeedList";
+import { AdUnit } from "@/components/AdUnit";
 import type { FeedItem } from "@/lib/types";
 
 interface ShowHubClientProps {
@@ -113,6 +114,11 @@ export function ShowHubClient({ showTag }: ShowHubClientProps) {
         <p className="mt-2 text-sm text-[#A0A0B0]">
           Latest news, gossip, and stories about {showDef.fullName}.
         </p>
+      </div>
+
+      {/* Leaderboard ad */}
+      <div className="mb-6">
+        <AdUnit slot="leaderboard" />
       </div>
 
       {/* Feed */}

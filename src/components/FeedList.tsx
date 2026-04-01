@@ -93,10 +93,10 @@ export function FeedList({ initialItems, category, showTag }: FeedListProps) {
       {items.map((item, index) => (
         <div key={item.id}>
           <FeedCard item={item} />
-          {/* Insert an AdUnit after every 8th item */}
+          {/* Insert an in-feed ad after every 8th item */}
           {(index + 1) % 8 === 0 && (
             <div className="my-3">
-              <AdUnit slot={`feed-${Math.floor(index / 8)}`} />
+              <AdUnit slot="in-feed" />
             </div>
           )}
         </div>

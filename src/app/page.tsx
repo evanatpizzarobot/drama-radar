@@ -9,6 +9,7 @@ import { ArticleCard } from "@/components/ArticleCard";
 import { FeedList } from "@/components/FeedList";
 import { Sidebar } from "@/components/Sidebar";
 import { DramaDeskChat } from "@/components/DramaDeskChat";
+import { AdUnit, BottomAnchorAd } from "@/components/AdUnit";
 import type { FeedItem, EditorialArticle, TrendingData } from "@/lib/types";
 
 function HomeSkeleton() {
@@ -150,6 +151,11 @@ export default function HomePage() {
       {/* 1. Breaking Tea Banner */}
       <BreakingBanner items={breakingItems} />
 
+      {/* Leaderboard ad below header */}
+      <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6">
+        <AdUnit slot="leaderboard" />
+      </div>
+
       {loading ? (
         <HomeSkeleton />
       ) : (
@@ -194,6 +200,11 @@ export default function HomePage() {
             </section>
           )}
 
+          {/* Between sections ad */}
+          <div className="mb-10 py-4">
+            <AdUnit slot="between-sections" />
+          </div>
+
           {/* 4. Category Filter Bar (below editorial content) */}
           <CategoryFilter
             activeCategory={activeCategory}
@@ -222,6 +233,9 @@ export default function HomePage() {
 
       {/* Drama Desk Chat floating widget */}
       <DramaDeskChat />
+
+      {/* Mobile bottom anchor ad */}
+      <BottomAnchorAd />
     </>
   );
 }

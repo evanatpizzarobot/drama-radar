@@ -188,9 +188,9 @@ export function ArticleDetailClient({ slug }: ArticleDetailClientProps) {
       {/* Divider */}
       <hr className="mb-8 border-[#1A1A2E]" />
 
-      {/* Ad before content */}
-      <div className="mb-8">
-        <AdUnit slot="article-top" />
+      {/* Mid-article ad */}
+      <div className="my-6">
+        <AdUnit slot="mid-article" />
       </div>
 
       {/* Article body (Markdown) */}
@@ -200,9 +200,9 @@ export function ArticleDetailClient({ slug }: ArticleDetailClientProps) {
         </ReactMarkdown>
       </div>
 
-      {/* Ad after content */}
-      <div className="mb-8">
-        <AdUnit slot="article-bottom" />
+      {/* Between sections ad */}
+      <div className="my-6">
+        <AdUnit slot="between-sections" />
       </div>
 
       {/* Divider */}
