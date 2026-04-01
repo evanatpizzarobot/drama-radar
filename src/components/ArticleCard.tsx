@@ -17,7 +17,7 @@ function formatDate(dateString: string): string {
 export function ArticleCard({ article }: ArticleCardProps) {
   return (
     <Link
-      href={`/articles/view?slug=${article.slug}`}
+      href={`/articles/${article.slug}`}
       className="group overflow-hidden rounded-xl border border-dr-border bg-dr-surface/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-dr-pink/40 hover:shadow-lg hover:shadow-dr-pink/5"
     >
       {/* Hero image */}

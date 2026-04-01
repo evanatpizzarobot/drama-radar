@@ -214,7 +214,7 @@ const AUTHOR_NAMES: Record<string, string> = {
 function formatArticleTweet(article: EditorialArticle): string {
   const authorName = AUTHOR_NAMES[article.author] || "The Drama Desk";
   const showTags = buildShowHashtags(article.showTags);
-  const url = `https://dramaradar.com/articles/view?slug=${article.slug}`;
+  const url = `https://dramaradar.com/articles/${article.slug}`;
 
   let tweet = `\u{1F525} NEW on DramaRadar: ${article.title}\n\nBy ${authorName}\n\n\u{1F449} ${url}\n\n`;
 

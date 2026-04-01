@@ -25,7 +25,8 @@
       "Bash(node scripts/seed.js)",
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'Total: {d[\\\\\"total\\\\\"]}'\\); [print\\(f'  - {a[\\\\\"title\\\\\"]}'\\) for a in d['articles'][:3]]\")",
       "Bash(node scripts/seed-batch2.js)",
-      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\);const j=JSON.parse\\(d\\);console.log\\('Current total:', j.total\\)\")"
+      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\);const j=JSON.parse\\(d\\);console.log\\('Current total:', j.total\\)\")",
+      "Bash(node scripts/rename-slugs.js)"
     ]
   }
 }
