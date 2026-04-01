@@ -58,6 +58,10 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem("dramaradar-theme");if(!t){t=window.matchMedia("(prefers-color-scheme:light)").matches?"light":"dark"}document.documentElement.setAttribute("data-theme",t)}catch(e){}})();`,
           }}
         />
+        {/* Google Discover: allow large image previews */}
+        <meta name="robots" content="max-image-preview:large" />
+        {/* Pinterest verification (fill in when ready) */}
+        {/* <meta name="p:domain_verify" content="PINTEREST_VERIFICATION_CODE" /> */}
         {/* Favicons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

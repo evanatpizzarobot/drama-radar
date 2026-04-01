@@ -9,6 +9,10 @@ import { ShowTagPill } from "@/components/ShowTagPill";
 import { ArticleCard } from "@/components/ArticleCard";
 import { AdUnit } from "@/components/AdUnit";
 import { SubscribeAlert } from "@/components/SubscribeAlert";
+import { ShareButtons } from "@/components/ShareButtons";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ArticleSchema, BreadcrumbSchema } from "@/components/StructuredData";
+import { SITE_URL } from "@/lib/constants";
 import type { EditorialArticle } from "@/lib/types";
 
 interface ArticleDetailClientProps {
@@ -111,16 +115,24 @@ export function ArticleDetailClient({ slug }: ArticleDetailClientProps) {
     );
   }
 
+  const articleUrl = `${SITE_URL}/articles/${article.slug}`;
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+      {/* Structured data */}
+      <ArticleSchema article={article} />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: SITE_URL },
+        { name: "Originals", url: `${SITE_URL}/articles` },
+        { name: article.title, url: articleUrl },
+      ]} />
+
       {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-2 text-xs text-dr-text-dim" aria-label="Breadcrumb">
-        <Link href="/articles" className="transition-colors hover:text-dr-pink">
-          Articles
-        </Link>
-        <span aria-hidden="true">/</span>
-        <span className="truncate text-dr-text-muted">{article.title}</span>
-      </nav>
+      <Breadcrumbs items={[
+        { label: "Home", href: "/" },
+        { label: "Originals", href: "/articles" },
+        { label: article.title },
+      ]} />
 
       {/* Hero image */}
       {article.imageUrl && (
@@ -185,6 +197,15 @@ export function ArticleDetailClient({ slug }: ArticleDetailClientProps) {
           ))}
         </div>
       )}
+
+      {/* Share buttons */}
+      <div className="mb-8">
+        <ShareButtons
+          title={article.title}
+          url={articleUrl}
+          imageUrl={article.imageUrl || `${SITE_URL}/og-default.png`}
+        />
+      </div>
 
       {/* Divider */}
       <hr className="mb-8 border-dr-border" />

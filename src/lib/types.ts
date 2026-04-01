@@ -56,6 +56,11 @@ export interface ShowDefinition {
   fullName: string;
   keywords: string[];
   color: string;
+  intro: string;
+  currentSeason: number | null;
+  airDay: string | null;
+  network: string;
+  status: "airing" | "between-seasons" | "upcoming";
 }
 
 export interface FeedResponse {

@@ -10,6 +10,7 @@ import { FeedList } from "@/components/FeedList";
 import { Sidebar } from "@/components/Sidebar";
 import { DramaDeskChat } from "@/components/DramaDeskChat";
 import { AdUnit, BottomAnchorAd } from "@/components/AdUnit";
+import { WebSiteSchema } from "@/components/StructuredData";
 import type { FeedItem, EditorialArticle, TrendingData } from "@/lib/types";
 
 function HomeSkeleton() {
@@ -148,6 +149,7 @@ export default function HomePage() {
 
   return (
     <>
+      <WebSiteSchema />
       {/* 1. Breaking Tea Banner */}
       <BreakingBanner items={breakingItems} />
 

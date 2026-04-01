@@ -10,6 +10,7 @@ const FOOTER_LINKS = [
   { href: "/horoscope", label: "Horoscope" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
+  { href: "/disclosure", label: "Disclosure" },
 ];
 
 export function Footer() {

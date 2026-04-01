@@ -6,6 +6,9 @@ import { SHOW_TAGS } from "@/lib/constants";
 import { fetchFeed } from "@/lib/api";
 import { FeedList } from "@/components/FeedList";
 import { AdUnit } from "@/components/AdUnit";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ShowSchema, BreadcrumbSchema } from "@/components/StructuredData";
+import { SITE_URL } from "@/lib/constants";
 import type { FeedItem } from "@/lib/types";
 
 interface ShowHubClientProps {
@@ -87,17 +90,23 @@ export function ShowHubClient({ showTag }: ShowHubClientProps) {
           style={{ backgroundColor: showDef.color }}
         />
 
-        {/* Breadcrumb */}
-        <nav className="mb-4 flex items-center gap-2 text-xs text-dr-text-dim" aria-label="Breadcrumb">
-          <Link href="/shows" className="transition-colors hover:text-dr-pink">
-            Shows
-          </Link>
-          <span aria-hidden="true">/</span>
-          <span className="text-dr-text-muted">{showDef.label}</span>
-        </nav>
+        {/* Structured data */}
+        <ShowSchema show={showDef} />
+        <BreadcrumbSchema items={[
+          { name: "Home", url: SITE_URL },
+          { name: "Shows", url: `${SITE_URL}/shows` },
+          { name: showDef.fullName, url: `${SITE_URL}/shows/${showTag}` },
+        ]} />
 
-        {/* Show pill and title */}
-        <div className="flex items-center gap-3">
+        {/* Breadcrumb */}
+        <Breadcrumbs items={[
+          { label: "Home", href: "/" },
+          { label: "Shows", href: "/shows" },
+          { label: showDef.fullName },
+        ]} />
+
+        {/* Show pill, status, and title */}
+        <div className="flex flex-wrap items-center gap-3">
           <span
             className="rounded-full px-4 py-1.5 text-xs font-black uppercase tracking-wider"
             style={{
@@ -107,12 +116,42 @@ export function ShowHubClient({ showTag }: ShowHubClientProps) {
           >
             {showDef.label}
           </span>
+          {showDef.status === "airing" && (
+            <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-400">
+              Now Airing
+            </span>
+          )}
+          {showDef.status === "upcoming" && (
+            <span className="rounded-full bg-amber-500/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-400">
+              Upcoming
+            </span>
+          )}
+          {showDef.status === "between-seasons" && (
+            <span className="rounded-full bg-dr-text-dim/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-dr-text-dim">
+              Between Seasons
+            </span>
+          )}
         </div>
         <h1 className="mt-3 text-3xl font-extrabold text-dr-text">
           {showDef.fullName}
         </h1>
-        <p className="mt-2 text-sm text-dr-text-muted">
-          Latest news, gossip, and stories about {showDef.fullName}.
+
+        {/* Air schedule */}
+        {showDef.airDay && (
+          <p className="mt-1 text-xs font-medium text-dr-text-muted">
+            {showDef.airDay} on {showDef.network}
+            {showDef.currentSeason ? ` \u00B7 Season ${showDef.currentSeason}` : ""}
+          </p>
+        )}
+        {!showDef.airDay && showDef.currentSeason && (
+          <p className="mt-1 text-xs font-medium text-dr-text-muted">
+            {showDef.network} \u00B7 Season {showDef.currentSeason}
+          </p>
+        )}
+
+        {/* Intro paragraph */}
+        <p className="mt-3 text-sm leading-relaxed text-dr-text-muted">
+          {showDef.intro}
         </p>
       </div>
 
