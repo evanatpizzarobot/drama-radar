@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)",
+      "Bash(npm run:*)",
+      "Bash(git init:*)",
+      "Bash(git remote:*)",
+      "Bash(git -C /c/projects/drama-radar status -s)",
+      "Bash(git -C /c/projects/drama-radar log --oneline -5)",
+      "Bash(git -C /c/projects/drama-radar add .gitignore CLAUDE.md next.config.js package.json package-lock.json postcss.config.js tailwind.config.js tsconfig.json wrangler.toml)",
+      "Bash(git -C /c/projects/drama-radar add .github/ public/ src/ worker/)",
+      "Bash(git:*)",
+      "Bash(npx wrangler:*)",
+      "Bash(curl -s https://dramaradar-api.rippertm.workers.dev/api/health)",
+      "Bash(curl -s https://dramaradar-api.rippertm.workers.dev/api/shows)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d[''''shows''''][0][''''tag''''], d[''''shows''''][8][''''tag'''']\\)\")",
+      "Bash(curl:*)",
+      "Bash(/tmp/team-ciara.json:*)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(f''''  {a[slug]} \\({a[author]}\\) - {EXCLUSIVE if a[isExclusive] else } {FEATURED if a[isFeatured] else }''''\\) for a in d[''''articles'''']]; print\\(f''''Total: {d[total]}''''\\)\")"
+    ]
+  }
+}

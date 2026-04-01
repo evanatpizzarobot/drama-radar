@@ -6,6 +6,8 @@ import type {
   ArticlesResponse,
   EditorialArticle,
   ShowsResponse,
+  PredictionsResponse,
+  HoroscopeResponse,
 } from "./types";
 
 interface FeedParams {
@@ -141,5 +143,43 @@ export async function fetchShows(): Promise<ShowsResponse> {
     return (await res.json()) as ShowsResponse;
   } catch {
     return { shows: [] };
+  }
+}
+
+export async function fetchPredictions(
+  status?: string
+): Promise<PredictionsResponse> {
+  try {
+    const queryParams: Record<string, string> = {};
+    if (status) queryParams.status = status;
+
+    const url = buildUrl("/predictions", queryParams);
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error(`Predictions request failed: ${res.status}`);
+    }
+
+    return (await res.json()) as PredictionsResponse;
+  } catch {
+    return { predictions: [], total: 0 };
+  }
+}
+
+export async function fetchHoroscope(
+  sign: string,
+  period: string = "daily"
+): Promise<HoroscopeResponse | null> {
+  try {
+    const url = buildUrl("/horoscope", { sign, period });
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error(`Horoscope request failed: ${res.status}`);
+    }
+
+    return (await res.json()) as HoroscopeResponse;
+  } catch {
+    return null;
   }
 }

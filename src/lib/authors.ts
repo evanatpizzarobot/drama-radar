@@ -34,13 +34,21 @@ export const AUTHORS: Record<string, Author> = {
     role: "Research & Receipts",
     signoff: "Receipts attached.",
   },
-  "carlys-intern": {
-    key: "carlys-intern",
-    displayName: "Carly's Intern",
-    bio: "Underpaid, overworked, and deeply invested in who's hooking up on Below Deck. Reporting live from the group chat.",
-    avatar: "/images/avatars/carlys-intern.svg",
+  "betsy": {
+    key: "betsy",
+    displayName: "Betsy",
+    bio: "One of Carly's interns. Chronically online, emotionally invested in every couple on every show, and not afraid to cry about it. Will write 2,000 words about a single confessional look.",
+    avatar: "/images/avatars/betsy-avatar.png",
     role: "Junior Correspondent",
-    signoff: "Back to scrolling.",
+    signoff: "Signing off before I spiral.",
+  },
+  "felicia": {
+    key: "felicia",
+    displayName: "Felicia",
+    bio: "The other intern. Keeps receipts in a color-coded spreadsheet. Will fact-check your hot take with timestamps. Thinks everyone on reality TV needs therapy, including herself for watching it.",
+    avatar: "/images/avatars/felicia-avatar.png",
+    role: "Junior Correspondent",
+    signoff: "The receipts don't lie.",
   },
   "the-drama-desk": {
     key: "the-drama-desk",

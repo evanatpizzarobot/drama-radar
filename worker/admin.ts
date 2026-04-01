@@ -1,6 +1,6 @@
-// Admin article endpoints for DramaRadar
+// Admin article and prediction endpoints for DramaRadar
 
-import type { Env, EditorialArticle } from "./types";
+import type { Env, EditorialArticle, Prediction } from "./types";
 
 interface AdminErrorResponse {
   error: string;
@@ -63,6 +63,20 @@ export async function handleAdminRequest(
       return errorResponse("Missing article slug", 400);
     }
     return handleDeleteArticle(slug, env);
+  }
+
+  // POST /api/admin/predictions: create a new prediction
+  if (request.method === "POST" && path === "/api/admin/predictions") {
+    return handleCreatePrediction(request, env);
+  }
+
+  // PUT /api/admin/predictions/:id: update prediction status
+  if (request.method === "PUT" && path.startsWith("/api/admin/predictions/")) {
+    const id = path.replace("/api/admin/predictions/", "");
+    if (!id) {
+      return errorResponse("Missing prediction ID", 400);
+    }
+    return handleUpdatePrediction(id, request, env);
   }
 
   return errorResponse("Admin endpoint not found", 404);
@@ -169,4 +183,115 @@ async function updateArticleIndex(
   }
 
   await env.DRAMARADAR_ARTICLES.put("articles:index", JSON.stringify(slugs));
+}
+
+/**
+ * Create a new prediction in KV.
+ */
+async function handleCreatePrediction(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  let body: Partial<Prediction>;
+  try {
+    body = (await request.json()) as Partial<Prediction>;
+  } catch {
+    return errorResponse("Invalid JSON body", 400);
+  }
+
+  if (!body.prediction || !body.context || !body.authorKey) {
+    return errorResponse(
+      "Missing required fields: prediction, context, and authorKey are required",
+      400
+    );
+  }
+
+  const now = new Date().toISOString();
+  const id = body.id || `pred-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+  const prediction: Prediction = {
+    id,
+    prediction: body.prediction,
+    context: body.context,
+    authorKey: body.authorKey,
+    showTags: body.showTags || [],
+    createdAt: body.createdAt || now,
+    status: body.status || "pending",
+    resolvedAt: null,
+  };
+
+  await env.DRAMARADAR_ARTICLES.put(
+    `prediction:${id}`,
+    JSON.stringify(prediction)
+  );
+
+  // Update prediction index
+  await updatePredictionIndex(env, id, "add");
+
+  return jsonResponse(
+    { message: "Prediction created", prediction },
+    201
+  );
+}
+
+/**
+ * Update the status of an existing prediction.
+ */
+async function handleUpdatePrediction(
+  id: string,
+  request: Request,
+  env: Env
+): Promise<Response> {
+  const existing = await env.DRAMARADAR_ARTICLES.get(`prediction:${id}`, "json");
+  if (!existing) {
+    return errorResponse("Prediction not found", 404);
+  }
+
+  let body: Partial<Prediction>;
+  try {
+    body = (await request.json()) as Partial<Prediction>;
+  } catch {
+    return errorResponse("Invalid JSON body", 400);
+  }
+
+  const prediction = existing as Prediction;
+  const validStatuses = ["pending", "correct", "wrong", "developing"];
+
+  if (body.status && validStatuses.includes(body.status)) {
+    prediction.status = body.status;
+    if (body.status === "correct" || body.status === "wrong") {
+      prediction.resolvedAt = new Date().toISOString();
+    } else {
+      prediction.resolvedAt = null;
+    }
+  }
+
+  await env.DRAMARADAR_ARTICLES.put(
+    `prediction:${id}`,
+    JSON.stringify(prediction)
+  );
+
+  return jsonResponse({ message: "Prediction updated", prediction });
+}
+
+/**
+ * Maintain an index of all prediction IDs in KV.
+ */
+async function updatePredictionIndex(
+  env: Env,
+  id: string,
+  action: "add" | "remove"
+): Promise<void> {
+  const indexRaw = await env.DRAMARADAR_ARTICLES.get("predictions:index");
+  let ids: string[] = indexRaw ? JSON.parse(indexRaw) : [];
+
+  if (action === "add") {
+    if (!ids.includes(id)) {
+      ids.push(id);
+    }
+  } else {
+    ids = ids.filter((i) => i !== id);
+  }
+
+  await env.DRAMARADAR_ARTICLES.put("predictions:index", JSON.stringify(ids));
 }

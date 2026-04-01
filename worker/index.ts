@@ -9,6 +9,8 @@ import type {
   EditorialArticle,
   ArticlesResponse,
   ShowsResponse,
+  Prediction,
+  PredictionsResponse,
 } from "./types";
 import { fetchAndParseFeeds, shortHash } from "./fetch-feeds";
 import {
@@ -298,6 +300,123 @@ function handleHealth(env: Env): Response {
   });
 }
 
+/**
+ * GET /api/predictions
+ * List predictions with optional status filter.
+ */
+async function handlePredictions(
+  url: URL,
+  env: Env
+): Promise<Response> {
+  const statusFilter = url.searchParams.get("status") || undefined;
+
+  const indexRaw = await env.DRAMARADAR_ARTICLES.get("predictions:index");
+  const ids: string[] = indexRaw ? JSON.parse(indexRaw) : [];
+
+  const predictions: Prediction[] = [];
+
+  for (const id of ids) {
+    const raw = await env.DRAMARADAR_ARTICLES.get(`prediction:${id}`, "json");
+    if (!raw) continue;
+
+    const prediction = raw as Prediction;
+
+    if (statusFilter && prediction.status !== statusFilter) continue;
+
+    predictions.push(prediction);
+  }
+
+  // Sort newest first by createdAt
+  predictions.sort(
+    (a, b) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
+  const response: PredictionsResponse = {
+    predictions,
+    total: predictions.length,
+  };
+
+  return jsonResponse(response);
+}
+
+/**
+ * GET /api/horoscope?sign={sign}&period={daily|weekly|monthly}
+ * Fetches horoscope data with caching layer.
+ */
+async function handleHoroscope(
+  url: URL,
+  env: Env
+): Promise<Response> {
+  const sign = url.searchParams.get("sign");
+  const period = url.searchParams.get("period") || "daily";
+
+  if (!sign) {
+    return errorResponse("Missing required parameter: sign", 400);
+  }
+
+  const validSigns = [
+    "aries", "taurus", "gemini", "cancer", "leo", "virgo",
+    "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces",
+  ];
+  const validPeriods = ["daily", "weekly", "monthly"];
+
+  if (!validSigns.includes(sign.toLowerCase())) {
+    return errorResponse("Invalid sign", 400);
+  }
+  if (!validPeriods.includes(period)) {
+    return errorResponse("Invalid period. Use daily, weekly, or monthly.", 400);
+  }
+
+  const cacheKey = `horoscope:${sign.toLowerCase()}:${period}`;
+
+  // Try cache first
+  const cached = await env.DRAMARADAR_CACHE.get(cacheKey, "json");
+  if (cached) {
+    return jsonResponse({ data: cached, cached: true });
+  }
+
+  // Fetch from external API
+  const apiUrl = `https://freehoroscopeapi.com/api/v1/get-horoscope/${period}?sign=${encodeURIComponent(sign)}`;
+
+  try {
+    const apiRes = await fetch(apiUrl, {
+      headers: { "User-Agent": "DramaRadar/1.0" },
+    });
+
+    if (!apiRes.ok) {
+      throw new Error(`Horoscope API returned ${apiRes.status}`);
+    }
+
+    const apiData = (await apiRes.json()) as { data: Record<string, unknown> };
+
+    // Cache with TTL based on period
+    const ttlMap: Record<string, number> = {
+      daily: 6 * 60 * 60,       // 6 hours
+      weekly: 24 * 60 * 60,     // 24 hours
+      monthly: 48 * 60 * 60,    // 48 hours
+    };
+
+    await env.DRAMARADAR_CACHE.put(
+      cacheKey,
+      JSON.stringify(apiData.data),
+      { expirationTtl: ttlMap[period] }
+    );
+
+    return jsonResponse({ data: apiData.data, cached: false });
+  } catch (err) {
+    // If external API fails, try to serve stale cache from a broader search
+    const staleKey = `horoscope:${sign.toLowerCase()}:${period}`;
+    const stale = await env.DRAMARADAR_CACHE.get(staleKey, "json");
+    if (stale) {
+      return jsonResponse({ data: stale, cached: true, stale: true });
+    }
+
+    console.error("Horoscope fetch failed:", err);
+    return errorResponse("Horoscope data temporarily unavailable", 503);
+  }
+}
+
 // ============================================================
 // Fetch Handler (HTTP requests)
 // ============================================================
@@ -341,6 +460,14 @@ async function handleFetchRequest(
 
   if (path === "/api/shows" && request.method === "GET") {
     return handleShows(env);
+  }
+
+  if (path === "/api/predictions" && request.method === "GET") {
+    return handlePredictions(url, env);
+  }
+
+  if (path === "/api/horoscope" && request.method === "GET") {
+    return handleHoroscope(url, env);
   }
 
   if (path === "/api/health" && request.method === "GET") {

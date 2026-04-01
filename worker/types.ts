@@ -86,6 +86,22 @@ export interface ShowsResponse {
   }>;
 }
 
+export interface Prediction {
+  id: string;
+  prediction: string;
+  context: string;
+  authorKey: string;
+  showTags: string[];
+  createdAt: string;
+  status: "pending" | "correct" | "wrong" | "developing";
+  resolvedAt: string | null;
+}
+
+export interface PredictionsResponse {
+  predictions: Prediction[];
+  total: number;
+}
+
 // Worker-specific types
 
 export interface FeedSource {
