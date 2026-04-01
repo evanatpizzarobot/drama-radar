@@ -14,14 +14,14 @@ const FOOTER_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#1A1A2E] bg-[#0D0D0F]">
+    <footer className="border-t border-dr-border bg-dr-bg">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2" aria-label="Footer navigation">
           {FOOTER_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-[#A0A0B0] transition-colors duration-200 hover:text-[#E84393]"
+              className="text-sm text-dr-text-muted transition-colors duration-200 hover:text-dr-pink"
             >
               {link.label}
             </Link>
@@ -36,22 +36,22 @@ export function Footer() {
             { label: "Tips", email: "tips@dramaradar.com" },
           ].map((item, i, arr) => (
             <span key={item.email} className="whitespace-nowrap">
-              <span className="text-xs text-[#555568]">{item.label}: </span>
+              <span className="text-xs text-dr-text-dim">{item.label}: </span>
               <a
                 href={`mailto:${item.email}`}
-                className="text-xs text-[#A0A0B0] transition-colors duration-200 hover:text-[#E84393]"
+                className="text-xs text-dr-text-muted transition-colors duration-200 hover:text-dr-pink"
               >
                 {item.email}
               </a>
               {i < arr.length - 1 && (
-                <span className="mx-1.5 text-xs text-[#333345]">|</span>
+                <span className="mx-1.5 text-xs text-dr-text-dim/50">|</span>
               )}
             </span>
           ))}
         </div>
 
         <div className="mt-3 flex flex-col items-center gap-2 text-center">
-          <p className="text-xs text-[#555568]">
+          <p className="text-xs text-dr-text-dim">
             &copy; {new Date().getFullYear()} DramaRadar. All rights reserved.
           </p>
         </div>

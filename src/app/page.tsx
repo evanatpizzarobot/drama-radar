@@ -17,18 +17,18 @@ function HomeSkeleton() {
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
       {/* Featured skeleton */}
       <div className="mb-10">
-        <div className="mb-4 h-5 w-48 animate-pulse rounded bg-[#2A2A3E]" />
+        <div className="mb-4 h-5 w-48 animate-pulse rounded bg-dr-surface-hover" />
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
-              className="animate-pulse rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60"
+              className="animate-pulse rounded-xl border border-dr-border bg-dr-surface/60"
             >
-              <div className="h-44 w-full rounded-t-xl bg-[#2A2A3E]" />
+              <div className="h-44 w-full rounded-t-xl bg-dr-surface-hover" />
               <div className="p-4">
-                <div className="mb-2 h-4 w-3/4 rounded bg-[#2A2A3E]" />
-                <div className="mb-1 h-3 w-full rounded bg-[#2A2A3E]" />
-                <div className="h-3 w-1/2 rounded bg-[#2A2A3E]" />
+                <div className="mb-2 h-4 w-3/4 rounded bg-dr-surface-hover" />
+                <div className="mb-1 h-3 w-full rounded bg-dr-surface-hover" />
+                <div className="h-3 w-1/2 rounded bg-dr-surface-hover" />
               </div>
             </div>
           ))}
@@ -37,17 +37,17 @@ function HomeSkeleton() {
 
       {/* Latest from the Drama Desk skeleton */}
       <div className="mb-10">
-        <div className="mb-4 h-5 w-56 animate-pulse rounded bg-[#2A2A3E]" />
+        <div className="mb-4 h-5 w-56 animate-pulse rounded bg-dr-surface-hover" />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
-              className="animate-pulse rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60"
+              className="animate-pulse rounded-xl border border-dr-border bg-dr-surface/60"
             >
-              <div className="h-36 w-full rounded-t-xl bg-[#2A2A3E]" />
+              <div className="h-36 w-full rounded-t-xl bg-dr-surface-hover" />
               <div className="p-4">
-                <div className="mb-2 h-3 w-3/4 rounded bg-[#2A2A3E]" />
-                <div className="h-2 w-1/2 rounded bg-[#2A2A3E]" />
+                <div className="mb-2 h-3 w-3/4 rounded bg-dr-surface-hover" />
+                <div className="h-2 w-1/2 rounded bg-dr-surface-hover" />
               </div>
             </div>
           ))}
@@ -57,34 +57,34 @@ function HomeSkeleton() {
       {/* Category filter skeleton */}
       <div className="mb-6 flex gap-2">
         {[1, 2, 3, 4, 5].map((i) => (
-          <div key={i} className="h-8 w-20 animate-pulse rounded-full bg-[#2A2A3E]" />
+          <div key={i} className="h-8 w-20 animate-pulse rounded-full bg-dr-surface-hover" />
         ))}
       </div>
 
       {/* Feed skeleton */}
       <div className="flex gap-8">
         <div className="min-w-0 flex-1">
-          <div className="mb-4 h-5 w-40 animate-pulse rounded bg-[#2A2A3E]" />
+          <div className="mb-4 h-5 w-40 animate-pulse rounded bg-dr-surface-hover" />
           <div className="flex flex-col gap-3">
             {[1, 2, 3, 4, 5].map((i) => (
               <div
                 key={i}
-                className="animate-pulse rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 p-4"
+                className="animate-pulse rounded-xl border border-dr-border bg-dr-surface/60 p-4"
               >
-                <div className="mb-2 h-2.5 w-20 rounded bg-[#2A2A3E]" />
-                <div className="mb-1.5 h-4 w-3/4 rounded bg-[#2A2A3E]" />
-                <div className="mb-1 h-3 w-full rounded bg-[#2A2A3E]" />
-                <div className="mb-3 h-3 w-2/3 rounded bg-[#2A2A3E]" />
+                <div className="mb-2 h-2.5 w-20 rounded bg-dr-surface-hover" />
+                <div className="mb-1.5 h-4 w-3/4 rounded bg-dr-surface-hover" />
+                <div className="mb-1 h-3 w-full rounded bg-dr-surface-hover" />
+                <div className="mb-3 h-3 w-2/3 rounded bg-dr-surface-hover" />
                 <div className="flex gap-2">
-                  <div className="h-5 w-14 rounded-full bg-[#2A2A3E]" />
-                  <div className="h-5 w-14 rounded-full bg-[#2A2A3E]" />
+                  <div className="h-5 w-14 rounded-full bg-dr-surface-hover" />
+                  <div className="h-5 w-14 rounded-full bg-dr-surface-hover" />
                 </div>
               </div>
             ))}
           </div>
         </div>
         <div className="hidden w-80 shrink-0 lg:block">
-          <div className="h-96 animate-pulse rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60" />
+          <div className="h-96 animate-pulse rounded-xl border border-dr-border bg-dr-surface/60" />
         </div>
       </div>
     </div>
@@ -163,9 +163,9 @@ export default function HomePage() {
           {/* 2. Featured Editorial Section (above the fold for AdSense reviewers) */}
           {featuredArticles.length > 0 && (
             <section className="mb-10">
-              <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[#F5F5F5]">
+              <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-dr-text">
                 <span
-                  className="inline-block h-1.5 w-1.5 rounded-full bg-[#E84393]"
+                  className="inline-block h-1.5 w-1.5 rounded-full bg-dr-pink"
                   aria-hidden="true"
                 />
                 Featured Stories
@@ -178,16 +178,16 @@ export default function HomePage() {
           {recentArticles.length > 0 && (
             <section className="mb-10">
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="flex items-center gap-2 text-lg font-bold text-[#F5F5F5]">
+                <h2 className="flex items-center gap-2 text-lg font-bold text-dr-text">
                   <span
-                    className="inline-block h-1.5 w-1.5 rounded-full bg-[#A855F7]"
+                    className="inline-block h-1.5 w-1.5 rounded-full bg-dr-purple"
                     aria-hidden="true"
                   />
                   DramaRadar Originals
                 </h2>
                 <a
                   href="/articles"
-                  className="text-xs font-semibold text-[#A855F7] transition-colors hover:text-[#E84393]"
+                  className="text-xs font-semibold text-dr-purple transition-colors hover:text-dr-pink"
                 >
                   View All &rarr;
                 </a>
@@ -215,9 +215,9 @@ export default function HomePage() {
           <div className="mt-6 flex gap-8">
             {/* Feed column */}
             <div className="min-w-0 flex-1">
-              <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[#F5F5F5]">
+              <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-dr-text">
                 <span
-                  className="inline-block h-1.5 w-1.5 rounded-full bg-[#E84393]"
+                  className="inline-block h-1.5 w-1.5 rounded-full bg-dr-pink"
                   aria-hidden="true"
                 />
                 What&apos;s Buzzing Now

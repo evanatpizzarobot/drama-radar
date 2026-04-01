@@ -43,8 +43,8 @@ function SignCard({
       onClick={onClick}
       className={`group flex flex-col items-center gap-2 rounded-xl border p-4 transition-all duration-200 ${
         isSelected
-          ? "border-opacity-60 bg-[#1A1A2E] scale-[1.02]"
-          : "border-[#2A2A3E] bg-[#1A1A2E] hover:border-opacity-40 hover:scale-[1.01]"
+          ? "border-opacity-60 bg-dr-surface scale-[1.02]"
+          : "border-dr-border-hover bg-dr-surface hover:border-opacity-40 hover:scale-[1.01]"
       }`}
       style={{
         borderColor: isSelected ? zodiac.color : undefined,
@@ -60,8 +60,8 @@ function SignCard({
       >
         {zodiac.symbol}
       </span>
-      <span className="text-sm font-bold text-[#F5F5F5]">{zodiac.name}</span>
-      <span className="text-[10px] text-[#555568]">{zodiac.dates}</span>
+      <span className="text-sm font-bold text-dr-text">{zodiac.name}</span>
+      <span className="text-[10px] text-dr-text-dim">{zodiac.dates}</span>
     </button>
   );
 }
@@ -84,7 +84,7 @@ function ReadingSection({
       className="mt-8 rounded-xl border p-6 sm:p-8"
       style={{
         borderColor: `${zodiac.color}44`,
-        background: `linear-gradient(135deg, #1A1A2E 0%, ${zodiac.color}08 100%)`,
+        background: `linear-gradient(135deg, rgb(var(--dr-surface)) 0%, ${zodiac.color}08 100%)`,
       }}
     >
       {/* Sign header */}
@@ -97,10 +97,10 @@ function ReadingSection({
           {zodiac.symbol}
         </span>
         <div>
-          <h2 className="text-2xl font-extrabold text-[#F5F5F5]">
+          <h2 className="text-2xl font-extrabold text-dr-text">
             {zodiac.name}
           </h2>
-          <p className="text-sm text-[#A0A0B0]">
+          <p className="text-sm text-dr-text-muted">
             {zodiac.dates} &middot; {zodiac.element}
           </p>
         </div>
@@ -113,7 +113,7 @@ function ReadingSection({
             className="h-4 w-4 animate-spin rounded-full border-2 border-t-transparent"
             style={{ borderColor: `${zodiac.color}88`, borderTopColor: "transparent" }}
           />
-          <p className="text-sm text-[#A0A0B0] animate-pulse">
+          <p className="text-sm text-dr-text-muted animate-pulse">
             Consulting the stars...
           </p>
         </div>
@@ -127,10 +127,10 @@ function ReadingSection({
               This reading may be slightly out of date. The cosmos will refresh soon.
             </p>
           )}
-          <p className="text-base leading-relaxed text-[#F5F5F5]">
+          <p className="text-base leading-relaxed text-dr-text">
             {horoscope.horoscope}
           </p>
-          <p className="mt-4 text-xs text-[#555568]">
+          <p className="mt-4 text-xs text-dr-text-dim">
             {period.charAt(0).toUpperCase() + period.slice(1)} reading
             {horoscope.date ? ` for ${horoscope.date}` : ""}
           </p>
@@ -139,7 +139,7 @@ function ReadingSection({
 
       {/* Error state */}
       {!loading && !horoscope && (
-        <p className="text-sm text-[#A0A0B0]">
+        <p className="text-sm text-dr-text-muted">
           The stars are being shy right now. Try again in a moment.
         </p>
       )}
@@ -187,14 +187,14 @@ export default function HoroscopePage() {
 
       {/* Page header */}
       <div className="mb-10">
-        <h1 className="mb-3 text-3xl font-extrabold text-[#F5F5F5]">
+        <h1 className="mb-3 text-3xl font-extrabold text-dr-text">
           Your Daily Horoscope
         </h1>
         <div
-          className="mb-4 h-1 w-24 rounded-full bg-gradient-to-r from-[#E84393] to-[#A855F7]"
+          className="mb-4 h-1 w-24 rounded-full bg-gradient-to-r from-dr-pink to-dr-purple"
           aria-hidden="true"
         />
-        <p className="text-sm text-[#A0A0B0]">
+        <p className="text-sm text-dr-text-muted">
           The stars have tea to spill too.
         </p>
       </div>
@@ -210,8 +210,8 @@ export default function HoroscopePage() {
             onClick={() => handlePeriodChange(p.key)}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 ${
               period === p.key
-                ? "bg-[#E84393] text-white"
-                : "bg-[#1A1A2E] text-[#A0A0B0] hover:bg-[#2A2A3E] hover:text-[#F5F5F5]"
+                ? "bg-dr-pink text-white"
+                : "bg-dr-surface text-dr-text-muted hover:bg-dr-surface-hover hover:text-dr-text"
             }`}
           >
             {p.label}
@@ -246,7 +246,7 @@ export default function HoroscopePage() {
       )}
 
       {/* DramaRadar voice footer */}
-      <p className="mt-12 text-center text-xs text-[#555568] italic">
+      <p className="mt-12 text-center text-xs text-dr-text-dim italic">
         Horoscopes are pulled from the cosmos (and a free API). For entertainment purposes only.
         If Mercury is in retrograde, we take no responsibility for your texts.
       </p>

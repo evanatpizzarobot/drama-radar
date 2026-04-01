@@ -8,14 +8,14 @@ interface FeedCardProps {
 
 export function FeedCard({ item }: FeedCardProps) {
   return (
-    <article className="group relative rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#E84393]/40 hover:shadow-lg hover:shadow-[#E84393]/5">
+    <article className="group relative rounded-xl border border-dr-border bg-dr-surface/60 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-dr-pink/40 hover:shadow-lg hover:shadow-dr-pink/5">
       <div className="flex gap-4">
         {/* Content */}
         <div className="min-w-0 flex-1">
           {/* Source */}
           <div className="mb-1.5 flex items-center gap-2">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#E84393]" aria-hidden="true" />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#A0A0B0]">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-dr-pink" aria-hidden="true" />
+            <span className="text-[10px] font-bold uppercase tracking-wider text-dr-text-muted">
               {item.source}
             </span>
           </div>
@@ -25,14 +25,14 @@ export function FeedCard({ item }: FeedCardProps) {
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mb-1.5 block text-sm font-bold leading-snug text-[#F5F5F5] transition-colors duration-200 group-hover:text-[#E84393]"
+            className="mb-1.5 block text-sm font-bold leading-snug text-dr-text transition-colors duration-200 group-hover:text-dr-pink"
           >
             {decodeHtmlEntities(item.title)}
           </a>
 
           {/* Description */}
           {item.description && (
-            <p className="mb-2.5 line-clamp-2 text-xs leading-relaxed text-[#A0A0B0]">
+            <p className="mb-2.5 line-clamp-2 text-xs leading-relaxed text-dr-text-muted">
               {decodeHtmlEntities(item.description)}
             </p>
           )}
@@ -44,7 +44,7 @@ export function FeedCard({ item }: FeedCardProps) {
                 <ShowTagPill key={tag} tag={tag} />
               ))}
             </div>
-            <span className="ml-auto shrink-0 text-[10px] text-[#555568]">
+            <span className="ml-auto shrink-0 text-[10px] text-dr-text-dim">
               {timeAgo(item.publishedAt)}
             </span>
           </div>

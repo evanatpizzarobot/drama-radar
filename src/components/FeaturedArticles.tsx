@@ -26,7 +26,7 @@ export function FeaturedArticles({ articles }: FeaturedArticlesProps) {
           <Link
             key={article.slug}
             href={`/articles/view?slug=${article.slug}`}
-            className="group relative overflow-hidden rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#E84393]/40 hover:shadow-lg hover:shadow-[#E84393]/5"
+            className="group relative overflow-hidden rounded-xl border border-dr-border bg-dr-surface/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-dr-pink/40 hover:shadow-lg hover:shadow-dr-pink/5"
           >
             {/* Hero image */}
             {article.imageUrl && (
@@ -37,7 +37,7 @@ export function FeaturedArticles({ articles }: FeaturedArticlesProps) {
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A2E] to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-dr-surface to-transparent" />
               </div>
             )}
 
@@ -45,25 +45,25 @@ export function FeaturedArticles({ articles }: FeaturedArticlesProps) {
               {/* Badges */}
               <div className="mb-2 flex flex-wrap gap-2">
                 {article.isExclusive && (
-                  <span className="rounded-full bg-[#FDCB6E]/20 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-[#FDCB6E]">
+                  <span className="rounded-full bg-dr-gold/20 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-dr-gold">
                     Exclusive
                   </span>
                 )}
                 {article.isFeatured && (
-                  <span className="rounded-full bg-[#E84393]/20 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-[#E84393]">
+                  <span className="rounded-full bg-dr-pink/20 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-dr-pink">
                     Featured
                   </span>
                 )}
               </div>
 
               {/* Title */}
-              <h3 className="mb-1 text-base font-bold leading-tight text-[#F5F5F5] transition-colors duration-200 group-hover:text-[#E84393]">
+              <h3 className="mb-1 text-base font-bold leading-tight text-dr-text transition-colors duration-200 group-hover:text-dr-pink">
                 {article.title}
               </h3>
 
               {/* Subtitle */}
               {article.subtitle && (
-                <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-[#A0A0B0]">
+                <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-dr-text-muted">
                   {article.subtitle}
                 </p>
               )}
@@ -78,7 +78,7 @@ export function FeaturedArticles({ articles }: FeaturedArticlesProps) {
               )}
 
               {/* Author and date */}
-              <div className="flex items-center gap-2 text-[10px] text-[#555568]">
+              <div className="flex items-center gap-2 text-[10px] text-dr-text-dim">
                 <span>{article.author}</span>
                 <span aria-hidden="true">&middot;</span>
                 <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>

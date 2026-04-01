@@ -50,8 +50,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" data-theme="dark" className={inter.variable} suppressHydrationWarning>
       <head>
+        {/* Anti-flash: set theme before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("dramaradar-theme");if(!t){t=window.matchMedia("(prefers-color-scheme:light)").matches?"light":"dark"}document.documentElement.setAttribute("data-theme",t)}catch(e){}})();`,
+          }}
+        />
         {/* Google AdSense: uncomment and add your pub ID when ready */}
         {/* <script
           async
@@ -59,7 +65,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         /> */}
       </head>
-      <body className="min-h-screen bg-[#0D0D0F] font-sans text-[#F5F5F5] antialiased">
+      <body className="min-h-screen bg-dr-bg font-sans text-dr-text antialiased">
         <Header />
         <main className="min-h-[calc(100vh-120px)]">{children}</main>
         <Footer />

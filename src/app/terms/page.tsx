@@ -13,18 +13,18 @@ export default function TermsPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       {/* Page header */}
       <div className="mb-10">
-        <h1 className="mb-3 text-3xl font-extrabold text-[#F5F5F5]">
+        <h1 className="mb-3 text-3xl font-extrabold text-dr-text">
           Terms of Service
         </h1>
-        <p className="text-sm text-[#555568]">
+        <p className="text-sm text-dr-text-dim">
           Last updated: March 31, 2026
         </p>
       </div>
 
       {/* Content */}
-      <div className="flex flex-col gap-8 text-sm leading-relaxed text-[#A0A0B0]">
+      <div className="flex flex-col gap-8 text-sm leading-relaxed text-dr-text-muted">
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             1. Acceptance of Terms
           </h2>
           <p>
@@ -37,7 +37,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             2. Description of Service
           </h2>
           <p>
@@ -49,7 +49,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             3. Content Aggregation Disclaimer
           </h2>
           <p className="mb-3">
@@ -68,7 +68,7 @@ export default function TermsPage() {
             in a way that infringes your rights, please contact us at{" "}
             <a
               href="mailto:hello@dramaradar.com"
-              className="text-[#E84393] underline underline-offset-2 transition-opacity hover:opacity-80"
+              className="text-dr-pink underline underline-offset-2 transition-opacity hover:opacity-80"
             >
               hello@dramaradar.com
             </a>{" "}
@@ -77,7 +77,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             4. Intellectual Property
           </h2>
           <p className="mb-3">
@@ -94,7 +94,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             5. Use of Service
           </h2>
           <p className="mb-3">
@@ -126,7 +126,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             6. Advertisements
           </h2>
           <p>
@@ -138,7 +138,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             7. External Links
           </h2>
           <p>
@@ -151,7 +151,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             8. Disclaimers
           </h2>
           <p className="mb-3">
@@ -169,7 +169,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             9. Limitation of Liability
           </h2>
           <p>
@@ -183,7 +183,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             10. Governing Law
           </h2>
           <p>
@@ -195,7 +195,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             11. Severability
           </h2>
           <p>
@@ -204,15 +204,15 @@ export default function TermsPage() {
           </p>
         </section>
 
-        <section className="rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 p-6">
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+        <section className="rounded-xl border border-dr-border bg-dr-surface/60 p-6">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Contact Us
           </h2>
           <p>
             If you have questions about these Terms of Service, please contact us at{" "}
             <a
               href="mailto:hello@dramaradar.com"
-              className="text-[#E84393] underline underline-offset-2 transition-opacity hover:opacity-80"
+              className="text-dr-pink underline underline-offset-2 transition-opacity hover:opacity-80"
             >
               hello@dramaradar.com
             </a>

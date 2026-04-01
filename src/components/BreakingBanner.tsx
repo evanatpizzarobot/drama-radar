@@ -11,7 +11,7 @@ export function BreakingBanner({ items }: BreakingBannerProps) {
   const first = items[0];
 
   return (
-    <div className="w-full bg-gradient-to-r from-[#FF3838] via-[#E84393] to-[#A855F7]">
+    <div className="w-full bg-gradient-to-r from-dr-red via-dr-pink to-dr-purple">
       <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2 sm:px-6">
         {/* Breaking badge with radar icon */}
         <span className="flex shrink-0 items-center gap-1.5 animate-pulse">

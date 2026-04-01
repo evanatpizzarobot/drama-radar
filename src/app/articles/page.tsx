@@ -23,16 +23,16 @@ function ArticlesSkeleton() {
       {[1, 2, 3, 4, 5, 6].map((i) => (
         <div
           key={i}
-          className="animate-pulse rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60"
+          className="animate-pulse rounded-xl border border-dr-border bg-dr-surface/60"
         >
-          <div className="h-48 w-full rounded-t-xl bg-[#2A2A3E]" />
+          <div className="h-48 w-full rounded-t-xl bg-dr-surface-hover" />
           <div className="p-4">
-            <div className="mb-2 h-4 w-3/4 rounded bg-[#2A2A3E]" />
-            <div className="mb-1 h-3 w-full rounded bg-[#2A2A3E]" />
-            <div className="mb-3 h-3 w-1/2 rounded bg-[#2A2A3E]" />
+            <div className="mb-2 h-4 w-3/4 rounded bg-dr-surface-hover" />
+            <div className="mb-1 h-3 w-full rounded bg-dr-surface-hover" />
+            <div className="mb-3 h-3 w-1/2 rounded bg-dr-surface-hover" />
             <div className="flex gap-2">
-              <div className="h-5 w-14 rounded-full bg-[#2A2A3E]" />
-              <div className="h-5 w-14 rounded-full bg-[#2A2A3E]" />
+              <div className="h-5 w-14 rounded-full bg-dr-surface-hover" />
+              <div className="h-5 w-14 rounded-full bg-dr-surface-hover" />
             </div>
           </div>
         </div>
@@ -88,14 +88,14 @@ export default function ArticlesPage() {
 
       {/* Page header */}
       <div className="mb-6">
-        <h1 className="mb-2 text-3xl font-extrabold text-[#F5F5F5]">
+        <h1 className="mb-2 text-3xl font-extrabold text-dr-text">
           DramaRadar Originals
         </h1>
-        <p className="text-sm text-[#A0A0B0]">
+        <p className="text-sm text-dr-text-muted">
           Exclusive articles, hot takes, and deep dives from the DramaRadar editorial team.
         </p>
         <div
-          className="mt-3 h-1 w-20 rounded-full bg-gradient-to-r from-[#E84393] to-[#A855F7]"
+          className="mt-3 h-1 w-20 rounded-full bg-gradient-to-r from-dr-pink to-dr-purple"
           aria-hidden="true"
         />
       </div>
@@ -116,8 +116,8 @@ export default function ArticlesPage() {
               onClick={() => setActiveCategory(cat.slug)}
               className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 ${
                 activeCategory === cat.slug
-                  ? "bg-[#E84393] text-white shadow-lg shadow-[#E84393]/20"
-                  : "border border-[#2A2A3E] bg-transparent text-[#A0A0B0] hover:border-[#E84393] hover:text-[#E84393]"
+                  ? "bg-dr-pink text-white shadow-lg shadow-dr-pink/20"
+                  : "border border-dr-border-hover bg-transparent text-dr-text-muted hover:border-dr-pink hover:text-dr-pink"
               }`}
             >
               {cat.label}
@@ -140,8 +140,8 @@ export default function ArticlesPage() {
             onClick={() => setActiveShow(null)}
             className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 ${
               activeShow === null
-                ? "bg-[#A855F7] text-white shadow-lg shadow-[#A855F7]/20"
-                : "border border-[#2A2A3E] bg-transparent text-[#A0A0B0] hover:border-[#A855F7] hover:text-[#A855F7]"
+                ? "bg-dr-purple text-white shadow-lg shadow-dr-purple/20"
+                : "border border-dr-border-hover bg-transparent text-dr-text-muted hover:border-dr-purple hover:text-dr-purple"
             }`}
           >
             All Shows
@@ -156,7 +156,7 @@ export default function ArticlesPage() {
               className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 ${
                 activeShow === show.tag
                   ? "text-white shadow-lg"
-                  : "border border-[#2A2A3E] bg-transparent text-[#A0A0B0] hover:border-[#E84393] hover:text-[#E84393]"
+                  : "border border-dr-border-hover bg-transparent text-dr-text-muted hover:border-dr-pink hover:text-dr-pink"
               }`}
               style={
                 activeShow === show.tag
@@ -184,8 +184,8 @@ export default function ArticlesPage() {
         </div>
       ) : (
         <div className="flex flex-col items-center gap-2 py-16 text-center">
-          <p className="text-sm text-[#A0A0B0]">No articles found.</p>
-          <p className="text-xs text-[#555568]">
+          <p className="text-sm text-dr-text-muted">No articles found.</p>
+          <p className="text-xs text-dr-text-dim">
             {activeShow || activeCategory !== "all"
               ? "Try a different filter or view all articles."
               : "Check back soon for new editorial content."}

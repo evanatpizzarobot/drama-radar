@@ -14,11 +14,11 @@ export default function AboutPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       {/* Page header */}
       <div className="mb-10">
-        <h1 className="mb-3 text-3xl font-extrabold text-[#F5F5F5]">
+        <h1 className="mb-3 text-3xl font-extrabold text-dr-text">
           About DramaRadar
         </h1>
         <div
-          className="h-1 w-24 rounded-full bg-gradient-to-r from-[#E84393] to-[#A855F7]"
+          className="h-1 w-24 rounded-full bg-gradient-to-r from-dr-pink to-dr-purple"
           aria-hidden="true"
         />
       </div>
@@ -27,7 +27,7 @@ export default function AboutPage() {
       <div className="flex flex-col gap-10">
         {/* Intro */}
         <section>
-          <p className="mb-4 text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="mb-4 text-sm leading-relaxed text-dr-text-muted">
             DramaRadar was founded by a group of reality TV obsessives who got
             tired of refreshing five different apps to keep up with the latest
             Bravo drama. We built the gossip dashboard we always wanted: one
@@ -35,7 +35,7 @@ export default function AboutPage() {
             don&apos;t remember it that way&rdquo; moment lands the second it
             breaks.
           </p>
-          <p className="text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="text-sm leading-relaxed text-dr-text-muted">
             Whether you live for reunion chaos, get invested in cast feuds
             before the season even premieres, or simply want a single feed
             that catches every bombshell across every franchise, DramaRadar
@@ -46,18 +46,18 @@ export default function AboutPage() {
 
         {/* Our Mission */}
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Our Mission
           </h2>
-          <p className="mb-4 text-sm leading-relaxed text-[#A0A0B0]">
-            Our motto is simple: <span className="font-semibold text-[#E84393]">Always Scanning</span>.
+          <p className="mb-4 text-sm leading-relaxed text-dr-text-muted">
+            Our motto is simple: <span className="font-semibold text-dr-pink">Always Scanning</span>.
             The DramaRadar never sleeps. Day and night, our system monitors
             dozens of entertainment news outlets, gossip blogs, social media
             accounts, and fan communities so you never miss a beat. Stories are
             prioritized by recency and relevance, which means the most
             important drama always rises to the top of your feed.
           </p>
-          <p className="text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="text-sm leading-relaxed text-dr-text-muted">
             We believe reality TV fans deserve a dedicated news experience,
             not a sidebar buried under celebrity fashion roundups or movie
             trailers. DramaRadar exists to treat reality television as what
@@ -70,23 +70,23 @@ export default function AboutPage() {
 
         {/* Our Team */}
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Our Team
           </h2>
-          <p className="mb-4 text-sm leading-relaxed text-[#A0A0B0]">
-            DramaRadar is led by <span className="font-semibold text-[#F5F5F5]">Carly</span>,
+          <p className="mb-4 text-sm leading-relaxed text-dr-text-muted">
+            DramaRadar is led by <span className="font-semibold text-dr-text">Carly</span>,
             our Editor-in-Chief, alongside a team of writers, analysts, and
             self-proclaimed chaos agents. You will see bylines from voices like
-            BB, BB&apos;s Assistant, Carly&apos;s Intern, and The Drama Desk
+            BB, BB&apos;s Assistant, Betsy, Felicia, and The Drama Desk
             collective, each bringing a unique perspective to the reality TV
             universe. Some of us are here for the strategy. Some of us are here
             for the mess. All of us are here for the drama.
           </p>
-          <p className="text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="text-sm leading-relaxed text-dr-text-muted">
             Want to know who is behind the takes?{" "}
             <Link
               href="/team"
-              className="text-[#E84393] underline underline-offset-2 transition-opacity hover:opacity-80"
+              className="text-dr-pink underline underline-offset-2 transition-opacity hover:opacity-80"
             >
               Meet the full team here
             </Link>
@@ -96,10 +96,10 @@ export default function AboutPage() {
 
         {/* What We Cover */}
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             What We Cover
           </h2>
-          <p className="mb-4 text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="mb-4 text-sm leading-relaxed text-dr-text-muted">
             DramaRadar covers the full spectrum of reality television and
             adjacent celebrity gossip. Our show hubs span every major
             franchise, including (but definitely not limited to):
@@ -121,19 +121,19 @@ export default function AboutPage() {
             ].map((show) => (
               <div
                 key={show}
-                className="rounded-lg border border-[#1A1A2E] bg-[#1A1A2E]/40 px-3 py-2 text-center text-xs font-medium text-[#A0A0B0]"
+                className="rounded-lg border border-dr-border bg-dr-surface/40 px-3 py-2 text-center text-xs font-medium text-dr-text-muted"
               >
                 {show}
               </div>
             ))}
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="mt-4 text-sm leading-relaxed text-dr-text-muted">
             We are constantly expanding our coverage. If your favorite show
             is not listed yet, chances are we are already working on it.
             Visit our{" "}
             <Link
               href="/shows"
-              className="text-[#E84393] underline underline-offset-2 transition-opacity hover:opacity-80"
+              className="text-dr-pink underline underline-offset-2 transition-opacity hover:opacity-80"
             >
               Shows
             </Link>{" "}
@@ -143,10 +143,10 @@ export default function AboutPage() {
 
         {/* How It Works */}
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             How It Works
           </h2>
-          <p className="mb-4 text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="mb-4 text-sm leading-relaxed text-dr-text-muted">
             DramaRadar aggregates headlines, thumbnails, and short
             descriptions from trusted entertainment news sources across the
             web. Every story in our feed links directly to the original
@@ -154,7 +154,7 @@ export default function AboutPage() {
             publication date, and a brief summary so you can decide what to
             read, then we send you straight to the source.
           </p>
-          <p className="text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="text-sm leading-relaxed text-dr-text-muted">
             We never reproduce full articles. Our goal is discovery and
             convenience: help fans find the stories that matter, give proper
             attribution to the outlets that break them, and keep everything
@@ -165,10 +165,10 @@ export default function AboutPage() {
 
         {/* Original Content */}
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Original Content
           </h2>
-          <p className="mb-4 text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="mb-4 text-sm leading-relaxed text-dr-text-muted">
             Aggregation is only half the story. The Drama Desk editorial team
             publishes original articles, deep dives, hot takes, power
             rankings, and exclusive analysis pieces you will not find anywhere
@@ -176,7 +176,7 @@ export default function AboutPage() {
             &ldquo;Featured&rdquo; badges throughout the site to discover our
             original work.
           </p>
-          <p className="text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="text-sm leading-relaxed text-dr-text-muted">
             From preseason predictions to post-reunion breakdowns, our writers
             bring the perspective that only true superfans can offer. We take
             reality TV seriously (while never taking ourselves too seriously).
@@ -184,23 +184,23 @@ export default function AboutPage() {
         </section>
 
         {/* Contact section */}
-        <section className="rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 p-6">
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+        <section className="rounded-xl border border-dr-border bg-dr-surface/60 p-6">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Get in Touch
           </h2>
-          <p className="mb-4 text-sm leading-relaxed text-[#A0A0B0]">
+          <p className="mb-4 text-sm leading-relaxed text-dr-text-muted">
             Have a tip, a question, or feedback? We would love to hear from
             you. Reach us directly at{" "}
             <a
               href="mailto:hello@dramaradar.com"
-              className="text-[#E84393] underline underline-offset-2 transition-opacity hover:opacity-80"
+              className="text-dr-pink underline underline-offset-2 transition-opacity hover:opacity-80"
             >
               hello@dramaradar.com
             </a>{" "}
             or visit our{" "}
             <Link
               href="/contact"
-              className="text-[#E84393] underline underline-offset-2 transition-opacity hover:opacity-80"
+              className="text-dr-pink underline underline-offset-2 transition-opacity hover:opacity-80"
             >
               Contact page
             </Link>{" "}

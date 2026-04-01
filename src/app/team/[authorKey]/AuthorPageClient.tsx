@@ -13,16 +13,16 @@ export function AuthorPageClient({ authorKey }: AuthorPageClientProps) {
   if (!author) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-        <div className="rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 p-8 text-center">
-          <p className="mb-2 text-lg font-bold text-[#F5F5F5]">
+        <div className="rounded-xl border border-dr-border bg-dr-surface/60 p-8 text-center">
+          <p className="mb-2 text-lg font-bold text-dr-text">
             Author not found
           </p>
-          <p className="mb-6 text-sm text-[#A0A0B0]">
+          <p className="mb-6 text-sm text-dr-text-muted">
             We could not find a team member with that name.
           </p>
           <Link
             href="/team"
-            className="inline-block rounded-lg bg-gradient-to-r from-[#E84393] to-[#A855F7] px-5 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            className="inline-block rounded-lg bg-gradient-to-r from-dr-pink to-dr-purple px-5 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
             View the full team
           </Link>
@@ -38,7 +38,7 @@ export function AuthorPageClient({ authorKey }: AuthorPageClientProps) {
       {/* Back link */}
       <Link
         href="/team"
-        className="mb-8 inline-flex items-center gap-1.5 text-xs font-medium text-[#A0A0B0] transition-colors hover:text-[#E84393]"
+        className="mb-8 inline-flex items-center gap-1.5 text-xs font-medium text-dr-text-muted transition-colors hover:text-dr-pink"
         aria-label="Back to team page"
       >
         <svg
@@ -62,41 +62,41 @@ export function AuthorPageClient({ authorKey }: AuthorPageClientProps) {
       <div className="mb-10 flex flex-col items-center text-center">
         {/* Large avatar */}
         <div
-          className="mb-5 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#E84393] to-[#A855F7] text-3xl font-bold text-white"
+          className="mb-5 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-dr-pink to-dr-purple text-3xl font-bold text-white"
           aria-hidden="true"
         >
           {initial}
         </div>
 
         {/* Name */}
-        <h1 className="mb-1 text-2xl font-extrabold text-[#F5F5F5]">
+        <h1 className="mb-1 text-2xl font-extrabold text-dr-text">
           {author.displayName}
         </h1>
 
         {/* Role */}
-        <p className="mb-4 text-xs font-medium uppercase tracking-wider text-[#555568]">
+        <p className="mb-4 text-xs font-medium uppercase tracking-wider text-dr-text-dim">
           {author.role}
         </p>
 
         {/* Bio */}
-        <p className="max-w-lg text-sm leading-relaxed text-[#A0A0B0]">
+        <p className="max-w-lg text-sm leading-relaxed text-dr-text-muted">
           {author.bio}
         </p>
 
         {/* Signoff */}
         {author.signoff && (
-          <p className="mt-4 text-sm font-semibold italic text-[#E84393]">
+          <p className="mt-4 text-sm font-semibold italic text-dr-pink">
             &ldquo;{author.signoff}&rdquo;
           </p>
         )}
       </div>
 
       {/* Articles section (empty state) */}
-      <div className="rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 p-8 text-center">
-        <p className="mb-1 text-sm font-bold text-[#F5F5F5]">
+      <div className="rounded-xl border border-dr-border bg-dr-surface/60 p-8 text-center">
+        <p className="mb-1 text-sm font-bold text-dr-text">
           Articles by {author.displayName}
         </p>
-        <p className="text-xs text-[#A0A0B0]">
+        <p className="text-xs text-dr-text-muted">
           Coming soon. Check back for their latest takes and analysis.
         </p>
       </div>

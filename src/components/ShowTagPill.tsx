@@ -9,7 +9,7 @@ interface ShowTagPillProps {
 export function ShowTagPill({ tag, label, color }: ShowTagPillProps) {
   const showDef = SHOW_TAGS[tag];
   const displayLabel = label || showDef?.label || tag.toUpperCase();
-  const displayColor = color || showDef?.color || "#E84393";
+  const displayColor = color || showDef?.color || "rgb(var(--dr-pink))";
 
   return (
     <span

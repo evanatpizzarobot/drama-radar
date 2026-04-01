@@ -17,14 +17,14 @@ export default function TeamPage() {
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
       {/* Page header */}
       <div className="mb-10">
-        <h1 className="mb-3 text-3xl font-extrabold text-[#F5F5F5]">
+        <h1 className="mb-3 text-3xl font-extrabold text-dr-text">
           Meet the Team
         </h1>
         <div
-          className="mb-4 h-1 w-24 rounded-full bg-gradient-to-r from-[#E84393] to-[#A855F7]"
+          className="mb-4 h-1 w-24 rounded-full bg-gradient-to-r from-dr-pink to-dr-purple"
           aria-hidden="true"
         />
-        <p className="text-sm text-[#A0A0B0]">
+        <p className="text-sm text-dr-text-muted">
           The voices behind the drama.
         </p>
       </div>

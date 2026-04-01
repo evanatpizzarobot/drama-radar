@@ -92,9 +92,9 @@ function StatusBadge({ status }: { status: Prediction["status"] }) {
   const config = {
     pending: {
       label: "Pending",
-      bg: "bg-[#555568]/30",
-      text: "text-[#A0A0B0]",
-      border: "border-[#555568]",
+      bg: "bg-dr-text-dim/30",
+      text: "text-dr-text-muted",
+      border: "border-dr-text-dim",
       icon: "\u23F3",
     },
     correct: {
@@ -141,25 +141,25 @@ function PredictionCard({ prediction }: { prediction: Prediction }) {
     <article
       className={`rounded-xl border p-6 transition-all duration-300 ${
         isCalledIt
-          ? "border-amber-500/40 bg-[#1A1A2E] shadow-[0_0_20px_rgba(245,189,65,0.1)]"
-          : "border-[#2A2A3E] bg-[#1A1A2E] hover:border-[#E84393]/30"
+          ? "border-amber-500/40 bg-dr-surface shadow-[0_0_20px_rgba(245,189,65,0.1)]"
+          : "border-dr-border-hover bg-dr-surface hover:border-dr-pink/30"
       }`}
     >
       {/* Status badge */}
       <div className="mb-4 flex items-center justify-between">
         <StatusBadge status={prediction.status} />
-        <time dateTime={prediction.createdAt} className="text-xs text-[#555568]">
+        <time dateTime={prediction.createdAt} className="text-xs text-dr-text-dim">
           {formatDate(prediction.createdAt)}
         </time>
       </div>
 
       {/* Prediction text */}
-      <p className="mb-3 text-lg font-bold leading-snug text-[#F5F5F5]">
+      <p className="mb-3 text-lg font-bold leading-snug text-dr-text">
         &ldquo;{prediction.prediction}&rdquo;
       </p>
 
       {/* Context */}
-      <p className="mb-4 text-sm leading-relaxed text-[#A0A0B0]">
+      <p className="mb-4 text-sm leading-relaxed text-dr-text-muted">
         {prediction.context}
       </p>
 
@@ -173,24 +173,24 @@ function PredictionCard({ prediction }: { prediction: Prediction }) {
       )}
 
       {/* Author byline */}
-      <div className="flex items-center gap-3 border-t border-[#2A2A3E] pt-4">
+      <div className="flex items-center gap-3 border-t border-dr-border-hover pt-4">
         <div
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#E84393] to-[#A855F7] text-xs font-bold text-white"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dr-pink to-dr-purple text-xs font-bold text-white"
           aria-hidden="true"
         >
           {initial}
         </div>
         <div className="flex flex-col">
-          <span className="text-sm font-semibold text-[#F5F5F5]">
+          <span className="text-sm font-semibold text-dr-text">
             {author.displayName}
           </span>
-          <span className="text-xs text-[#555568]">{author.role}</span>
+          <span className="text-xs text-dr-text-dim">{author.role}</span>
         </div>
       </div>
 
       {/* Resolved date */}
       {prediction.resolvedAt && (
-        <p className="mt-3 text-xs text-[#555568]">
+        <p className="mt-3 text-xs text-dr-text-dim">
           Resolved {formatDate(prediction.resolvedAt)}
         </p>
       )}
@@ -231,14 +231,14 @@ export default function PredictionsPage() {
 
       {/* Page header */}
       <div className="mb-10">
-        <h1 className="mb-3 text-3xl font-extrabold text-[#F5F5F5]">
+        <h1 className="mb-3 text-3xl font-extrabold text-dr-text">
           DramaRadar Predictions
         </h1>
         <div
-          className="mb-4 h-1 w-24 rounded-full bg-gradient-to-r from-[#E84393] to-[#A855F7]"
+          className="mb-4 h-1 w-24 rounded-full bg-gradient-to-r from-dr-pink to-dr-purple"
           aria-hidden="true"
         />
-        <p className="text-sm text-[#A0A0B0]">
+        <p className="text-sm text-dr-text-muted">
           Our analysts call it before it happens.
         </p>
       </div>
@@ -254,8 +254,8 @@ export default function PredictionsPage() {
             onClick={() => setActiveFilter(filter.key)}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 ${
               activeFilter === filter.key
-                ? "bg-[#E84393] text-white"
-                : "bg-[#1A1A2E] text-[#A0A0B0] hover:bg-[#2A2A3E] hover:text-[#F5F5F5]"
+                ? "bg-dr-pink text-white"
+                : "bg-dr-surface text-dr-text-muted hover:bg-dr-surface-hover hover:text-dr-text"
             }`}
           >
             {filter.label}
@@ -269,18 +269,18 @@ export default function PredictionsPage() {
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="animate-pulse rounded-xl border border-[#2A2A3E] bg-[#1A1A2E] p-6"
+              className="animate-pulse rounded-xl border border-dr-border-hover bg-dr-surface p-6"
             >
-              <div className="mb-4 h-6 w-24 rounded bg-[#2A2A3E]" />
-              <div className="mb-3 h-6 w-3/4 rounded bg-[#2A2A3E]" />
-              <div className="mb-2 h-4 w-full rounded bg-[#2A2A3E]" />
-              <div className="h-4 w-2/3 rounded bg-[#2A2A3E]" />
+              <div className="mb-4 h-6 w-24 rounded bg-dr-surface-hover" />
+              <div className="mb-3 h-6 w-3/4 rounded bg-dr-surface-hover" />
+              <div className="mb-2 h-4 w-full rounded bg-dr-surface-hover" />
+              <div className="h-4 w-2/3 rounded bg-dr-surface-hover" />
             </div>
           ))}
         </div>
       ) : predictions.length === 0 ? (
-        <div className="rounded-xl border border-[#2A2A3E] bg-[#1A1A2E] p-10 text-center">
-          <p className="text-[#A0A0B0]">
+        <div className="rounded-xl border border-dr-border-hover bg-dr-surface p-10 text-center">
+          <p className="text-dr-text-muted">
             No predictions match this filter yet.
           </p>
         </div>

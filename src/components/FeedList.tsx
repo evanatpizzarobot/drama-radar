@@ -16,19 +16,19 @@ const PAGE_SIZE = 20;
 
 function FeedSkeleton() {
   return (
-    <div className="animate-pulse rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 p-4">
+    <div className="animate-pulse rounded-xl border border-dr-border bg-dr-surface/60 p-4">
       <div className="flex gap-4">
         <div className="min-w-0 flex-1">
-          <div className="mb-2 h-2.5 w-20 rounded bg-[#2A2A3E]" />
-          <div className="mb-1.5 h-4 w-3/4 rounded bg-[#2A2A3E]" />
-          <div className="mb-1 h-3 w-full rounded bg-[#2A2A3E]" />
-          <div className="mb-3 h-3 w-2/3 rounded bg-[#2A2A3E]" />
+          <div className="mb-2 h-2.5 w-20 rounded bg-dr-surface-hover" />
+          <div className="mb-1.5 h-4 w-3/4 rounded bg-dr-surface-hover" />
+          <div className="mb-1 h-3 w-full rounded bg-dr-surface-hover" />
+          <div className="mb-3 h-3 w-2/3 rounded bg-dr-surface-hover" />
           <div className="flex gap-2">
-            <div className="h-5 w-14 rounded-full bg-[#2A2A3E]" />
-            <div className="h-5 w-14 rounded-full bg-[#2A2A3E]" />
+            <div className="h-5 w-14 rounded-full bg-dr-surface-hover" />
+            <div className="h-5 w-14 rounded-full bg-dr-surface-hover" />
           </div>
         </div>
-        <div className="hidden h-20 w-[120px] rounded-lg bg-[#2A2A3E] sm:block" />
+        <div className="hidden h-20 w-[120px] rounded-lg bg-dr-surface-hover sm:block" />
       </div>
     </div>
   );
@@ -116,7 +116,7 @@ export function FeedList({ initialItems, category, showTag }: FeedListProps) {
 
       {/* End of feed */}
       {!hasMore && items.length > 0 && (
-        <p className="py-6 text-center text-xs text-[#555568]">
+        <p className="py-6 text-center text-xs text-dr-text-dim">
           You have reached the end of the feed.
         </p>
       )}
@@ -124,8 +124,8 @@ export function FeedList({ initialItems, category, showTag }: FeedListProps) {
       {/* Empty state */}
       {!hasMore && items.length === 0 && !loading && (
         <div className="flex flex-col items-center gap-2 py-16 text-center">
-          <p className="text-sm text-[#A0A0B0]">No stories found.</p>
-          <p className="text-xs text-[#555568]">Check back soon for new drama.</p>
+          <p className="text-sm text-dr-text-muted">No stories found.</p>
+          <p className="text-xs text-dr-text-dim">Check back soon for new drama.</p>
         </div>
       )}
     </div>

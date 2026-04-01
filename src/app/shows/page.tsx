@@ -46,14 +46,14 @@ export default function ShowsPage() {
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
       {/* Page header */}
       <div className="mb-8">
-        <h1 className="mb-2 text-3xl font-extrabold text-[#F5F5F5]">
+        <h1 className="mb-2 text-3xl font-extrabold text-dr-text">
           Show Hubs
         </h1>
-        <p className="text-sm text-[#A0A0B0]">
+        <p className="text-sm text-dr-text-muted">
           Browse all tracked shows. Tap a show to see the latest news, gossip, and stories.
         </p>
         <div
-          className="mt-3 h-1 w-20 rounded-full bg-gradient-to-r from-[#E84393] to-[#A855F7]"
+          className="mt-3 h-1 w-20 rounded-full bg-gradient-to-r from-dr-pink to-dr-purple"
           aria-hidden="true"
         />
       </div>

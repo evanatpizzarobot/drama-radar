@@ -13,18 +13,18 @@ export default function PrivacyPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       {/* Page header */}
       <div className="mb-10">
-        <h1 className="mb-3 text-3xl font-extrabold text-[#F5F5F5]">
+        <h1 className="mb-3 text-3xl font-extrabold text-dr-text">
           Privacy Policy
         </h1>
-        <p className="text-sm text-[#555568]">
+        <p className="text-sm text-dr-text-dim">
           Last updated: March 31, 2026
         </p>
       </div>
 
       {/* Content */}
-      <div className="flex flex-col gap-8 text-sm leading-relaxed text-[#A0A0B0]">
+      <div className="flex flex-col gap-8 text-sm leading-relaxed text-dr-text-muted">
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Introduction
           </h2>
           <p>
@@ -35,7 +35,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Information We Collect
           </h2>
           <p className="mb-3">
@@ -43,20 +43,20 @@ export default function PrivacyPage() {
           </p>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <span className="font-semibold text-[#F5F5F5]">Analytics data:</span>{" "}
+              <span className="font-semibold text-dr-text">Analytics data:</span>{" "}
               We use Cloudflare Web Analytics, a privacy-friendly, cookieless analytics service.
               Cloudflare Analytics does not use cookies, does not track individual users across
               sites, and does not collect personal information. It provides aggregate metrics such
               as page views, referrers, and browser information.
             </li>
             <li>
-              <span className="font-semibold text-[#F5F5F5]">Server logs:</span>{" "}
+              <span className="font-semibold text-dr-text">Server logs:</span>{" "}
               Our hosting provider (Cloudflare) may collect standard server logs, including IP
               addresses, browser type, and pages visited. These logs are used for security and
               performance purposes and are retained according to Cloudflare&apos;s data policies.
             </li>
             <li>
-              <span className="font-semibold text-[#F5F5F5]">Contact information:</span>{" "}
+              <span className="font-semibold text-dr-text">Contact information:</span>{" "}
               If you contact us via email, we will receive and store your email address and
               message content for the purpose of responding to your inquiry.
             </li>
@@ -64,7 +64,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Cookies
           </h2>
           <p className="mb-3">
@@ -73,7 +73,7 @@ export default function PrivacyPage() {
           </p>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <span className="font-semibold text-[#F5F5F5]">Google AdSense:</span>{" "}
+              <span className="font-semibold text-dr-text">Google AdSense:</span>{" "}
               We display advertisements through Google AdSense, which may use cookies and similar
               technologies to serve personalized or contextual ads. Google&apos;s use of advertising
               cookies is governed by their own privacy policy. You can opt out of personalized
@@ -82,14 +82,14 @@ export default function PrivacyPage() {
                 href="https://adssettings.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#E84393] underline underline-offset-2 transition-opacity hover:opacity-80"
+                className="text-dr-pink underline underline-offset-2 transition-opacity hover:opacity-80"
               >
                 Google Ads Settings
               </a>
               .
             </li>
             <li>
-              <span className="font-semibold text-[#F5F5F5]">Cloudflare:</span>{" "}
+              <span className="font-semibold text-dr-text">Cloudflare:</span>{" "}
               Cloudflare may set security-related cookies (such as the __cf_bm cookie) to
               distinguish between humans and bots. These are strictly necessary cookies and do
               not track personal information.
@@ -98,7 +98,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Third-Party Services
           </h2>
           <p className="mb-3">
@@ -106,11 +106,11 @@ export default function PrivacyPage() {
           </p>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <span className="font-semibold text-[#F5F5F5]">Cloudflare:</span>{" "}
+              <span className="font-semibold text-dr-text">Cloudflare:</span>{" "}
               Website hosting, CDN, DNS, and cookieless analytics.
             </li>
             <li>
-              <span className="font-semibold text-[#F5F5F5]">Google AdSense:</span>{" "}
+              <span className="font-semibold text-dr-text">Google AdSense:</span>{" "}
               Advertising display network.
             </li>
           </ul>
@@ -121,7 +121,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             How We Use Your Information
           </h2>
           <p className="mb-3">
@@ -136,7 +136,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Data Sharing
           </h2>
           <p>
@@ -147,7 +147,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Children&apos;s Privacy
           </h2>
           <p>
@@ -158,7 +158,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Changes to This Policy
           </h2>
           <p>
@@ -168,15 +168,15 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section className="rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 p-6">
-          <h2 className="mb-3 text-xl font-bold text-[#F5F5F5]">
+        <section className="rounded-xl border border-dr-border bg-dr-surface/60 p-6">
+          <h2 className="mb-3 text-xl font-bold text-dr-text">
             Contact Us
           </h2>
           <p>
             If you have questions about this Privacy Policy, please contact us at{" "}
             <a
               href="mailto:hello@dramaradar.com"
-              className="text-[#E84393] underline underline-offset-2 transition-opacity hover:opacity-80"
+              className="text-dr-pink underline underline-offset-2 transition-opacity hover:opacity-80"
             >
               hello@dramaradar.com
             </a>

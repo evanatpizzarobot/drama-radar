@@ -14,7 +14,7 @@ export function ShowCard({ show }: ShowCardProps) {
   return (
     <Link
       href={`/shows/${show.tag}`}
-      className="group relative overflow-hidden rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#E84393]/40 hover:shadow-lg hover:shadow-[#E84393]/5"
+      className="group relative overflow-hidden rounded-xl border border-dr-border bg-dr-surface/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-dr-pink/40 hover:shadow-lg hover:shadow-dr-pink/5"
     >
       {/* Color accent bar */}
       <div
@@ -35,12 +35,12 @@ export function ShowCard({ show }: ShowCardProps) {
         </span>
 
         {/* Full name */}
-        <h3 className="mb-2 text-sm font-bold leading-snug text-[#F5F5F5] transition-colors duration-200 group-hover:text-white">
+        <h3 className="mb-2 text-sm font-bold leading-snug text-dr-text transition-colors duration-200 group-hover:text-dr-pink">
           {show.fullName}
         </h3>
 
         {/* Article count */}
-        <p className="text-[10px] text-[#555568]">
+        <p className="text-[10px] text-dr-text-dim">
           {show.articleCount} {show.articleCount === 1 ? "article" : "articles"}
         </p>
       </div>
