@@ -168,16 +168,24 @@ export default function HomePage() {
             </section>
           )}
 
-          {/* 3. Latest from the Drama Desk */}
+          {/* 3. DramaRadar Originals */}
           {recentArticles.length > 0 && (
             <section className="mb-10">
-              <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[#F5F5F5]">
-                <span
-                  className="inline-block h-1.5 w-1.5 rounded-full bg-[#A855F7]"
-                  aria-hidden="true"
-                />
-                Latest from the Drama Desk
-              </h2>
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="flex items-center gap-2 text-lg font-bold text-[#F5F5F5]">
+                  <span
+                    className="inline-block h-1.5 w-1.5 rounded-full bg-[#A855F7]"
+                    aria-hidden="true"
+                  />
+                  DramaRadar Originals
+                </h2>
+                <a
+                  href="/articles"
+                  className="text-xs font-semibold text-[#A855F7] transition-colors hover:text-[#E84393]"
+                >
+                  View All &rarr;
+                </a>
+              </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {recentArticles.map((article) => (
                   <ArticleCard key={article.slug} article={article} />
