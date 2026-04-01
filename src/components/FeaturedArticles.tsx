@@ -25,7 +25,7 @@ export function FeaturedArticles({ articles }: FeaturedArticlesProps) {
         {display.map((article) => (
           <Link
             key={article.slug}
-            href={`/articles/${article.slug}`}
+            href={`/articles/view?slug=${article.slug}`}
             className="group relative overflow-hidden rounded-xl border border-[#1A1A2E] bg-[#1A1A2E]/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#E84393]/40 hover:shadow-lg hover:shadow-[#E84393]/5"
           >
             {/* Hero image */}
