@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SHOW_TAGS } from "@/lib/constants";
 import { DramaTracker } from "./DramaTracker";
 import { SubscribeAlert } from "./SubscribeAlert";
+import { XTimeline } from "./XTimeline";
 import { AdUnit } from "./AdUnit";
 import type { TrendingData } from "@/lib/types";
 
@@ -19,6 +20,9 @@ export function Sidebar({ trending }: SidebarProps) {
 
       {/* Subscribe alerts */}
       <SubscribeAlert compact />
+
+      {/* X Timeline */}
+      <XTimeline />
 
       {/* Sidebar ad */}
       <div className="sticky top-20">

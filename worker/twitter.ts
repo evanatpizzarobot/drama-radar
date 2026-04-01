@@ -216,7 +216,7 @@ function formatArticleTweet(article: EditorialArticle): string {
   const showTags = buildShowHashtags(article.showTags);
   const url = `https://dramaradar.com/articles/${article.slug}`;
 
-  let tweet = `\u{1F525} NEW on DramaRadar: ${article.title}\n\nBy ${authorName}\n\n\u{1F449} ${url}\n\n`;
+  let tweet = `\u{1F525} NEW on DramaRadar: ${article.title}\n\n\u{1F449} ${url}\n\n`;
 
   if (showTags) {
     tweet += `${showTags} #BravoTV #RealityTV #DramaRadar`;
