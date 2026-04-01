@@ -123,6 +123,7 @@ export interface Env {
   X_API_SECRET: string;
   X_ACCESS_TOKEN: string;
   X_ACCESS_TOKEN_SECRET: string;
+  RESEND_API_KEY: string;
 }
 
 export interface RawFeedEntry {

@@ -22,6 +22,7 @@ import { calculateTrending } from "./trending";
 import { handleAdminRequest } from "./admin";
 import { handleDramaDesk } from "./drama-desk";
 import { autoPost, handleManualTweet, forcePost, botStatus } from "./twitter";
+import { handleSubscribe, handleUnsubscribe, sendBreakingAlerts } from "./email";
 
 // CORS headers applied to every response
 const CORS_HEADERS: Record<string, string> = {
@@ -507,6 +508,14 @@ async function handleFetchRequest(
     return forcePost(env);
   }
 
+  if (path === "/api/subscribe" && request.method === "POST") {
+    return handleSubscribe(request, env);
+  }
+
+  if (path === "/api/unsubscribe" && request.method === "GET") {
+    return handleUnsubscribe(url, env);
+  }
+
   if (path === "/api/health" && request.method === "GET") {
     return handleHealth(env);
   }
@@ -574,7 +583,10 @@ async function handleScheduled(
     { expirationTtl: 24 * 60 * 60 }
   );
 
-  // Step 7: Auto-post to X (probabilistic, ~10-20 tweets per day)
+  // Step 7: Send breaking alerts to email subscribers
+  await sendBreakingAlerts(categorizedItems, env);
+
+  // Step 8: Auto-post to X (scheduled, ~15-20 tweets per day)
   await autoPost(env);
 
   console.log(

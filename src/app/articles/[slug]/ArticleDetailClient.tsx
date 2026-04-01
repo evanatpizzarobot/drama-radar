@@ -8,6 +8,7 @@ import { fetchArticle, fetchArticles } from "@/lib/api";
 import { ShowTagPill } from "@/components/ShowTagPill";
 import { ArticleCard } from "@/components/ArticleCard";
 import { AdUnit } from "@/components/AdUnit";
+import { SubscribeAlert } from "@/components/SubscribeAlert";
 import type { EditorialArticle } from "@/lib/types";
 
 interface ArticleDetailClientProps {
@@ -203,6 +204,11 @@ export function ArticleDetailClient({ slug }: ArticleDetailClientProps) {
       {/* Between sections ad */}
       <div className="my-6">
         <AdUnit slot="between-sections" />
+      </div>
+
+      {/* Subscribe alert */}
+      <div className="mb-8">
+        <SubscribeAlert />
       </div>
 
       {/* Divider */}
