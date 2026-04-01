@@ -119,6 +119,10 @@ export interface Env {
   ENVIRONMENT: string;
   SITE_URL: string;
   ADMIN_TOKEN: string;
+  X_API_KEY: string;
+  X_API_SECRET: string;
+  X_ACCESS_TOKEN: string;
+  X_ACCESS_TOKEN_SECRET: string;
 }
 
 export interface RawFeedEntry {

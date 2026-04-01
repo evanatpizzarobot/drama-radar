@@ -21,6 +21,7 @@ import {
 import { calculateTrending } from "./trending";
 import { handleAdminRequest } from "./admin";
 import { handleDramaDesk } from "./drama-desk";
+import { autoPost, handleManualTweet } from "./twitter";
 
 // CORS headers applied to every response
 const CORS_HEADERS: Record<string, string> = {
@@ -562,6 +563,9 @@ async function handleScheduled(
     JSON.stringify(trending),
     { expirationTtl: 24 * 60 * 60 }
   );
+
+  // Step 7: Auto-post to X (probabilistic, ~10-20 tweets per day)
+  await autoPost(env);
 
   console.log(
     `Scheduled job complete: ${categorizedItems.length} items processed, trending updated`

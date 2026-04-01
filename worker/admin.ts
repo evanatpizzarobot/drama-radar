@@ -1,6 +1,7 @@
 // Admin article and prediction endpoints for DramaRadar
 
 import type { Env, EditorialArticle, Prediction } from "./types";
+import { handleManualTweet } from "./twitter";
 
 interface AdminErrorResponse {
   error: string;
@@ -77,6 +78,11 @@ export async function handleAdminRequest(
       return errorResponse("Missing prediction ID", 400);
     }
     return handleUpdatePrediction(id, request, env);
+  }
+
+  // POST /api/admin/tweet: post a tweet manually
+  if (request.method === "POST" && path === "/api/admin/tweet") {
+    return handleManualTweet(request, env);
   }
 
   return errorResponse("Admin endpoint not found", 404);
