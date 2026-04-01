@@ -21,6 +21,7 @@ interface FeedParams {
 interface ArticlesParams {
   featured?: boolean;
   show?: string;
+  author?: string;
   limit?: number;
 }
 
@@ -99,6 +100,7 @@ export async function fetchArticles(
     if (params?.featured !== undefined)
       queryParams.featured = String(params.featured);
     if (params?.show) queryParams.show = params.show;
+    if (params?.author) queryParams.author = params.author;
     if (params?.limit !== undefined) queryParams.limit = String(params.limit);
 
     const url = buildUrl("/articles", queryParams);

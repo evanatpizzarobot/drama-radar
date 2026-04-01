@@ -1,7 +1,12 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { AUTHORS } from "@/lib/authors";
+import { fetchArticles } from "@/lib/api";
+import { ArticleCard } from "@/components/ArticleCard";
+import { AuthorAvatar } from "@/components/AuthorAvatar";
+import type { EditorialArticle } from "@/lib/types";
 
 interface AuthorPageClientProps {
   authorKey: string;
@@ -9,6 +14,23 @@ interface AuthorPageClientProps {
 
 export function AuthorPageClient({ authorKey }: AuthorPageClientProps) {
   const author = AUTHORS[authorKey];
+  const [articles, setArticles] = useState<EditorialArticle[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!author) {
+      setLoading(false);
+      return;
+    }
+
+    async function loadArticles() {
+      const res = await fetchArticles({ author: authorKey });
+      setArticles(res.articles);
+      setLoading(false);
+    }
+
+    loadArticles();
+  }, [authorKey, author]);
 
   if (!author) {
     return (
@@ -30,8 +52,6 @@ export function AuthorPageClient({ authorKey }: AuthorPageClientProps) {
       </div>
     );
   }
-
-  const initial = author.displayName.charAt(0).toUpperCase();
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
@@ -61,11 +81,8 @@ export function AuthorPageClient({ authorKey }: AuthorPageClientProps) {
       {/* Author profile */}
       <div className="mb-10 flex flex-col items-center text-center">
         {/* Large avatar */}
-        <div
-          className="mb-5 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-dr-pink to-dr-purple text-3xl font-bold text-white"
-          aria-hidden="true"
-        >
-          {initial}
+        <div className="mb-5">
+          <AuthorAvatar author={author} size="lg" />
         </div>
 
         {/* Name */}
@@ -91,15 +108,39 @@ export function AuthorPageClient({ authorKey }: AuthorPageClientProps) {
         )}
       </div>
 
-      {/* Articles section (empty state) */}
-      <div className="rounded-xl border border-dr-border bg-dr-surface/60 p-8 text-center">
-        <p className="mb-1 text-sm font-bold text-dr-text">
+      {/* Articles by this author */}
+      <section>
+        <h2 className="mb-4 text-lg font-bold text-dr-text">
           Articles by {author.displayName}
-        </p>
-        <p className="text-xs text-dr-text-muted">
-          Coming soon. Check back for their latest takes and analysis.
-        </p>
-      </div>
+        </h2>
+
+        {loading ? (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {[1, 2].map((i) => (
+              <div
+                key={i}
+                className="animate-pulse rounded-xl border border-dr-border bg-dr-surface/60 p-4"
+              >
+                <div className="mb-2 h-4 w-3/4 rounded bg-dr-surface-hover" />
+                <div className="mb-1 h-3 w-full rounded bg-dr-surface-hover" />
+                <div className="h-3 w-1/2 rounded bg-dr-surface-hover" />
+              </div>
+            ))}
+          </div>
+        ) : articles.length > 0 ? (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {articles.map((article) => (
+              <ArticleCard key={article.slug} article={article} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-xl border border-dr-border bg-dr-surface/60 p-8 text-center">
+            <p className="text-sm text-dr-text-muted">
+              No articles yet. Check back for their latest takes and analysis.
+            </p>
+          </div>
+        )}
+      </section>
     </div>
   );
 }

@@ -202,6 +202,7 @@ async function handleArticles(
 ): Promise<Response> {
   const featured = url.searchParams.get("featured");
   const show = url.searchParams.get("show");
+  const author = url.searchParams.get("author");
   const limit = Math.min(parseInt(url.searchParams.get("limit") || "20", 10), 100);
 
   // Read article index
@@ -219,6 +220,7 @@ async function handleArticles(
     // Apply filters
     if (featured === "true" && !article.isFeatured) continue;
     if (show && !article.showTags.includes(show)) continue;
+    if (author && article.author !== author) continue;
 
     articles.push(article);
   }

@@ -1,13 +1,12 @@
 import Link from "next/link";
 import type { Author } from "@/lib/authors";
+import { AuthorAvatar } from "./AuthorAvatar";
 
 interface AuthorCardProps {
   author: Author;
 }
 
 export function AuthorCard({ author }: AuthorCardProps) {
-  const initial = author.displayName.charAt(0).toUpperCase();
-
   return (
     <Link
       href={`/team/${author.key}`}
@@ -16,11 +15,8 @@ export function AuthorCard({ author }: AuthorCardProps) {
     >
       <div className="flex flex-col items-center text-center">
         {/* Avatar */}
-        <div
-          className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-dr-pink to-dr-purple text-xl font-bold text-white transition-transform duration-300 group-hover:scale-105"
-          aria-hidden="true"
-        >
-          {initial}
+        <div className="mb-4 transition-transform duration-300 group-hover:scale-105">
+          <AuthorAvatar author={author} size="md" />
         </div>
 
         {/* Name */}
