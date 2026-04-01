@@ -1,0 +1,38 @@
+name = "dramaradar-api"
+main = "worker/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ENVIRONMENT = "production"
+SITE_URL = "https://dramaradar.com"
+
+# KV Namespace Bindings
+[[kv_namespaces]]
+binding = "DRAMARADAR_NEWS"
+id = "234d82a3483b438392b73960baaf85d9"
+
+[[kv_namespaces]]
+binding = "DRAMARADAR_ARTICLES"
+id = "446b2734022b4cb8bfe094b4fc462128"
+
+[[kv_namespaces]]
+binding = "DRAMARADAR_CACHE"
+id = "cbe3815e63944df195727bae4008c91c"
+
+# Cron Triggers: run every 10 minutes
+[triggers]
+crons = ["*/10 * * * *"]
+
+# Secrets (set via wrangler secret put):
+# ADMIN_TOKEN
+
+[ai]
+binding = "AI"
+
+[env.staging]
+name = "dramaradar-worker-staging"
+
+[env.staging.vars]
+ENVIRONMENT = "staging"
+SITE_URL = "https://staging.dramaradar.com"

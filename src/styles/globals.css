@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #0D0D0F;
+  --color-surface: #1A1A2E;
+  --color-surface-hover: #2A2A3E;
+  --color-accent-pink: #E84393;
+  --color-accent-purple: #A855F7;
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #A0A0B0;
+  --color-text-muted: #555568;
+  --color-border: #1A1A2E;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(232, 67, 147, 0.3);
+  color: #fff;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-pink);
+}
+
+/* Prose styling for article markdown content */
+.prose-drama h1,
+.prose-drama h2,
+.prose-drama h3,
+.prose-drama h4 {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.prose-drama h1 {
+  font-size: 1.75rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose-drama h2 {
+  font-size: 1.375rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-drama h3 {
+  font-size: 1.125rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-drama p {
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.prose-drama a {
+  color: var(--color-accent-pink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose-drama a:hover {
+  opacity: 0.8;
+}
+
+.prose-drama ul,
+.prose-drama ol {
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.prose-drama ul {
+  list-style-type: disc;
+}
+
+.prose-drama ol {
+  list-style-type: decimal;
+}
+
+.prose-drama li {
+  margin-bottom: 0.375rem;
+}
+
+.prose-drama blockquote {
+  border-left: 3px solid var(--color-accent-pink);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.prose-drama code {
+  background-color: var(--color-surface);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.prose-drama pre {
+  background-color: var(--color-surface);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+}
+
+.prose-drama hr {
+  border-color: var(--color-border);
+  margin: 2rem 0;
+}
+
+.prose-drama img {
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.prose-drama table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.25rem;
+}
+
+.prose-drama th,
+.prose-drama td {
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.prose-drama th {
+  background-color: var(--color-surface);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
