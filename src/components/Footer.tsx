@@ -26,7 +26,29 @@ export function Footer() {
           ))}
         </nav>
 
-        <div className="mt-6 flex flex-col items-center gap-2 text-center">
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-x-1 gap-y-1 text-center">
+          {[
+            { label: "Contact", email: "contact@dramaradar.com" },
+            { label: "Advertising", email: "advertise@dramaradar.com" },
+            { label: "Legal", email: "legal@dramaradar.com" },
+            { label: "Tips", email: "tips@dramaradar.com" },
+          ].map((item, i, arr) => (
+            <span key={item.email} className="whitespace-nowrap">
+              <span className="text-xs text-[#555568]">{item.label}: </span>
+              <a
+                href={`mailto:${item.email}`}
+                className="text-xs text-[#A0A0B0] transition-colors duration-200 hover:text-[#E84393]"
+              >
+                {item.email}
+              </a>
+              {i < arr.length - 1 && (
+                <span className="mx-1.5 text-xs text-[#333345]">|</span>
+              )}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-3 flex flex-col items-center gap-2 text-center">
           <p className="text-xs text-[#555568]">
             &copy; {new Date().getFullYear()} DramaRadar. All rights reserved.
           </p>
