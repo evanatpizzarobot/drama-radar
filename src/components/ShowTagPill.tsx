@@ -13,11 +13,13 @@ export function ShowTagPill({ tag, label, color }: ShowTagPillProps) {
 
   return (
     <span
-      className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide transition-opacity duration-200 hover:opacity-90"
+      className="inline-block rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide transition-opacity duration-200 hover:opacity-90 dark-pill"
       style={{
         backgroundColor: `${displayColor}33`,
+        borderColor: `${displayColor}55`,
         color: displayColor,
       }}
+      data-show-pill
     >
       {displayLabel}
     </span>

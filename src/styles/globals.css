@@ -66,6 +66,11 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* Force dark text on show tag pills in light mode for readability */
+[data-theme="light"] [data-show-pill] {
+  color: #2D2D3A !important;
+}
+
 ::selection {
   background-color: rgb(var(--dr-pink) / 0.3);
   color: #fff;
