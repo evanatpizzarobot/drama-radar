@@ -21,7 +21,7 @@ import {
 import { calculateTrending } from "./trending";
 import { handleAdminRequest } from "./admin";
 import { handleDramaDesk } from "./drama-desk";
-import { autoPost, handleManualTweet } from "./twitter";
+import { autoPost, handleManualTweet, forcePost, botStatus } from "./twitter";
 
 // CORS headers applied to every response
 const CORS_HEADERS: Record<string, string> = {
@@ -497,6 +497,14 @@ async function handleFetchRequest(
 
   if (path === "/api/agent" && request.method === "GET") {
     return handleAgent(env);
+  }
+
+  if (path === "/api/xbot/status" && request.method === "GET") {
+    return botStatus(env);
+  }
+
+  if (path === "/api/xbot/force" && request.method === "POST") {
+    return forcePost(env);
   }
 
   if (path === "/api/health" && request.method === "GET") {

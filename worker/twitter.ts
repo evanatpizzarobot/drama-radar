@@ -626,3 +626,112 @@ export async function handleManualTweet(
     { status: 500, headers: { "Content-Type": "application/json" } }
   );
 }
+
+// ============================================================
+// Force Post (bypasses schedule, posts next available article)
+// ============================================================
+
+export async function forcePost(env: Env): Promise<Response> {
+  const headers = { "Content-Type": "application/json" };
+
+  // Check credentials exist
+  if (!env.X_API_KEY || !env.X_ACCESS_TOKEN) {
+    return new Response(
+      JSON.stringify({
+        error: "X API credentials missing",
+        hasApiKey: !!env.X_API_KEY,
+        hasApiSecret: !!env.X_API_SECRET,
+        hasAccessToken: !!env.X_ACCESS_TOKEN,
+        hasAccessTokenSecret: !!env.X_ACCESS_TOKEN_SECRET,
+      }),
+      { status: 500, headers }
+    );
+  }
+
+  // Pick the first unposted article
+  const article = await selectArticle(env);
+  if (!article) {
+    return new Response(
+      JSON.stringify({ error: "No unposted articles found", allPosted: true }),
+      { status: 404, headers }
+    );
+  }
+
+  const tweet = formatArticleTweet(article);
+  const result = await postTweet(tweet, env);
+
+  if (result.success) {
+    await markAsPosted(`article:${article.slug}`, env);
+    const et = getEasternNow();
+    await incrementDailyCount(et.date, env);
+  }
+
+  return new Response(
+    JSON.stringify({
+      article: article.slug,
+      tweet,
+      tweetLength: tweet.length,
+      result,
+      easternTime: getEasternNow(),
+    }),
+    { status: result.success ? 200 : 500, headers }
+  );
+}
+
+// ============================================================
+// Bot Status Diagnostic
+// ============================================================
+
+export async function botStatus(env: Env): Promise<Response> {
+  const et = getEasternNow();
+  const dailyCount = await getDailyCount(et.date, env);
+
+  // Check which slots have been posted today
+  const slotStatuses: Record<string, boolean> = {};
+  for (const slot of POSTING_SCHEDULE) {
+    slotStatuses[slot.id] = await hasSlotBeenPosted(et.date, slot.id, env);
+  }
+
+  // Find next upcoming slot
+  const currentMinutes = et.hour * 60 + et.minute;
+  let nextSlot: PostSlot | null = null;
+  for (const slot of POSTING_SCHEDULE) {
+    const slotMinutes = slot.hour * 60 + slot.minute;
+    if (slotMinutes > currentMinutes && !slotStatuses[slot.id]) {
+      nextSlot = slot;
+      break;
+    }
+  }
+
+  // Count unposted articles
+  const indexRaw = await env.DRAMARADAR_ARTICLES.get("articles:index");
+  const slugs: string[] = indexRaw ? JSON.parse(indexRaw) : [];
+  let unpostedCount = 0;
+  for (const slug of slugs) {
+    if (!(await hasBeenPosted(`article:${slug}`, env))) {
+      unpostedCount++;
+    }
+  }
+
+  return new Response(
+    JSON.stringify({
+      status: "ok",
+      easternTime: et,
+      dailyTweetCount: dailyCount,
+      dailyLimit: 20,
+      credentials: {
+        hasApiKey: !!env.X_API_KEY,
+        hasApiSecret: !!env.X_API_SECRET,
+        hasAccessToken: !!env.X_ACCESS_TOKEN,
+        hasAccessTokenSecret: !!env.X_ACCESS_TOKEN_SECRET,
+      },
+      unpostedArticles: unpostedCount,
+      totalArticles: slugs.length,
+      slotsPostedToday: slotStatuses,
+      nextSlot: nextSlot
+        ? { id: nextSlot.id, type: nextSlot.type, time: `${nextSlot.hour}:${String(nextSlot.minute).padStart(2, "0")} ET` }
+        : null,
+    }),
+    { status: 200, headers: { "Content-Type": "application/json" } }
+  );
+}
