@@ -61,7 +61,7 @@ export function DramaTracker({ data }: DramaTrackerProps) {
                 key={show.showTag}
                 className="flex items-center justify-between rounded-lg bg-dr-bg/60 px-3 py-2"
               >
-                <span className="text-xs font-semibold text-dr-text">{show.label}</span>
+                <span className="text-xs font-semibold uppercase text-dr-text">{show.label}</span>
                 <span className="flex items-center text-[10px] text-dr-text-muted">
                   {show.mentionCount} mentions
                   <TrendIndicator trend={show.trend} />
