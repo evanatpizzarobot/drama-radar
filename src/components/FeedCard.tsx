@@ -52,14 +52,12 @@ export function FeedCard({ item }: FeedCardProps) {
 
         {/* Thumbnail */}
         {item.imageUrl && (
-          <div className="hidden shrink-0 sm:block">
+          <div className="hidden shrink-0 overflow-hidden rounded-lg sm:block sm:h-20 sm:w-[120px]">
             <img
               src={item.imageUrl}
               alt=""
-              width={120}
-              height={80}
               loading="lazy"
-              className="h-20 w-[120px] rounded-lg object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
         )}
