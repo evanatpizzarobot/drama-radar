@@ -27,9 +27,22 @@ Repo: github.com/evanatpizzarobot/drama-radar
 - Mobile-first responsive design
 - No cookie banners needed (Cloudflare Analytics is cookieless)
 
+## Workflow
+- Auto-commit and push after every change (do not wait for user to ask)
+- Commit messages should be descriptive and use conventional commit format
+
 ## Code Style
 - Functional components only (no class components)
 - Named exports for components
 - Default export for pages
 - Use async/await, never raw Promises
 - Console.error for Worker errors, never console.log in production
+
+## Features
+- 22 RSS feed sources across 3 tiers
+- 18 tracked reality TV shows with keyword-based detection
+- Content-first homepage layout (editorial above fold for AdSense)
+- "Ask the Drama Desk" AI chat (Cloudflare Workers AI, free tier)
+- 6 author personas: Carly (EIC), BB, BB's Assistant, Carly's Intern, The Drama Desk, Guest
+- Animated radar sweep logo in header
+- AdSense integration with in-feed native ads every 8th item
