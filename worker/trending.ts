@@ -1,62 +1,74 @@
 // Trending calculations for DramaRadar
 
-import type { FeedItem, TrendingData } from "./types";
+import type { Env, FeedItem, TrendingData } from "./types";
 import { SHOW_TAGS } from "./categorize";
 
-// Notable cast members mapped to their primary show tag
+// Notable cast members mapped to their primary show tag (full slug format)
 const CAST_MEMBERS: Record<string, string> = {
   // RHOBH
-  "kyle richards": "rhobh",
-  "lisa rinna": "rhobh",
-  "erika jayne": "rhobh",
-  "dorit kemsley": "rhobh",
-  "garcelle beauvais": "rhobh",
-  "sutton stracke": "rhobh",
-  "crystal kung minkoff": "rhobh",
-  "brandi glanville": "rhobh",
+  "kyle richards": "real-housewives-beverly-hills",
+  "lisa rinna": "real-housewives-beverly-hills",
+  "erika jayne": "real-housewives-beverly-hills",
+  "dorit kemsley": "real-housewives-beverly-hills",
+  "garcelle beauvais": "real-housewives-beverly-hills",
+  "sutton stracke": "real-housewives-beverly-hills",
+  "crystal kung minkoff": "real-housewives-beverly-hills",
+  "brandi glanville": "real-housewives-beverly-hills",
 
   // RHOA
-  "kenya moore": "rhoa",
-  "kandi burruss": "rhoa",
-  "sheree whitfield": "rhoa",
-  "drew sidora": "rhoa",
-  "nene leakes": "rhoa",
-  "porsha williams": "rhoa",
+  "kenya moore": "real-housewives-atlanta",
+  "kandi burruss": "real-housewives-atlanta",
+  "sheree whitfield": "real-housewives-atlanta",
+  "drew sidora": "real-housewives-atlanta",
+  "nene leakes": "real-housewives-atlanta",
+  "porsha williams": "real-housewives-atlanta",
 
   // RHONJ
-  "teresa giudice": "rhonj",
-  "melissa gorga": "rhonj",
-  "joe gorga": "rhonj",
-  "margaret josephs": "rhonj",
-  "jennifer aydin": "rhonj",
-  "dolores catania": "rhonj",
+  "teresa giudice": "real-housewives-new-jersey",
+  "melissa gorga": "real-housewives-new-jersey",
+  "joe gorga": "real-housewives-new-jersey",
+  "margaret josephs": "real-housewives-new-jersey",
+  "jennifer aydin": "real-housewives-new-jersey",
+  "dolores catania": "real-housewives-new-jersey",
 
   // RHONY
-  "jenna lyons": "rhony",
-  "brynn whitfield": "rhony",
-  "sai de silva": "rhony",
-  "ubah hassan": "rhony",
-  "erin lichy": "rhony",
+  "jenna lyons": "real-housewives-new-york",
+  "brynn whitfield": "real-housewives-new-york",
+  "sai de silva": "real-housewives-new-york",
+  "ubah hassan": "real-housewives-new-york",
+  "erin lichy": "real-housewives-new-york",
 
   // RHOSLC
-  "lisa barlow": "rhoslc",
-  "heather gay": "rhoslc",
-  "meredith marks": "rhoslc",
-  "whitney rose": "rhoslc",
-  "mary cosby": "rhoslc",
-  "jen shah": "rhoslc",
+  "lisa barlow": "real-housewives-salt-lake-city",
+  "heather gay": "real-housewives-salt-lake-city",
+  "meredith marks": "real-housewives-salt-lake-city",
+  "whitney rose": "real-housewives-salt-lake-city",
+  "mary cosby": "real-housewives-salt-lake-city",
+  "jen shah": "real-housewives-salt-lake-city",
+
+  // RHOM
+  "larsa pippen": "real-housewives-miami",
+  "alexia nepola": "real-housewives-miami",
+  "lisa hochstein": "real-housewives-miami",
+  "guerdy abraira": "real-housewives-miami",
+
+  // RHOP
+  "gizelle bryant": "real-housewives-potomac",
+  "karen huger": "real-housewives-potomac",
+  "ashley darby": "real-housewives-potomac",
+  "candiace dillard": "real-housewives-potomac",
 
   // VPR
-  "tom sandoval": "vpr",
-  "ariana madix": "vpr",
-  "tom schwartz": "vpr",
-  "katie maloney": "vpr",
-  "scheana shay": "vpr",
-  "lala kent": "vpr",
-  "james kennedy": "vpr",
-  "raquel leviss": "vpr",
-  "rachel leviss": "vpr",
-  "lisa vanderpump": "vpr",
+  "tom sandoval": "vanderpump-rules",
+  "ariana madix": "vanderpump-rules",
+  "tom schwartz": "vanderpump-rules",
+  "katie maloney": "vanderpump-rules",
+  "scheana shay": "vanderpump-rules",
+  "lala kent": "vanderpump-rules",
+  "james kennedy": "vanderpump-rules",
+  "raquel leviss": "vanderpump-rules",
+  "rachel leviss": "vanderpump-rules",
+  "lisa vanderpump": "vanderpump-rules",
 
   // Below Deck
   "captain lee": "below-deck",
@@ -76,17 +88,49 @@ const CAST_MEMBERS: Record<string, string> = {
   "amanda batula": "summer-house",
   "paige desorbo": "summer-house",
   "ciara miller": "summer-house",
+  "west wilson": "summer-house",
+
+  // The Valley
+  "jax taylor": "the-valley",
+  "brittany cartwright": "the-valley",
+  "kristen doute": "the-valley",
+
+  // Bachelor
+  "joey graziadei": "bachelor-bachelorette",
+
+  // Selling Sunset
+  "chrishell stause": "selling-sunset",
+  "jason oppenheim": "selling-sunset",
+  "mary fitzgerald": "selling-sunset",
 
   // General
   "andy cohen": "bravo",
 };
 
 /**
- * Calculate trending data from recent feed items.
- * Analyzes items from the last 24 hours to determine top shows,
- * top people, and the hottest story.
+ * Determine trend direction by comparing current count to previous count.
+ * Up if current is 10%+ higher, down if 10%+ lower, otherwise stable.
  */
-export function calculateTrending(items: FeedItem[]): TrendingData {
+function getTrend(
+  current: number,
+  previous: number | undefined
+): "up" | "down" | "stable" {
+  if (previous === undefined || previous === 0) return "stable";
+  const change = (current - previous) / previous;
+  if (change >= 0.1) return "up";
+  if (change <= -0.1) return "down";
+  return "stable";
+}
+
+/**
+ * Calculate trending data from recent feed items.
+ * Compares current mention counts against the previous cycle stored in KV
+ * to determine trend direction (up, down, stable).
+ */
+export async function calculateTrending(
+  items: FeedItem[],
+  env: Env
+): Promise<TrendingData> {
   const now = Date.now();
   const twentyFourHoursAgo = now - 24 * 60 * 60 * 1000;
 
@@ -104,6 +148,12 @@ export function calculateTrending(items: FeedItem[]): TrendingData {
     }
   }
 
+  // Load previous cycle counts for trend comparison
+  const prevRaw = await env.DRAMARADAR_CACHE.get("trending:previous", "json");
+  const previousCounts: Record<string, number> = prevRaw
+    ? (prevRaw as Record<string, number>)
+    : {};
+
   // Build top shows (sorted by mention count, top 10)
   const topShows = Object.entries(showCounts)
     .sort((a, b) => b[1] - a[1])
@@ -114,8 +164,7 @@ export function calculateTrending(items: FeedItem[]): TrendingData {
         showTag: tag,
         label: show ? show.label : tag,
         mentionCount: count,
-        // Without historical data, default to "stable"
-        trend: "stable" as const,
+        trend: getTrend(count, previousCounts[tag]),
       };
     });
 
@@ -146,8 +195,7 @@ export function calculateTrending(items: FeedItem[]): TrendingData {
       showTag: data.showTag,
     }));
 
-  // Find the hot story: the item with the most show tag overlap
-  // and highest priority, preferring breaking items
+  // Find the hot story
   let hotStory: TrendingData["hotStory"] = null;
   if (recentItems.length > 0) {
     const scored = recentItems
@@ -170,6 +218,13 @@ export function calculateTrending(items: FeedItem[]): TrendingData {
       };
     }
   }
+
+  // Store current counts as previous for next cycle
+  await env.DRAMARADAR_CACHE.put(
+    "trending:previous",
+    JSON.stringify(showCounts),
+    { expirationTtl: 48 * 60 * 60 }
+  );
 
   return {
     updatedAt: new Date().toISOString(),

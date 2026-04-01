@@ -401,9 +401,9 @@ async function handleScheduled(
   // Step 5: Update feed indexes in DRAMARADAR_CACHE
   await updateFeedIndexes(env);
 
-  // Step 6: Calculate and store trending data
+  // Step 6: Calculate and store trending data (with historical comparison)
   const allRecentItems = await loadRecentItems(env);
-  const trending = calculateTrending(allRecentItems);
+  const trending = await calculateTrending(allRecentItems, env);
   await env.DRAMARADAR_CACHE.put(
     "trending:current",
     JSON.stringify(trending),

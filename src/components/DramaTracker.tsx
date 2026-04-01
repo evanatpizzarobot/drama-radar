@@ -5,25 +5,25 @@ interface DramaTrackerProps {
   data: TrendingData | null;
 }
 
-function TrendArrow({ trend }: { trend: "up" | "down" | "stable" }) {
+function TrendIndicator({ trend }: { trend: "up" | "down" | "stable" }) {
   if (trend === "up") {
     return (
-      <svg className="h-3.5 w-3.5 text-emerald-400" viewBox="0 0 16 16" fill="currentColor" aria-label="Trending up">
-        <path d="M8 3l5 6H3z" />
-      </svg>
+      <span className="ml-1 text-[11px] text-[#00B894]" aria-label="Trending up">
+        ▲
+      </span>
     );
   }
   if (trend === "down") {
     return (
-      <svg className="h-3.5 w-3.5 text-red-400" viewBox="0 0 16 16" fill="currentColor" aria-label="Trending down">
-        <path d="M8 13l5-6H3z" />
-      </svg>
+      <span className="ml-1 text-[11px] text-[#FF3838]" aria-label="Trending down">
+        ▼
+      </span>
     );
   }
   return (
-    <svg className="h-3.5 w-3.5 text-[#555568]" viewBox="0 0 16 16" fill="currentColor" aria-label="Stable">
-      <rect x="3" y="7" width="10" height="2" rx="1" />
-    </svg>
+    <span className="ml-1 text-[8px] text-[#555568]" aria-label="Stable">
+      ●
+    </span>
   );
 }
 
@@ -61,12 +61,10 @@ export function DramaTracker({ data }: DramaTrackerProps) {
                 key={show.showTag}
                 className="flex items-center justify-between rounded-lg bg-[#0D0D0F]/60 px-3 py-2"
               >
-                <div className="flex items-center gap-2">
-                  <TrendArrow trend={show.trend} />
-                  <span className="text-xs font-semibold text-[#F5F5F5]">{show.label}</span>
-                </div>
-                <span className="text-[10px] text-[#A0A0B0]">
+                <span className="text-xs font-semibold text-[#F5F5F5]">{show.label}</span>
+                <span className="flex items-center text-[10px] text-[#A0A0B0]">
                   {show.mentionCount} mentions
+                  <TrendIndicator trend={show.trend} />
                 </span>
               </li>
             ))}
