@@ -4,202 +4,206 @@ import type { FeedItem, ShowDefinition, RawFeedEntry } from "./types";
 import { shortHash } from "./fetch-feeds";
 
 export const SHOW_TAGS: Record<string, ShowDefinition> = {
-  rhobh: {
-    tag: "rhobh",
+  "real-housewives-beverly-hills": {
+    tag: "real-housewives-beverly-hills",
     label: "RHOBH",
     fullName: "The Real Housewives of Beverly Hills",
-    keywords: ["rhobh", "beverly hills", "real housewives of beverly hills"],
-    color: "#D4AF37",
+    keywords: [
+      "rhobh", "beverly hills", "kyle richards", "dorit kemsley",
+      "erika jayne", "garcelle beauvais", "sutton stracke", "crystal minkoff",
+    ],
+    color: "#C4A265",
   },
-  rhoa: {
-    tag: "rhoa",
+  "real-housewives-atlanta": {
+    tag: "real-housewives-atlanta",
     label: "RHOA",
     fullName: "The Real Housewives of Atlanta",
-    keywords: ["rhoa", "atlanta", "real housewives of atlanta"],
-    color: "#E85D75",
+    keywords: [
+      "rhoa", "real housewives of atlanta", "kandi burruss", "kenya moore",
+      "drew sidora", "sheree whitfield",
+    ],
+    color: "#E84393",
   },
-  rhonj: {
-    tag: "rhonj",
+  "real-housewives-new-jersey": {
+    tag: "real-housewives-new-jersey",
     label: "RHONJ",
     fullName: "The Real Housewives of New Jersey",
-    keywords: ["rhonj", "new jersey", "real housewives of new jersey"],
-    color: "#4A90D9",
+    keywords: [
+      "rhonj", "real housewives of new jersey", "teresa giudice",
+      "melissa gorga", "margaret josephs",
+    ],
+    color: "#00B894",
   },
-  rhony: {
-    tag: "rhony",
+  "real-housewives-new-york": {
+    tag: "real-housewives-new-york",
     label: "RHONY",
-    fullName: "The Real Housewives of New York City",
-    keywords: ["rhony", "new york", "real housewives of new york"],
-    color: "#50C878",
+    fullName: "The Real Housewives of New York",
+    keywords: [
+      "rhony", "real housewives of new york", "brynn whitfield",
+      "jenna lyons", "sai de silva", "ubah hassan", "erin lichy",
+      "jessel taank",
+    ],
+    color: "#0984E3",
   },
-  rhoslc: {
-    tag: "rhoslc",
+  "real-housewives-salt-lake-city": {
+    tag: "real-housewives-salt-lake-city",
     label: "RHOSLC",
     fullName: "The Real Housewives of Salt Lake City",
-    keywords: ["rhoslc", "salt lake city", "real housewives of salt lake"],
-    color: "#9B59B6",
+    keywords: [
+      "rhoslc", "salt lake city", "lisa barlow", "heather gay",
+      "meredith marks", "mary cosby",
+    ],
+    color: "#A29BFE",
   },
-  rhom: {
-    tag: "rhom",
+  "real-housewives-miami": {
+    tag: "real-housewives-miami",
     label: "RHOM",
     fullName: "The Real Housewives of Miami",
-    keywords: ["rhom", "miami", "real housewives of miami"],
-    color: "#FF6B6B",
+    keywords: [
+      "rhom", "real housewives of miami", "larsa pippen", "alexia nepola",
+      "lisa hochstein", "guerdy abraira",
+    ],
+    color: "#FF7675",
   },
-  rhop: {
-    tag: "rhop",
+  "real-housewives-potomac": {
+    tag: "real-housewives-potomac",
     label: "RHOP",
     fullName: "The Real Housewives of Potomac",
-    keywords: ["rhop", "potomac", "real housewives of potomac"],
-    color: "#2ECC71",
+    keywords: [
+      "rhop", "real housewives of potomac", "gizelle bryant", "karen huger",
+      "ashley darby", "candiace dillard",
+    ],
+    color: "#6C5CE7",
   },
-  rhodubai: {
-    tag: "rhodubai",
+  "real-housewives-dubai": {
+    tag: "real-housewives-dubai",
     label: "RHODubai",
     fullName: "The Real Housewives of Dubai",
-    keywords: ["rhodubai", "dubai", "real housewives of dubai"],
-    color: "#C9A84C",
+    keywords: ["rhodubai", "real housewives of dubai"],
+    color: "#FDCB6E",
   },
-  vpr: {
-    tag: "vpr",
+  "vanderpump-rules": {
+    tag: "vanderpump-rules",
     label: "VPR",
     fullName: "Vanderpump Rules",
-    keywords: ["vpr", "vanderpump rules", "vanderpump"],
-    color: "#E74C3C",
+    keywords: [
+      "vanderpump rules", "vanderpump", "tom sandoval", "ariana madix",
+      "tom schwartz", "scheana shay", "lala kent", "katie maloney",
+      "james kennedy",
+    ],
+    color: "#E17055",
   },
   "below-deck": {
     tag: "below-deck",
     label: "Below Deck",
     fullName: "Below Deck",
-    keywords: ["below deck", "below deck med", "below deck sailing"],
-    color: "#3498DB",
+    keywords: [
+      "below deck", "captain lee", "captain sandy", "below deck med",
+      "below deck sailing", "below deck adventure",
+    ],
+    color: "#00CEC9",
   },
   "summer-house": {
     tag: "summer-house",
     label: "Summer House",
     fullName: "Summer House",
-    keywords: ["summer house"],
-    color: "#F39C12",
+    keywords: [
+      "summer house", "kyle cooke", "amanda batula", "carl radke",
+      "lindsay hubbard", "paige desorbo", "ciara miller", "west wilson",
+    ],
+    color: "#55EFC4",
   },
   "the-valley": {
     tag: "the-valley",
     label: "The Valley",
     fullName: "The Valley",
-    keywords: ["the valley"],
-    color: "#8E44AD",
+    keywords: [
+      "the valley", "jax taylor", "brittany cartwright", "kristen doute",
+      "luke broderick",
+    ],
+    color: "#FAB1A0",
   },
   "southern-charm": {
     tag: "southern-charm",
     label: "Southern Charm",
     fullName: "Southern Charm",
-    keywords: ["southern charm", "charleston"],
-    color: "#1ABC9C",
+    keywords: [
+      "southern charm", "craig conover", "shep rose", "austen kroll",
+      "madison lecroy",
+    ],
+    color: "#FFEAA7",
   },
-  bachelor: {
-    tag: "bachelor",
+  "bachelor-bachelorette": {
+    tag: "bachelor-bachelorette",
     label: "Bachelor",
     fullName: "The Bachelor / The Bachelorette",
-    keywords: ["bachelor", "bachelorette", "bachelor in paradise"],
-    color: "#E91E63",
+    keywords: [
+      "the bachelor", "bachelorette", "bachelor in paradise",
+      "golden bachelor", "rose ceremony", "final rose",
+    ],
+    color: "#FF3838",
   },
   "love-island": {
     tag: "love-island",
     label: "Love Island",
     fullName: "Love Island",
-    keywords: ["love island"],
-    color: "#FF5722",
+    keywords: ["love island", "love island usa", "love island uk"],
+    color: "#FF9FF3",
   },
-  "90-day": {
-    tag: "90-day",
+  "90-day-fiance": {
+    tag: "90-day-fiance",
     label: "90 Day",
     fullName: "90 Day Fiance",
-    keywords: ["90 day fiance", "90 day", "90day"],
-    color: "#00BCD4",
+    keywords: [
+      "90 day fiance", "90 day", "before the 90 days",
+      "happily ever after", "the other way",
+    ],
+    color: "#F368E0",
   },
   "selling-sunset": {
     tag: "selling-sunset",
     label: "Selling Sunset",
     fullName: "Selling Sunset",
-    keywords: ["selling sunset", "oppenheim"],
-    color: "#FF9800",
+    keywords: [
+      "selling sunset", "chrishell stause", "jason oppenheim",
+      "mary fitzgerald", "selling the oc",
+    ],
+    color: "#FF6B6B",
   },
-  mafs: {
-    tag: "mafs",
+  "married-at-first-sight": {
+    tag: "married-at-first-sight",
     label: "MAFS",
     fullName: "Married at First Sight",
-    keywords: ["mafs", "married at first sight"],
-    color: "#9C27B0",
+    keywords: ["married at first sight", "mafs"],
+    color: "#DFE6E9",
   },
 };
 
 export const RELEVANCE_KEYWORDS: string[] = [
   // General reality TV terms
-  "reality tv",
-  "reality show",
-  "reality star",
-  "reality television",
-  "bravo",
-  "bravolebrity",
-  "bravo tv",
-  "housewives",
-  "real housewives",
-  "reunion",
-  "reunion episode",
-  "tell all",
-  "tell-all",
-  "after show",
-  "watch what happens live",
-  "wwhl",
-  "andy cohen",
+  "reality tv", "reality show", "reality star", "reality television",
+  "bravo", "bravolebrity", "bravo tv", "housewives", "real housewives",
+  "reunion", "reunion episode", "tell all", "tell-all", "after show",
+  "watch what happens live", "wwhl", "andy cohen",
 
   // Drama and gossip keywords
-  "feud",
-  "drama",
-  "fight",
-  "fired",
-  "arrested",
-  "lawsuit",
-  "divorce",
-  "breakup",
-  "cheating",
-  "affair",
-  "scandal",
-  "exposed",
-  "confrontation",
-  "shade",
-  "clap back",
-  "clapback",
-  "diss",
-  "beef",
-  "falling out",
+  "feud", "drama", "fight", "fired", "arrested", "lawsuit",
+  "divorce", "breakup", "cheating", "affair", "scandal", "exposed",
+  "confrontation", "shade", "clap back", "clapback", "diss", "beef",
+  "falling out", "gossip",
 
   // Show-specific terms
-  "cast shakeup",
-  "new cast",
-  "season premiere",
-  "season finale",
-  "trailer drop",
-  "sneak peek",
-  "exclusive clip",
-  "casting news",
-  "demoted",
-  "friend of",
-  "tagline",
+  "cast shakeup", "new cast", "season premiere", "season finale",
+  "trailer drop", "sneak peek", "exclusive clip", "casting news",
+  "demoted", "friend of", "tagline", "confessional",
+  "rose ceremony", "elimination", "contestant",
 
   // Celebrity and entertainment
-  "celebrity gossip",
-  "red carpet",
-  "paparazzi",
-  "instagram",
-  "social media",
-  "dating",
-  "engaged",
-  "wedding",
-  "baby",
-  "pregnant",
-  "net worth",
-  "plastic surgery",
-  "cosmetic",
+  "celebrity", "celebrity gossip", "red carpet", "paparazzi",
+  "instagram", "social media", "dating", "engaged", "wedding",
+  "baby", "pregnant", "net worth", "fashion", "beauty", "glam",
+  "tea", "receipts", "star", "famous",
+  "season", "episode", "premiere", "finale", "trailer",
 ];
 
 /**
@@ -263,7 +267,10 @@ export async function categorizeItem(
 
   // Add "housewives" category if any housewives show is tagged
   const housewivesTags = [
-    "rhobh", "rhoa", "rhonj", "rhony", "rhoslc", "rhom", "rhop", "rhodubai",
+    "real-housewives-beverly-hills", "real-housewives-atlanta",
+    "real-housewives-new-jersey", "real-housewives-new-york",
+    "real-housewives-salt-lake-city", "real-housewives-miami",
+    "real-housewives-potomac", "real-housewives-dubai",
   ];
   if (showTags.some((tag) => housewivesTags.includes(tag))) {
     if (!categories.includes("housewives")) {
@@ -273,13 +280,8 @@ export async function categorizeItem(
 
   // Determine if this is breaking news
   const breakingKeywords = [
-    "breaking",
-    "exclusive",
-    "just in",
-    "fired",
-    "arrested",
-    "divorce",
-    "lawsuit",
+    "breaking", "exclusive", "just in", "fired",
+    "arrested", "divorce", "lawsuit",
   ];
   const titleLower = entry.title.toLowerCase();
   const isBreaking =
