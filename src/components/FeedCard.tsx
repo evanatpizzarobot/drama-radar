@@ -1,4 +1,4 @@
-import { timeAgo } from "@/lib/utils";
+import { timeAgo, decodeHtmlEntities } from "@/lib/utils";
 import { ShowTagPill } from "./ShowTagPill";
 import type { FeedItem } from "@/lib/types";
 
@@ -27,13 +27,13 @@ export function FeedCard({ item }: FeedCardProps) {
             rel="noopener noreferrer"
             className="mb-1.5 block text-sm font-bold leading-snug text-[#F5F5F5] transition-colors duration-200 group-hover:text-[#E84393]"
           >
-            {item.title}
+            {decodeHtmlEntities(item.title)}
           </a>
 
           {/* Description */}
           {item.description && (
             <p className="mb-2.5 line-clamp-2 text-xs leading-relaxed text-[#A0A0B0]">
-              {item.description}
+              {decodeHtmlEntities(item.description)}
             </p>
           )}
 

@@ -21,6 +21,7 @@ Repo: github.com/evanatpizzarobot/drama-radar
 - Content filtering must run on every feed item (skip off-topic)
 - Show tag detection is keyword-based, case-insensitive
 - All timestamps stored as ISO 8601 UTC
+- All external text (RSS titles, descriptions) must be decoded with decodeHtmlEntities() before display to prevent &#039; and similar artifacts
 - Feed cards link to ORIGINAL source articles (we aggregate, not copy)
 - Editorial articles render from Markdown stored in KV
 - AdSense units wrapped in reusable component

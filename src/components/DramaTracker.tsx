@@ -1,3 +1,4 @@
+import { decodeHtmlEntities } from "@/lib/utils";
 import type { TrendingData } from "@/lib/types";
 
 interface DramaTrackerProps {
@@ -107,7 +108,7 @@ export function DramaTracker({ data }: DramaTrackerProps) {
             rel="noopener noreferrer"
             className="text-xs font-semibold leading-snug text-[#F5F5F5] transition-colors duration-200 hover:text-[#E84393]"
           >
-            {data.hotStory.title}
+            {decodeHtmlEntities(data.hotStory.title)}
           </a>
           <p className="mt-1 text-[10px] text-[#555568]">{data.hotStory.source}</p>
         </div>

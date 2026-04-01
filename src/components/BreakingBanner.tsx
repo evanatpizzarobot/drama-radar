@@ -1,3 +1,4 @@
+import { decodeHtmlEntities } from "@/lib/utils";
 import type { FeedItem } from "@/lib/types";
 
 interface BreakingBannerProps {
@@ -38,7 +39,7 @@ export function BreakingBanner({ items }: BreakingBannerProps) {
           className="min-w-0 flex-1 truncate text-sm font-bold text-white transition-opacity hover:opacity-80"
           aria-label={`Breaking news: ${first.title}`}
         >
-          {first.title}
+          {decodeHtmlEntities(first.title)}
         </a>
       </div>
     </div>
