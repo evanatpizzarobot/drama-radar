@@ -1,5 +1,5 @@
 // Twitter/X posting bot for DramaRadar
-// Full scheduled posting strategy: 15-20 tweets/day across article, news, prediction, and engagement types
+// Conservative posting strategy: 1-3 tweets/day to avoid new account rate limits
 
 import type { Env, FeedItem, EditorialArticle, Prediction } from "./types";
 import { SHOW_TAGS } from "./categorize";
@@ -35,23 +35,12 @@ interface PostSlot {
   id: string;
 }
 
+// REDUCED SCHEDULE: 1-3 posts/day to avoid new account rate limits on X
+// Spread across morning, afternoon, evening for natural posting pattern
 const POSTING_SCHEDULE: PostSlot[] = [
-  { hour: 7,  minute: 0,  type: "article",    id: "07-00-article" },
-  { hour: 9,  minute: 0,  type: "breaking",   id: "09-00-breaking" },
-  { hour: 10, minute: 30, type: "tier2",       id: "10-30-tier2" },
-  { hour: 12, minute: 0,  type: "article",    id: "12-00-article" },
-  { hour: 13, minute: 30, type: "breaking",   id: "13-30-breaking" },
-  { hour: 15, minute: 0,  type: "tier2",       id: "15-00-tier2" },
-  { hour: 15, minute: 15, type: "prediction", id: "15-15-prediction" },
-  { hour: 16, minute: 30, type: "article",    id: "16-30-article" },
-  { hour: 18, minute: 0,  type: "breaking",   id: "18-00-breaking" },
-  { hour: 19, minute: 30, type: "engagement", id: "19-30-engagement" },
-  { hour: 20, minute: 0,  type: "breaking",   id: "20-00-breaking" },
-  { hour: 20, minute: 30, type: "tier2",       id: "20-30-tier2" },
-  { hour: 21, minute: 0,  type: "breaking",   id: "21-00-breaking" },
-  { hour: 21, minute: 30, type: "article",    id: "21-30-article" },
-  { hour: 22, minute: 30, type: "breaking",   id: "22-30-breaking" },
-  { hour: 23, minute: 30, type: "breaking",   id: "23-30-breaking" },
+  { hour: 9,  minute: 30, type: "article",  id: "09-30-article" },
+  { hour: 15, minute: 0,  type: "breaking", id: "15-00-breaking" },
+  { hour: 20, minute: 30, type: "article",  id: "20-30-article" },
 ];
 
 // ============================================================
@@ -459,9 +448,9 @@ export async function autoPost(env: Env): Promise<void> {
   const et = getEasternNow();
   const dailyCount = await getDailyCount(et.date, env);
 
-  // Hard cap: 20 tweets per day
-  if (dailyCount >= 20) {
-    console.log(`X bot: daily cap reached (${dailyCount}/20), skipping`);
+  // Hard cap: 3 tweets per day (reduced from 20 to avoid new account limits)
+  if (dailyCount >= 3) {
+    console.log(`X bot: daily cap reached (${dailyCount}/3), skipping`);
     return;
   }
 
@@ -483,7 +472,7 @@ export async function autoPost(env: Env): Promise<void> {
 
     // Re-check daily cap
     const count = await getDailyCount(et.date, env);
-    if (count >= 20) break;
+    if (count >= 3) break;
 
     console.log(`X bot: posting for slot ${slot.id} (type: ${slot.type})`);
 
@@ -718,7 +707,7 @@ export async function botStatus(env: Env): Promise<Response> {
       status: "ok",
       easternTime: et,
       dailyTweetCount: dailyCount,
-      dailyLimit: 20,
+      dailyLimit: 3,
       credentials: {
         hasApiKey: !!env.X_API_KEY,
         hasApiSecret: !!env.X_API_SECRET,
