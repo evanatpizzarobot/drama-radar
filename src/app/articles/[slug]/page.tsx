@@ -26,6 +26,8 @@ const KNOWN_SLUGS = [
   "ciara-video-amanda-west",
   "kyle-cooke-wild-betrayal-hero",
   "summer-house-cast-sides-guide",
+  "rhoa-season-17-premiere-night",
+  "amanda-batula-brand-deals-disappearing",
 ];
 
 export async function generateStaticParams() {
