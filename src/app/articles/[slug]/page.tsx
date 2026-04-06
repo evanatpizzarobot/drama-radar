@@ -28,6 +28,7 @@ const KNOWN_SLUGS = [
   "summer-house-cast-sides-guide",
   "rhoa-season-17-premiere-night",
   "amanda-batula-brand-deals-disappearing",
+  "carls-a-mess-uber-eats-summer-house",
 ];
 
 export async function generateStaticParams() {

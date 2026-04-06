@@ -81,9 +81,91 @@ Receipts attached.`,
     isFeatured: true,
     isExclusive: true,
   },
+  {
+    slug: "carls-a-mess-uber-eats-summer-house",
+    title: "Carl's a Mess: How a Meme Became a Catchphrase, a Brand Deal, and the Best Thing to Come Out of the Summer House Scandal",
+    subtitle: "Carl Radke and Lindsay Hubbard reunited for an Uber Eats ad that broke the internet. The 'soft enough' callback was chef's kiss.",
+    body: `Of all the things to emerge from the Summer House apocalypse, nobody predicted that the most heartwarming moment would involve Carl Radke blowing his nose into a tissue while Lindsay Hubbard asks if it's soft enough for him. And yet here we are. Welcome to 2026, where the mess is the message and Uber Eats is paying for the cleanup.
+
+Let's rewind, because the "Carl's a mess" saga requires some context for anyone who has not been obsessively tracking this man's journey through the Bravo universe.
+
+## The Carl Radke Timeline of Mess
+
+Carl Radke joined Summer House in Season 1 and spent the better part of five seasons being, well, a mess. He was the guy at the party who would make out with someone, forget about it, and then accidentally flirt with their best friend the next morning. He was charming in the way that people who have no idea what they want are sometimes charming. He was messy in the way that makes great television.
+
+Then something shifted. Carl got sober. He opened up about his struggles with alcohol. He lost his brother Kyle to addiction in 2020, and viewers watched him process that grief on camera in one of the most raw and genuinely emotional storylines Summer House has ever produced. The frat boy energy faded. A more thoughtful, more vulnerable Carl emerged. And the audience fell in love with him.
+
+Then he fell in love with Lindsay Hubbard.
+
+Carl and Lindsay had been friends and castmates for years before their relationship turned romantic during Season 6. By Season 7, they were engaged. The proposal happened on camera. The wedding planning became a storyline. Fans were invested. This was going to be the Summer House fairy tale ending that nobody expected from the guy who once forgot which girl he was supposed to be dating.
+
+Then Carl called off the wedding.
+
+In September 2023, just weeks before they were scheduled to get married in Mexico, Carl told Lindsay he could not go through with it. On camera. During what was supposed to be the final weekend of summer. Lindsay's reaction was devastating. Her statement afterward said her "entire life and future was ripped out from underneath me" and she had "no answers or closure on why."
+
+The breakup defined Season 8. It dominated the reunion. Lindsay blocked Carl on every platform. When asked about it in February 2025, Carl told Us Weekly: "I'm blocked on social media, so I've kind of taken that as understood." The distance between them felt permanent.
+
+Carl also faced criticism for how he handled the breakup. His reasoning felt incomplete to many viewers. The "not soft enough" comment about Lindsay became a flashpoint. He suggested that Lindsay was too intense, too driven, too much. The internet did not take kindly to a man calling off a wedding because his fiancee was not "soft" enough. That phrase haunted him for two years.
+
+Through all of this, Kyle Cooke was the one who summed up what everyone was thinking. During an interview about the Amanda and West scandal, Kyle described the situation's effect on the cast and said simply: "Carl's a mess."
+
+The phrase went viral instantly. Not because it was cruel, but because it was accurate. Carl was a mess. The whole cast was a mess. The entire Summer House universe was imploding in slow motion and Carl, the man who has been in the middle of mess since Season 1, was somehow both a participant and a spectator in the biggest scandal the show has ever seen.
+
+## The Uber Eats Commercial That Broke the Internet
+
+On Saturday, April 4th, Carl and Lindsay dropped a joint Uber Eats ad on Instagram that made the entire Bravoverse collectively lose its mind.
+
+The video opens on Carl sitting on a couch in Brooklyn, blowing his nose into a tissue. An Uber Eats bag stuffed with comfort food sits on the side table next to a can of Loverboy (Kyle Cooke's brand, because of course). Text on screen reads: "Carl is A MESS."
+
+Lindsay walks in, hands him another tissue, and delivers the line that sent the internet into orbit: "Is it soft enough for you?"
+
+That callback. That devastating, perfectly delivered callback to the single most controversial thing Carl ever said about their relationship. Lindsay took the phrase that defined their breakup, the criticism that the internet weaponized against Carl for two years, and turned it into a punchline for a tissue commercial. The level of self-awareness is extraordinary.
+
+The video ends with both of them sitting on the couch, eating chips and pizza, watching TV. The text reads: "Delivering cleanup for any mess. Uber Eats." Lindsay captioned the post: "Can confirm, Carl is A MESS." And in the comments, she dropped the detail that made the whole thing even better: "I unblocked him for this."
+
+She unblocked him. After years of no contact, no social media connection, and what appeared to be a permanent estrangement, Lindsay Hubbard unblocked Carl Radke to film an Uber Eats ad together. That sentence alone tells you everything about where reality TV and brand partnerships intersect in 2026.
+
+## The Reactions Were Everything
+
+The cast and the internet responded immediately.
+
+Jesse Solomon, their Summer House castmate, commented: "Oh. My God. THISSS is what it took for you guys to hang out again." Which is an extremely valid question.
+
+Kate Chastain, the Below Deck legend, asked: "Do they give Emmys for best reality tv show post-scandal response in a limited online format yet?" They should. Carl and Lindsay would sweep the category.
+
+Fans flooded the comments with reactions ranging from genuine emotion to disbelief to people who simply wrote "I'M SCREAMING" in all caps. The consensus was unanimous: this ad is perfect.
+
+## Why This Actually Matters
+
+Beyond the humor and the viral moment, the Uber Eats ad represents something significant about Carl and Lindsay's relationship. These two people went through one of the most painful, most public breakups in Bravo history. The engagement, the wedding cancellation, the blocked accounts, the years of silence. That is not light stuff.
+
+And yet here they are, sitting on a couch together, eating snacks and making jokes about the worst thing that happened between them. That is not just good content. That is genuine healing turned into entertainment. It is the best case scenario for how two people can process shared pain and come out the other side with enough perspective to laugh about it.
+
+In the current season airing right now, viewers have already noticed small signs of progress. Lindsay invited Carl to her housewarming party. He showed up awkwardly but brought gifts for both Lindsay and her daughter Gemma. The ice has been thawing gradually all season.
+
+The Uber Eats ad feels like the public culmination of that thaw. Not a reconciliation, not a friendship reset, but an acknowledgment that two people who once planned to spend their lives together can still share a couch, a pizza, and a really well-timed joke about tissues.
+
+## The Bigger Picture
+
+In a week dominated by betrayal narratives (Amanda and Ciara, West and Kyle, the video, the brand deals dropping, the cyberbullying concerns), Carl and Lindsay's Uber Eats moment is the breath of fresh air the Bravoverse desperately needed. It proves that Summer House drama does not always have to end in unfollows and Instagram statements. Sometimes it ends in snacks and self-deprecating humor.
+
+Carl Radke is a mess. He has always been a mess. But he is a lovable mess, a self-aware mess, and as of this weekend, a mess with an Uber Eats sponsorship and a cautious but genuine reconnection with the woman he almost married.
+
+The Summer House universe is chaotic. It is imploding and rebuilding simultaneously. But somewhere in Brooklyn, Carl and Lindsay are sitting on a couch eating chips and watching TV, and honestly? That might be the most hopeful thing to happen on this show in years.
+
+Stay messy.`,
+    author: "carly",
+    imageUrl: null,
+    categories: ["reality-tv", "bravo"],
+    showTags: ["summer-house"],
+    publishedAt: "2026-04-05T18:00:00Z",
+    updatedAt: "2026-04-05T18:00:00Z",
+    isFeatured: true,
+    isExclusive: true,
+  },
 ];
 
-// All 25 article slugs (batch 1: 12, batch 2: 8, batch 3: 3, batch 4: 2)
+// All 26 article slugs (batch 1: 12, batch 2: 8, batch 3: 3, batch 4: 2)
 const allSlugs = [
   // Batch 1 (seed.js)
   "scamanda-podcast-reality-tv-pipeline",
@@ -114,6 +196,7 @@ const allSlugs = [
   // Batch 4 (this file)
   "rhoa-season-17-premiere-night",
   "amanda-batula-brand-deals-disappearing",
+  "carls-a-mess-uber-eats-summer-house",
 ];
 
 // Generate bulk KV JSON (articles + updated index)
@@ -122,7 +205,7 @@ const bulk = articles.map((a) => ({
   value: JSON.stringify(a),
 }));
 
-// Include updated articles:index with all 25 slugs
+// Include updated articles:index with all 26 slugs
 bulk.push({
   key: "articles:index",
   value: JSON.stringify(allSlugs),
