@@ -21,7 +21,6 @@ import {
 import { calculateTrending } from "./trending";
 import { handleAdminRequest } from "./admin";
 import { handleDramaDesk } from "./drama-desk";
-import { autoPost, handleManualTweet, forcePost, botStatus } from "./twitter";
 import { handleSubscribe, handleUnsubscribe, sendBreakingAlerts } from "./email";
 import { handlePushSubscribe, handlePushUnsubscribe, sendPushAlerts } from "./push";
 
@@ -501,14 +500,6 @@ async function handleFetchRequest(
     return handleAgent(env);
   }
 
-  if (path === "/api/xbot/status" && request.method === "GET") {
-    return botStatus(env);
-  }
-
-  if (path === "/api/xbot/force" && request.method === "POST") {
-    return forcePost(env);
-  }
-
   if (path === "/api/subscribe" && request.method === "POST") {
     return handleSubscribe(request, env);
   }
@@ -595,9 +586,6 @@ async function handleScheduled(
   // Step 7: Send breaking alerts (email + push)
   await sendBreakingAlerts(categorizedItems, env);
   await sendPushAlerts(categorizedItems, env);
-
-  // Step 8: Auto-post to X (scheduled, ~15-20 tweets per day)
-  await autoPost(env);
 
   console.log(
     `Scheduled job complete: ${categorizedItems.length} items processed, trending updated`

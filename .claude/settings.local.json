@@ -29,7 +29,20 @@
       "Bash(node scripts/rename-slugs.js)",
       "Bash(ls -la public/images/*.png)",
       "Bash(ls:*)",
-      "Bash(node scripts/generate-vapid-keys.js)"
+      "Bash(node scripts/generate-vapid-keys.js)",
+      "Bash(grep -E \"\\\\.\\(js|json|ts|tsx\\)$\")",
+      "Bash(find /c/projects/drama-radar/src -type f \\\\\\( -name \"*.ts\" -o -name \"*.tsx\" \\\\\\) -exec grep -l \"article\" {} \\\\;)",
+      "Bash(wc:*)",
+      "Bash(node:*)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'Total articles: {len\\(d.get\\(\\\\\"articles\\\\\", []\\)\\)}'\\); [print\\(f' {a[\\\\\"slug\\\\\"]}'\\) for a in d.get\\('articles', []\\)]\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); shows=d.get\\('shows',[]\\); sh=[s for s in shows if s.get\\('tag'\\)=='summer-house']; print\\(f'Summer House articleCount: {sh[0].get\\(\\\\\"articleCount\\\\\"\\) if sh else \\\\\"NOT FOUND\\\\\"}'\\)\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'Total articles: {len\\(d.get\\(\\\\\"articles\\\\\", []\\)\\)}'\\); [print\\(f'  {i+1}. {a[\\\\\"slug\\\\\"]}'\\) for i,a in enumerate\\(d.get\\('articles', []\\)\\)]\")",
+      "Bash(python -c \"import sys,json; a=json.load\\(sys.stdin\\).get\\('article',{}\\); print\\(f'Title: {a.get\\(\\\\\"title\\\\\"\\)}'\\); print\\(f'Featured: {a.get\\(\\\\\"isFeatured\\\\\"\\)}'\\); print\\(f'Exclusive: {a.get\\(\\\\\"isExclusive\\\\\"\\)}'\\); print\\(f'Author: {a.get\\(\\\\\"author\\\\\"\\)}'\\)\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({k:v for k,v in d.items\\(\\) if k != 'body'}, indent=2\\)[:800]\\)\")",
+      "Bash(grep -E \"\\\\.\\(ts|tsx|js|jsx|json\\)$\")",
+      "Bash(grep:*)",
+      "Bash(find /c/projects/drama-radar/scripts -name \"*.json\" -exec grep -h '\"key\": \"article:' {} \\\\;)",
+      "Read(//tmp/**)"
     ]
   }
 }
