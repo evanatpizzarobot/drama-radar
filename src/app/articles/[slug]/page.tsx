@@ -29,6 +29,7 @@ const KNOWN_SLUGS = [
   "rhoa-season-17-premiere-night",
   "amanda-batula-brand-deals-disappearing",
   "carls-a-mess-uber-eats-summer-house",
+  "bravo-in-the-city-summer-house-spinoff",
 ];
 
 export async function generateStaticParams() {
