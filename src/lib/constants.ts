@@ -267,6 +267,21 @@ export const SHOW_TAGS: Record<string, ShowDefinition> = {
     network: "Netflix",
     status: "between-seasons",
   },
+  "southern-hospitality": {
+    tag: "southern-hospitality",
+    label: "So. Hospitality",
+    fullName: "Southern Hospitality",
+    keywords: [
+      "southern hospitality", "leva bonaparte", "republic garden",
+      "charleston nightlife",
+    ],
+    color: "#E67E22",
+    intro: "Southern Hospitality is the Southern Charm spinoff that takes Bravo cameras behind the scenes of Charleston's nightlife at Republic Garden and Lounge. Owner Leva Bonaparte runs a tight ship while her young staff navigate careers, relationships, and the unique social dynamics of the Holy City after dark. Season 3 is currently airing with new cast members and workplace drama that keeps the cocktails flowing and the tensions high.",
+    currentSeason: 3,
+    airDay: null,
+    network: "Bravo",
+    status: "airing",
+  },
   "married-at-first-sight": {
     tag: "married-at-first-sight",
     label: "MAFS",

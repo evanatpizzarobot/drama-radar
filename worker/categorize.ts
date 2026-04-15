@@ -143,6 +143,16 @@ export const SHOW_TAGS: Record<string, ShowDefinition> = {
     ],
     color: "#FFEAA7",
   },
+  "southern-hospitality": {
+    tag: "southern-hospitality",
+    label: "So. Hospitality",
+    fullName: "Southern Hospitality",
+    keywords: [
+      "southern hospitality", "leva bonaparte", "republic garden",
+      "charleston nightlife",
+    ],
+    color: "#E67E22",
+  },
   "bachelor-bachelorette": {
     tag: "bachelor-bachelorette",
     label: "Bachelor",

@@ -131,6 +131,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://dramaradar.com/shows/southern-hospitality/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dramaradar.com/shows/real-housewives-rhode-island/</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -202,6 +207,80 @@
   <url><loc>https://dramaradar.com/cast/alicia-carmody/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://dramaradar.com/cast/rulla-nehme/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://dramaradar.com/cast/elizabeth-mcgraw/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- Summer House Cast -->
+  <url><loc>https://dramaradar.com/cast/kyle-cooke/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/amanda-batula/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/west-wilson/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/carl-radke/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/ciara-miller/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/lindsay-hubbard/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jesse-solomon/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/bailey-taylor/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/levi-sebree/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kj-dillard/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/dara-levitan/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/mia-calabrese/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- The Valley Cast -->
+  <url><loc>https://dramaradar.com/cast/brittany-cartwright/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jax-taylor/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/lala-kent/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/tom-schwartz/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kristen-doute/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/luke-broderick/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/danny-booko/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/nia-sanchez/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jasmine-goode/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/zack-wickham/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jesse-lally/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/michelle-saniei/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jason-caperna/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/janet-caperna/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- VPR S12 Cast -->
+  <url><loc>https://dramaradar.com/cast/lisa-vanderpump/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/venus-binkley/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/shayne-davis/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jason-cohen/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/chris-hahn/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/angelica-jensen/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/marcus-johnson-vpr/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/audrey-lingle/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/natalie-maguire/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kim-suarez/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/demy-selem/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- Southern Charm Cast -->
+  <url><loc>https://dramaradar.com/cast/craig-conover/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/austen-kroll/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/shep-rose/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/madison-lecroy/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/venita-aspen/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/whitney-sudler-smith/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/salley-carson/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/rodrigo-reyes/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/charley-manley/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- Southern Hospitality Cast -->
+  <url><loc>https://dramaradar.com/cast/leva-bonaparte/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/joe-bradley/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/maddi-reese/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/emmy-sharrett/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/grace-lilly/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/tj-dinch/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/mikel-simmons/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/lucia-pena/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/mia-alario/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/will-kulp/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/bradley-carter/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/molly-moore-sh/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/lake-rucker/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- Below Deck Down Under S4 Crew -->
+  <url><loc>https://dramaradar.com/cast/captain-jason-chambers/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/ben-robinson/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/daisy-kelliher/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/joao-franco/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/alesia-harris/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jenna-woudberg/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/mike-durrant/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/eddy-hounsell/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/betul-yazici/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url>
     <loc>https://dramaradar.com/predictions/</loc>
     <changefreq>daily</changefreq>
