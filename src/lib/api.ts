@@ -8,6 +8,8 @@ import type {
   ShowsResponse,
   PredictionsResponse,
   HoroscopeResponse,
+  CastMember,
+  CastResponse,
 } from "./types";
 
 interface FeedParams {
@@ -165,6 +167,45 @@ export async function fetchPredictions(
     return (await res.json()) as PredictionsResponse;
   } catch {
     return { predictions: [], total: 0 };
+  }
+}
+
+export async function fetchCast(
+  params?: { show?: string; status?: string; limit?: number }
+): Promise<CastResponse> {
+  try {
+    const queryParams: Record<string, string> = {};
+    if (params?.show) queryParams.show = params.show;
+    if (params?.status) queryParams.status = params.status;
+    if (params?.limit !== undefined) queryParams.limit = String(params.limit);
+
+    const url = buildUrl("/cast", queryParams);
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error(`Cast request failed: ${res.status}`);
+    }
+
+    return (await res.json()) as CastResponse;
+  } catch {
+    return { cast: [], total: 0 };
+  }
+}
+
+export async function fetchCastMember(
+  slug: string
+): Promise<CastMember | null> {
+  try {
+    const url = buildUrl(`/cast/${encodeURIComponent(slug)}`);
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error(`Cast member request failed: ${res.status}`);
+    }
+
+    return (await res.json()) as CastMember;
+  } catch {
+    return null;
   }
 }
 

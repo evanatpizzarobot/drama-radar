@@ -105,6 +105,28 @@ export interface PredictionsResponse {
   total: number;
 }
 
+export interface CastMember {
+  slug: string;
+  fullName: string;
+  displayName: string;
+  age: number;
+  hometown: string;
+  bio: string;
+  shows: string[];
+  status: "current" | "former" | "friend-of";
+  instagram?: string;
+  tiktok?: string;
+  storylines: string[];
+  coStars: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CastResponse {
+  cast: CastMember[];
+  total: number;
+}
+
 export interface HoroscopeData {
   date: string;
   period: string;

@@ -131,6 +131,78 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://dramaradar.com/shows/real-housewives-rhode-island/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dramaradar.com/cast/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- RHOBH Cast -->
+  <url><loc>https://dramaradar.com/cast/kyle-richards/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/erika-jayne/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/dorit-kemsley/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/sutton-stracke/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/bozoma-saint-john/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/rachel-zoe/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/amanda-frances/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kathy-hilton/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- RHOA Cast -->
+  <url><loc>https://dramaradar.com/cast/porsha-williams/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/phaedra-parks/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/drew-sidora/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/shamea-morton-mwangi/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/angela-oakley/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kelli-ferrell/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/pinky-cole/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/k-michelle/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/cynthia-bailey/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- RHOP Cast -->
+  <url><loc>https://dramaradar.com/cast/karen-huger/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/gizelle-bryant/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/robyn-dixon/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/ashley-darby/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/wendy-osefo/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/stacey-rusch/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/tia-glover/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- RHONJ Cast -->
+  <url><loc>https://dramaradar.com/cast/teresa-giudice/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/melissa-gorga/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/dolores-catania/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/margaret-josephs/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jennifer-aydin/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- RHOSLC Cast -->
+  <url><loc>https://dramaradar.com/cast/lisa-barlow/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/meredith-marks/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/heather-gay/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/whitney-rose/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/mary-cosby/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- RHOM Cast -->
+  <url><loc>https://dramaradar.com/cast/larsa-pippen/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/alexia-nepola/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/lisa-hochstein/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/guerdy-abraira/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- RHODubai Cast -->
+  <url><loc>https://dramaradar.com/cast/caroline-stanbury/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/chanel-ayan/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- RHONY Cast -->
+  <url><loc>https://dramaradar.com/cast/sai-de-silva/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/ubah-hassan/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/brynn-whitfield/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jenna-lyons/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/erin-lichy/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jessel-taank/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- RHORI Cast -->
+  <url><loc>https://dramaradar.com/cast/ashley-iaconetti/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jo-ellen-tiberi/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/rosie-dimare/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kelsey-swanson/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/alicia-carmody/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/rulla-nehme/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/elizabeth-mcgraw/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url>
     <loc>https://dramaradar.com/predictions/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>

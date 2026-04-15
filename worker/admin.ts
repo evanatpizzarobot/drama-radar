@@ -1,6 +1,6 @@
 // Admin article and prediction endpoints for DramaRadar
 
-import type { Env, EditorialArticle, Prediction } from "./types";
+import type { Env, EditorialArticle, Prediction, CastMember } from "./types";
 interface AdminErrorResponse {
   error: string;
   status: number;
@@ -76,6 +76,25 @@ export async function handleAdminRequest(
       return errorResponse("Missing prediction ID", 400);
     }
     return handleUpdatePrediction(id, request, env);
+  }
+
+  // POST /api/admin/cast: create or update a cast member
+  if (request.method === "POST" && path === "/api/admin/cast") {
+    return handleCreateCastMember(request, env);
+  }
+
+  // POST /api/admin/cast/bulk: bulk insert cast members
+  if (request.method === "POST" && path === "/api/admin/cast/bulk") {
+    return handleBulkInsertCast(request, env);
+  }
+
+  // DELETE /api/admin/cast/:slug: delete a cast member
+  if (request.method === "DELETE" && path.startsWith("/api/admin/cast/")) {
+    const slug = path.replace("/api/admin/cast/", "");
+    if (!slug) {
+      return errorResponse("Missing cast member slug", 400);
+    }
+    return handleDeleteCastMember(slug, env);
   }
 
   return errorResponse("Admin endpoint not found", 404);
@@ -293,4 +312,163 @@ async function updatePredictionIndex(
   }
 
   await env.DRAMARADAR_ARTICLES.put("predictions:index", JSON.stringify(ids));
+}
+
+/**
+ * Create or update a cast member in KV.
+ */
+async function handleCreateCastMember(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  let body: Partial<CastMember>;
+  try {
+    body = (await request.json()) as Partial<CastMember>;
+  } catch {
+    return errorResponse("Invalid JSON body", 400);
+  }
+
+  if (!body.slug || !body.fullName || !body.bio || !body.shows) {
+    return errorResponse(
+      "Missing required fields: slug, fullName, bio, and shows are required",
+      400
+    );
+  }
+
+  const now = new Date().toISOString();
+  const existing = await env.DRAMARADAR_ARTICLES.get(
+    `cast:${body.slug}`,
+    "json"
+  );
+
+  const castMember: CastMember = {
+    slug: body.slug,
+    fullName: body.fullName,
+    displayName: body.displayName || body.fullName,
+    age: body.age || 0,
+    hometown: body.hometown || "",
+    bio: body.bio,
+    shows: body.shows,
+    status: body.status || "current",
+    instagram: body.instagram,
+    tiktok: body.tiktok,
+    storylines: body.storylines || [],
+    coStars: body.coStars || [],
+    createdAt: existing ? (existing as CastMember).createdAt : now,
+    updatedAt: now,
+  };
+
+  await env.DRAMARADAR_ARTICLES.put(
+    `cast:${castMember.slug}`,
+    JSON.stringify(castMember)
+  );
+
+  await updateCastIndex(env, castMember.slug, "add");
+
+  const status = existing ? 200 : 201;
+  return jsonResponse(
+    { message: existing ? "Cast member updated" : "Cast member created", cast: castMember },
+    status
+  );
+}
+
+/**
+ * Bulk insert multiple cast members.
+ */
+async function handleBulkInsertCast(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  let body: { cast: Partial<CastMember>[] };
+  try {
+    body = (await request.json()) as { cast: Partial<CastMember>[] };
+  } catch {
+    return errorResponse("Invalid JSON body", 400);
+  }
+
+  if (!body.cast || !Array.isArray(body.cast)) {
+    return errorResponse("Body must contain a cast array", 400);
+  }
+
+  const now = new Date().toISOString();
+  const results: Array<{ slug: string; status: string }> = [];
+
+  for (const entry of body.cast) {
+    if (!entry.slug || !entry.fullName || !entry.bio || !entry.shows) {
+      results.push({ slug: entry.slug || "unknown", status: "skipped: missing required fields" });
+      continue;
+    }
+
+    const existing = await env.DRAMARADAR_ARTICLES.get(`cast:${entry.slug}`, "json");
+
+    const castMember: CastMember = {
+      slug: entry.slug,
+      fullName: entry.fullName,
+      displayName: entry.displayName || entry.fullName,
+      age: entry.age || 0,
+      hometown: entry.hometown || "",
+      bio: entry.bio,
+      shows: entry.shows,
+      status: entry.status || "current",
+      instagram: entry.instagram,
+      tiktok: entry.tiktok,
+      storylines: entry.storylines || [],
+      coStars: entry.coStars || [],
+      createdAt: existing ? (existing as CastMember).createdAt : now,
+      updatedAt: now,
+    };
+
+    await env.DRAMARADAR_ARTICLES.put(
+      `cast:${castMember.slug}`,
+      JSON.stringify(castMember)
+    );
+
+    await updateCastIndex(env, castMember.slug, "add");
+    results.push({ slug: castMember.slug, status: existing ? "updated" : "created" });
+  }
+
+  return jsonResponse({
+    message: `Bulk insert complete: ${results.length} processed`,
+    results,
+  });
+}
+
+/**
+ * Delete a cast member from KV.
+ */
+async function handleDeleteCastMember(
+  slug: string,
+  env: Env
+): Promise<Response> {
+  const existing = await env.DRAMARADAR_ARTICLES.get(`cast:${slug}`);
+  if (!existing) {
+    return errorResponse("Cast member not found", 404);
+  }
+
+  await env.DRAMARADAR_ARTICLES.delete(`cast:${slug}`);
+  await updateCastIndex(env, slug, "remove");
+
+  return jsonResponse({ message: "Cast member deleted", slug });
+}
+
+/**
+ * Maintain an index of all cast member slugs in KV.
+ */
+async function updateCastIndex(
+  env: Env,
+  slug: string,
+  action: "add" | "remove"
+): Promise<void> {
+  const indexRaw = await env.DRAMARADAR_ARTICLES.get("cast:index");
+  let slugs: string[] = indexRaw ? JSON.parse(indexRaw) : [];
+
+  if (action === "add") {
+    if (!slugs.includes(slug)) {
+      slugs.push(slug);
+    }
+  } else {
+    slugs = slugs.filter((s) => s !== slug);
+  }
+
+  await env.DRAMARADAR_ARTICLES.put("cast:index", JSON.stringify(slugs));
 }

@@ -11,6 +11,8 @@ import type {
   ShowsResponse,
   Prediction,
   PredictionsResponse,
+  CastMember,
+  CastResponse,
 } from "./types";
 import { fetchAndParseFeeds, shortHash } from "./fetch-feeds";
 import {
@@ -443,6 +445,65 @@ async function handleHoroscope(
   }
 }
 
+/**
+ * GET /api/cast
+ * List cast members with optional show filter.
+ */
+async function handleCast(
+  url: URL,
+  env: Env
+): Promise<Response> {
+  const show = url.searchParams.get("show") || undefined;
+  const status = url.searchParams.get("status") || undefined;
+  const limit = Math.min(parseInt(url.searchParams.get("limit") || "100", 10), 500);
+
+  const indexRaw = await env.DRAMARADAR_ARTICLES.get("cast:index");
+  const slugs: string[] = indexRaw ? JSON.parse(indexRaw) : [];
+
+  const cast: CastMember[] = [];
+
+  for (const slug of slugs) {
+    const raw = await env.DRAMARADAR_ARTICLES.get(`cast:${slug}`, "json");
+    if (!raw) continue;
+
+    const member = raw as CastMember;
+
+    if (show && !member.shows.includes(show)) continue;
+    if (status && member.status !== status) continue;
+
+    cast.push(member);
+  }
+
+  // Sort alphabetically by display name
+  cast.sort((a, b) => a.displayName.localeCompare(b.displayName));
+
+  const limited = cast.slice(0, limit);
+
+  const response: CastResponse = {
+    cast: limited,
+    total: cast.length,
+  };
+
+  return jsonResponse(response);
+}
+
+/**
+ * GET /api/cast/:slug
+ * Single cast member by slug.
+ */
+async function handleCastBySlug(
+  slug: string,
+  env: Env
+): Promise<Response> {
+  const raw = await env.DRAMARADAR_ARTICLES.get(`cast:${slug}`, "json");
+
+  if (!raw) {
+    return errorResponse("Cast member not found", 404);
+  }
+
+  return jsonResponse(raw);
+}
+
 // ============================================================
 // Fetch Handler (HTTP requests)
 // ============================================================
@@ -490,6 +551,15 @@ async function handleFetchRequest(
 
   if (path === "/api/predictions" && request.method === "GET") {
     return handlePredictions(url, env);
+  }
+
+  if (path === "/api/cast" && request.method === "GET") {
+    return handleCast(url, env);
+  }
+
+  if (path.startsWith("/api/cast/") && request.method === "GET") {
+    const slug = path.replace("/api/cast/", "");
+    return handleCastBySlug(slug, env);
   }
 
   if (path === "/api/horoscope" && request.method === "GET") {

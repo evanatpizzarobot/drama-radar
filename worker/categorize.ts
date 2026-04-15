@@ -82,6 +82,16 @@ export const SHOW_TAGS: Record<string, ShowDefinition> = {
     keywords: ["rhodubai", "real housewives of dubai"],
     color: "#FDCB6E",
   },
+  "real-housewives-rhode-island": {
+    tag: "real-housewives-rhode-island",
+    label: "RHORI",
+    fullName: "The Real Housewives of Rhode Island",
+    keywords: [
+      "rhori", "real housewives of rhode island", "rhode island",
+      "ashley iaconetti", "jo-ellen tiberi",
+    ],
+    color: "#3D85C6",
+  },
   "vanderpump-rules": {
     tag: "vanderpump-rules",
     label: "VPR",

@@ -134,6 +134,28 @@ export interface Env {
   VAPID_SUBJECT: string;
 }
 
+export interface CastMember {
+  slug: string;
+  fullName: string;
+  displayName: string;
+  age: number;
+  hometown: string;
+  bio: string;
+  shows: string[];
+  status: "current" | "former" | "friend-of";
+  instagram?: string;
+  tiktok?: string;
+  storylines: string[];
+  coStars: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CastResponse {
+  cast: CastMember[];
+  total: number;
+}
+
 export interface RawFeedEntry {
   title: string;
   link: string;

@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { SHOW_TAGS } from "@/lib/constants";
-import { fetchFeed } from "@/lib/api";
+import { fetchFeed, fetchCast } from "@/lib/api";
 import { FeedList } from "@/components/FeedList";
+import { CastCard } from "@/components/CastCard";
 import { AdUnit } from "@/components/AdUnit";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ShowSchema, BreadcrumbSchema } from "@/components/StructuredData";
 import { SITE_URL } from "@/lib/constants";
-import type { FeedItem } from "@/lib/types";
+import type { FeedItem, CastMember } from "@/lib/types";
 
 interface ShowHubClientProps {
   showTag: string;
@@ -40,6 +41,7 @@ export function ShowHubClient({ showTag }: ShowHubClientProps) {
   const showDef = SHOW_TAGS[showTag];
 
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
+  const [castMembers, setCastMembers] = useState<CastMember[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -48,14 +50,18 @@ export function ShowHubClient({ showTag }: ShowHubClientProps) {
       return;
     }
 
-    async function loadShowFeed() {
+    async function loadShowData() {
       setLoading(true);
-      const res = await fetchFeed({ show: showTag, limit: 20 });
-      setFeedItems(res.items);
+      const [feedRes, castRes] = await Promise.all([
+        fetchFeed({ show: showTag, limit: 20 }),
+        fetchCast({ show: showTag }),
+      ]);
+      setFeedItems(feedRes.items);
+      setCastMembers(castRes.cast);
       setLoading(false);
     }
 
-    loadShowFeed();
+    loadShowData();
   }, [showTag, showDef]);
 
   // Show not found state
@@ -154,6 +160,33 @@ export function ShowHubClient({ showTag }: ShowHubClientProps) {
           {showDef.intro}
         </p>
       </div>
+
+      {/* Meet the Cast */}
+      {!loading && castMembers.length > 0 && (
+        <section className="mb-8">
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="flex items-center gap-2 text-lg font-bold text-dr-text">
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full"
+                style={{ backgroundColor: showDef.color }}
+                aria-hidden="true"
+              />
+              Meet the Cast
+            </h2>
+            <Link
+              href={`/cast?show=${showTag}`}
+              className="text-xs font-semibold text-dr-purple transition-colors hover:text-dr-pink"
+            >
+              View All &rarr;
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {castMembers.slice(0, 9).map((member) => (
+              <CastCard key={member.slug} member={member} compact />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Leaderboard ad */}
       <div className="mb-6">

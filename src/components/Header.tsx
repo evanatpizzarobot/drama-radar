@@ -6,6 +6,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_LINKS = [
   { href: "/shows", label: "Shows" },
+  { href: "/cast", label: "Cast" },
   { href: "/articles", label: "Originals" },
   { href: "/predictions", label: "Predictions" },
   { href: "/team", label: "Team" },

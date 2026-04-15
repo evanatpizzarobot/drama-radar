@@ -119,6 +119,21 @@ export const SHOW_TAGS: Record<string, ShowDefinition> = {
     network: "Bravo",
     status: "between-seasons",
   },
+  "real-housewives-rhode-island": {
+    tag: "real-housewives-rhode-island",
+    label: "RHORI",
+    fullName: "The Real Housewives of Rhode Island",
+    keywords: [
+      "rhori", "real housewives of rhode island", "rhode island",
+      "ashley iaconetti", "jo-ellen tiberi",
+    ],
+    color: "#3D85C6",
+    intro: "The Real Housewives of Rhode Island is the newest addition to the Housewives franchise, bringing Bravo cameras to the Ocean State for the first time. Season 1 follows a tight-knit group of women navigating friendships, family drama, and the unique social dynamics of Rhode Island. With Bachelor Nation crossover star Ashley Iaconetti and a cast that is not afraid to throw down at the dinner table, RHORI is quickly establishing itself as a must-watch franchise.",
+    currentSeason: 1,
+    airDay: "Thursdays at 8PM ET",
+    network: "Bravo",
+    status: "airing",
+  },
   "vanderpump-rules": {
     tag: "vanderpump-rules",
     label: "VPR",
