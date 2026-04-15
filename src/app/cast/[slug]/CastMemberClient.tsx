@@ -160,13 +160,15 @@ export function CastMemberClient({ slug }: CastMemberClientProps) {
       />
 
       {/* Breadcrumb */}
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Cast", href: "/cast" },
-          { label: member.displayName },
-        ]}
-      />
+      <div className="mb-5">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Cast", href: "/cast" },
+            { label: member.displayName },
+          ]}
+        />
+      </div>
 
       {/* Profile header */}
       <div className="mb-8 flex flex-col items-center gap-5 sm:flex-row sm:items-start">
