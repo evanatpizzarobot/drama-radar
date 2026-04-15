@@ -11,6 +11,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { DramaDeskChat } from "@/components/DramaDeskChat";
 import { AdUnit, BottomAnchorAd } from "@/components/AdUnit";
 import { WebSiteSchema } from "@/components/StructuredData";
+import { RadarBackground } from "@/components/RadarBackground";
 import type { FeedItem, EditorialArticle, TrendingData } from "@/lib/types";
 
 function HomeSkeleton() {
@@ -148,8 +149,11 @@ export default function HomePage() {
   }, [activeCategory, loading]);
 
   return (
-    <>
+    <div className="relative">
       <WebSiteSchema />
+      {/* Radar background scene - sits behind hero content */}
+      <RadarBackground />
+
       {/* 1. Breaking Tea Banner */}
       <BreakingBanner items={breakingItems} />
 
@@ -238,6 +242,6 @@ export default function HomePage() {
 
       {/* Mobile bottom anchor ad */}
       <BottomAnchorAd />
-    </>
+    </div>
   );
 }
