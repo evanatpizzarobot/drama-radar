@@ -30,6 +30,13 @@ const KNOWN_SLUGS = [
   "amanda-batula-brand-deals-disappearing",
   "carls-a-mess-uber-eats-summer-house",
   "bravo-in-the-city-summer-house-spinoff",
+  // April 15 batch
+  "rhobh-season-15-reunion-preview-dorit-kyle-erika",
+  "rhoa-season-17-first-impressions-porsha-phaedra",
+  "amanda-batula-apology-summer-house-what-it-means",
+  "rhori-season-1-first-look-rhode-island-delivers",
+  "below-deck-down-under-mid-season-trailer-breakdown",
+  "meet-every-cast-member-dramaradar-cast-pages-launch",
 ];
 
 export async function generateStaticParams() {

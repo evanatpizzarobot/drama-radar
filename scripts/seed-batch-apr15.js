@@ -1,0 +1,375 @@
+#!/usr/bin/env node
+// Seed script for DramaRadar - April 15 content batch
+// 6 new articles + 6 new predictions
+// Usage: node scripts/seed-batch-apr15.js
+// Then: npx wrangler kv bulk put content-kv-apr15.json --namespace-id 446b2734022b4cb8bfe094b4fc462128 --remote
+
+const fs = require("fs");
+const path = require("path");
+
+// ================================================================
+// NEW ARTICLES
+// ================================================================
+
+const NEW_ARTICLES = [
+  {
+    slug: "rhobh-season-15-reunion-preview-dorit-kyle-erika",
+    title: "The RHOBH Season 15 Reunion Is About to Break Beverly Hills Wide Open",
+    subtitle: "Dorit vs. Kyle. Dorit vs. Erika. Dorit vs. everyone. The three-part reunion starting April 23 might be the most explosive in franchise history.",
+    body: `The Real Housewives of Beverly Hills Season 15 reunion kicks off April 23, and based on the trailer alone, Bravo is about to deliver the kind of reunion that reminds you why this franchise has been running for fifteen years. Three parts. Three nights. An absolute bloodbath in couture.
+
+## Dorit Kemsley Is Taking On Everyone
+
+The trailer makes one thing abundantly clear: Dorit Kemsley walked onto that reunion stage with nothing left to lose. She goes directly at Kyle Richards, accusing her of having "the power to get anyone off the show" and questioning why every cast member seems desperate to stay on Kyle's good side. It is the kind of accusation that has been whispered about for years but never said out loud on camera.
+
+But the Kyle confrontation is just the appetizer. The real gut punch comes when Erika Jayne, Dorit's supposed ride-or-die, turns on her. "I love you, and I'm scared for you" is the kind of sentence that sounds caring on paper but on a Bravo reunion means something far more devastating. The friendship that survived the Girardi scandal, puppygate, and every other storm is apparently done.
+
+## The Financial Questions Nobody Wants to Answer
+
+Andy Cohen reportedly pushes hard on financial questions this reunion, and Dorit is the primary target. Following her separation from PK Kemsley, the questions about money, lifestyle maintenance, and what is actually real in Beverly Hills get uncomfortable fast. Dorit's reaction in the trailer suggests she was not prepared for how direct the questioning would be.
+
+## Kyle Richards: Still the Last Woman Standing
+
+Kyle Richards remains the only original cast member, and this reunion is going to test whether that longevity is an asset or a liability. The moment Dorit calls out her influence over casting and storylines, the fourth wall gets dangerously thin. Bozoma Saint John and Rachel Zoe, both newcomers, appear to stay mostly out of the crossfire, but their reactions in the background of the trailer tell their own story.
+
+## What We Are Watching For
+
+The biggest question going into this reunion is whether any of these relationships survive it. Dorit and Erika appear to be finished. Dorit and Kyle appear to be finished. When one person goes to war with the entire cast, either something changes dramatically, or Season 16 looks very different. Either way, April 23 cannot come fast enough.`,
+    author: "carly",
+    imageUrl: null,
+    categories: ["analysis", "exclusives"],
+    showTags: ["real-housewives-beverly-hills"],
+    publishedAt: "2026-04-15T14:00:00Z",
+    updatedAt: "2026-04-15T14:00:00Z",
+    isFeatured: true,
+    isExclusive: true,
+  },
+
+  {
+    slug: "rhoa-season-17-first-impressions-porsha-phaedra",
+    title: "RHOA Season 17 Two Weeks In: Porsha and Phaedra Are Carrying This Franchise on Their Backs",
+    subtitle: "The comeback queens are delivering exactly what Atlanta needed. Here is everything working and everything that needs work after the first two episodes.",
+    body: `Two episodes into Real Housewives of Atlanta Season 17 and the verdict is in: Bravo made the right call bringing Porsha Williams and Phaedra Parks back to the center of this franchise. The energy shift from Season 16 is immediate and undeniable.
+
+## Porsha Williams Is Having Her Main Character Moment
+
+Porsha walked into Season 17 newly divorced from Simon Guobadia and apparently determined to date the entire city of Atlanta. Her relationship with Patrice "Sway" McKinney has already produced the kind of genuine, unscripted moments that make great reality television. When Porsha confronted Kelli Ferrell in Episode 2 with what producers are calling a "serious axe to grind," it was clear she came to work this season.
+
+The thing about Porsha is that she has always been at her best when her personal life is in transition. The divorce, the new relationship, the openly exploring phase -- it gives her storyline real stakes and real vulnerability, which is what separates good Housewives seasons from great ones.
+
+## Phaedra Parks: Both Narrator and Target
+
+Phaedra is doing something rare for a returning Housewife: she is simultaneously the voice of reason and the person creating chaos. Her exchanges with newcomer Pinky Cole have been unpredictable in the best possible way. Phaedra's sharp commentary remains the gold standard for confessional work across all franchises.
+
+## The Newcomers Are Holding Their Own
+
+Pinky Cole, despite the ongoing Slutty Vegan bankruptcy storyline, is not shrinking from the camera. If anything, the business turmoil makes her more interesting as a cast member because it gives her something real to talk about instead of just showing up to dinners in expensive outfits. K. Michelle's arrival has already produced fireworks, with Drew Sidora unfollowing her before the season even premiered. That is the kind of pre-season drama that writes itself.
+
+## Where It Needs Work
+
+Shamea Morton and Angela Oakley are still finding their footing as main Housewives rather than supporting players. The show needs to give them standalone storylines that do not revolve entirely around their reactions to Porsha and Phaedra. Cynthia Bailey as a friend-of feels right, though, providing steady energy without taking up main cast real estate.
+
+## The Bottom Line
+
+RHOA Season 17 feels like Atlanta again. The casting is working, the drama is organic, and the show is appointment television for the first time in several seasons. If Bravo can maintain this momentum through the midseason, they have a genuine contender for best Housewives season of 2026.`,
+    author: "bb",
+    imageUrl: null,
+    categories: ["analysis", "hot-takes"],
+    showTags: ["real-housewives-atlanta"],
+    publishedAt: "2026-04-14T16:00:00Z",
+    updatedAt: "2026-04-14T16:00:00Z",
+    isFeatured: true,
+    isExclusive: false,
+  },
+
+  {
+    slug: "amanda-batula-apology-summer-house-what-it-means",
+    title: "Amanda Batula's Public Apology Changes Nothing and Everything About Summer House",
+    subtitle: "She said sorry. The internet said not enough. Here is why the apology tour matters more than the actual words.",
+    body: `On April 10, Amanda Batula issued a public apology to "everyone I've disappointed and hurt" following weeks of intense backlash over her confirmed relationship with castmate West Wilson. The statement was carefully worded, broadly targeted, and deliberately vague about specifics. In other words, it was a textbook crisis management response.
+
+But the apology itself is not the story. The story is what it reveals about where Summer House goes from here.
+
+## The Timeline Matters
+
+Amanda and West confirmed their relationship on March 31. Kyle Cooke immediately responded publicly, calling it a "wild betrayal" and asking "what happened to bro code?" For ten days, the internet piled on. Ciara Miller's supporters turned the situation into a full referendum on loyalty, friendship, and whether Amanda crossed a line that cannot be uncrossed.
+
+Then came the apology. Ten days of silence followed by a carefully crafted statement. That gap tells you everything about how serious the PR situation became behind the scenes.
+
+## What Kyle Actually Said
+
+Kyle's response has been measured in public but devastating in subtext. His April 2 TikTok interview where he said "I'm worried about her" and does not think "West is in a place to offer her what she needs" is the kind of comment that sounds protective but reads as a direct shot at West's maturity and stability. Kyle is not screaming. He is expressing concern. And somehow that is worse.
+
+## The Ciara Factor
+
+The person this affects most after Kyle is Ciara Miller, who was in an on-and-off dynamic with West before his pivot to Amanda. Ciara has not made a public statement, but her social media activity and her allies in the cast have made her position clear. She feels betrayed by both of them.
+
+## What This Means for the Show
+
+Summer House Season 10 is now built entirely around this storyline. Every episode will be viewed through the lens of who knew what and when. The reunion will be nuclear. And Season 11, if it happens, will need to make a choice about whether Amanda and West can coexist in the house with Kyle and Ciara.
+
+The apology does not fix anything. But it does signal that Amanda understands the severity of the situation, which means the on-screen version of this story is going to be even more intense than what we have seen so far.`,
+    author: "felicia",
+    imageUrl: null,
+    categories: ["hot-takes", "analysis"],
+    showTags: ["summer-house"],
+    publishedAt: "2026-04-13T12:00:00Z",
+    updatedAt: "2026-04-13T12:00:00Z",
+    isFeatured: true,
+    isExclusive: true,
+  },
+
+  {
+    slug: "rhori-season-1-first-look-rhode-island-delivers",
+    title: "Real Housewives of Rhode Island Is the Most Promising New Franchise in Years",
+    subtitle: "Two episodes in and RHORI already feels like it belongs. The Ocean State is serving drama, food, and a cast that is not afraid to go there.",
+    body: `The Real Housewives of Rhode Island premiered April 2 and within two episodes has established itself as a franchise worth investing in. That is not something you can say about every new Housewives city. For every Salt Lake City that arrives fully formed and chaotic, there is a Dubai that takes multiple seasons to find its footing. RHORI appears to be the former.
+
+## The Cast Chemistry Is Already There
+
+The seven women Bravo assembled for Season 1 have something that cannot be manufactured: pre-existing relationships with real history and real tension. Jo-Ellen Tiberi and Rulla Nehme's conflict, which involves Rulla's husband Brian allegedly interfering at Jo-Ellen's workplace, has the kind of specificity and personal stakes that make for compelling television.
+
+Ashley Iaconetti brings Bachelor Nation crossover appeal without letting it define her presence on the show. She is a Rhode Islander first, and her marriage to Jared Haibon provides a grounding domestic storyline. Dolores Catania appearing as a friend from RHONJ adds franchise connectivity without overwhelming the new cast.
+
+## The Italian-American Energy Is Unmatched
+
+There is a dinner scene in the second episode where the aunties pile food on plates and pressure Alicia Carmody about her marriage timeline that feels so authentic it could be a documentary. This is the cultural specificity that makes the best Housewives cities work. Atlanta has Black excellence and shade culture. Salt Lake City has Mormonism and ski lodge money. Rhode Island has Italian-American family dynamics, seafood, and zero filter.
+
+## What Sets It Apart
+
+RHORI already feels different from the other currently airing franchises because the women seem genuinely unfiltered in a way that newer casts often are not. There are already whispers about polygamy, affairs, and "a lot of rumors about everybody." The fact that Rulla's husband stayed notably quiet during a conversation about affairs tells you this show is not going to pull punches.
+
+## Early Verdict
+
+If Bravo stays out of its own way and lets these women do what they clearly do naturally -- eat, argue, love hard, and talk about each other behind their backs -- RHORI is going to be a hit. The comparisons to early RHONJ are already circulating, and they are not wrong.`,
+    author: "betsy",
+    imageUrl: null,
+    categories: ["analysis"],
+    showTags: ["real-housewives-rhode-island"],
+    publishedAt: "2026-04-12T15:00:00Z",
+    updatedAt: "2026-04-12T15:00:00Z",
+    isFeatured: false,
+    isExclusive: false,
+  },
+
+  {
+    slug: "below-deck-down-under-mid-season-trailer-breakdown",
+    title: "The Below Deck Down Under Mid-Season Trailer Just Dropped and Someone Might Get Fired",
+    subtitle: "Captain Jason is coming in hot, Daisy and Joao are hooking up, and Chef Ben's kitchen is a war zone. Let us break down everything.",
+    body: `The Below Deck Down Under Season 4 mid-season trailer dropped April 6 and it promises the second half of the charter season is going to make the first half look like smooth sailing. Captain Jason Chambers appears to reach his breaking point, someone may be leaving the boat involuntarily, and the crew's personal entanglements are about to collide with their professional responsibilities.
+
+## The Boatmance Situation Is Out of Control
+
+Daisy Kelliher and Joao Franco kissed on screen, confirming what the crew quarters camera angles have been hinting at for weeks. But the real mess is stew Jenna Woudberg, who appears torn between pursuing Chef Ben Robinson and deckhand Eddy Hounsell. A love triangle on a yacht where you literally cannot escape each other is the kind of pressure cooker that Below Deck was designed for.
+
+## Chef Ben's Kitchen Is a Pressure Cooker
+
+Sous Chef Alesia Harris appears to reach what producers are calling a "boiling point" with Chef Ben's exacting standards. Ben has always demanded perfection -- it is what made him a fan favorite across multiple Below Deck franchises -- but the trailer suggests Alesia may hit a wall. Whether she pushes through or cracks under the pressure will define the second half of the season.
+
+## Captain Jason Means Business
+
+The most ominous moment in the trailer is Captain Jason saying someone needs to "leave the boat." In Below Deck, that sentence is the equivalent of a Housewives table flip. It does not happen often, and when it does, it is always warranted. The question is who gets sent packing and whether it is a crew member or a charter guest.
+
+## The RHOSLC Crossover Episode
+
+One of the upcoming charters features Real Housewives of Salt Lake City cast members as guests. This franchise crossover is a first for Below Deck Down Under and should produce some incredible moments. The Housewives are notoriously demanding guests, and watching Captain Jason's crew try to keep up with RHOSLC-level requests is going to be television gold.
+
+## What to Watch
+
+Below Deck Down Under airs Mondays at 8PM ET and the second half of the season appears to be where everything the first half set up finally pays off. If you fell behind, now is the time to catch up.`,
+    author: "bb",
+    imageUrl: null,
+    categories: ["analysis", "guides"],
+    showTags: ["below-deck"],
+    publishedAt: "2026-04-11T13:00:00Z",
+    updatedAt: "2026-04-11T13:00:00Z",
+    isFeatured: false,
+    isExclusive: false,
+  },
+
+  {
+    slug: "meet-every-cast-member-dramaradar-cast-pages-launch",
+    title: "DramaRadar Just Launched 121 Cast Member Profile Pages and Here Is Why It Matters",
+    subtitle: "Every Real Housewife. Every Summer House housemate. Every Valley cast member. Every Southern Charm socialite. All in one place, all searchable, all connected.",
+    body: `Today we are rolling out something we have been building for weeks: individual profile pages for 121 reality TV cast members across every major Bravo franchise. This is the biggest single content expansion in DramaRadar history and we are just getting started.
+
+## What You Will Find
+
+Every cast member page on DramaRadar includes a full biography, their current show status, key storylines tracked across seasons, social media links, connections to their co-stars (with direct links to those profiles), related articles from our editorial team, and the latest RSS feed items about their show. Each page also includes structured data that helps search engines understand exactly who the person is and what shows they appear on.
+
+## The Shows We Cover
+
+The initial launch covers eight Real Housewives franchises (Beverly Hills, Atlanta, Potomac, New Jersey, Salt Lake City, Miami, Dubai, New York, and Rhode Island), plus Summer House, The Valley, Vanderpump Rules Season 12, Southern Charm, Southern Hospitality, and Below Deck Down Under. That is 121 individual profiles across 14 shows.
+
+## Why We Built This
+
+Reality TV fans search for cast members by name constantly. Every time someone googles "who is Pinky Cole on RHOA" or "Brittany Cartwright age" or "Craig Conover girlfriend," there should be a page that answers that question with accurate, current information and connects them to the broader DramaRadar ecosystem.
+
+These pages are also designed to be living documents. As seasons progress, relationships shift, and new drama unfolds, we will update bios, add new storylines, and expand co-star connections. Think of them as your reality TV encyclopedia that actually stays current.
+
+## What Is Coming Next
+
+Batch 4 is already in development and will add Bachelor Nation key figures, 90 Day Fiance famous couples, Selling Sunset cast, Married at First Sight notables, and Love Island standouts. Batch 5 will cover historical legends like NeNe Leakes, Bethenny Frankel, Lisa Vanderpump, and more. Our target is 250+ profiles by the end of spring.
+
+## Browse the Full Cast Directory
+
+Head to [dramaradar.com/cast](/cast) to search, filter by show, and start exploring. Every show hub page also now features a "Meet the Cast" section linking directly to individual profiles.`,
+    author: "the-drama-desk",
+    imageUrl: null,
+    categories: ["exclusives"],
+    showTags: [],
+    publishedAt: "2026-04-15T18:00:00Z",
+    updatedAt: "2026-04-15T18:00:00Z",
+    isFeatured: true,
+    isExclusive: true,
+  },
+];
+
+// ================================================================
+// NEW PREDICTIONS
+// ================================================================
+
+const NEW_PREDICTIONS = [
+  {
+    id: "pred-apr-1",
+    prediction: "Dorit Kemsley will not return for RHOBH Season 16. The reunion is her farewell.",
+    context: "The three-part reunion starting April 23 has Dorit going to war with Kyle, Erika, and seemingly every cast member. When one person takes on the entire group at a reunion, it historically signals a departure. See: Dorinda Medley, Tamra Judge (the first time), Phaedra Parks (the first time).",
+    authorKey: "carly",
+    showTags: ["real-housewives-beverly-hills"],
+    createdAt: "2026-04-15T14:00:00Z",
+    status: "pending",
+    resolvedAt: null,
+  },
+  {
+    id: "pred-apr-2",
+    prediction: "RHOA Season 17 will be the highest-rated Housewives season of 2026.",
+    context: "Two episodes in and the Porsha-Phaedra dynamic is already generating more social media conversation than any other franchise. The newcomer casting of Pinky Cole and K. Michelle adds mainstream crossover appeal. Atlanta has always been the ratings queen when the casting is right, and this season the casting is very right.",
+    authorKey: "bb",
+    showTags: ["real-housewives-atlanta"],
+    createdAt: "2026-04-14T16:00:00Z",
+    status: "pending",
+    resolvedAt: null,
+  },
+  {
+    id: "pred-apr-3",
+    prediction: "Amanda Batula and West Wilson will break up before the Summer House Season 10 reunion films.",
+    context: "The public backlash, Amanda's forced apology, Kyle's measured but devastating commentary, and the sheer weight of filming a season where your new relationship imploded your entire friend group is not a recipe for romantic longevity. The pressure will be too much.",
+    authorKey: "felicia",
+    showTags: ["summer-house"],
+    createdAt: "2026-04-13T12:00:00Z",
+    status: "pending",
+    resolvedAt: null,
+  },
+  {
+    id: "pred-apr-4",
+    prediction: "RHORI will get renewed for Season 2 before Season 1 finishes airing.",
+    context: "The early reception is overwhelmingly positive, the cast chemistry is already there, and Bravo needs a new franchise hit after the RHONJ implosion. Rhode Island is giving early RHONJ energy with fresh faces and authentic drama. Bravo will lock this in early.",
+    authorKey: "betsy",
+    showTags: ["real-housewives-rhode-island"],
+    createdAt: "2026-04-12T15:00:00Z",
+    status: "pending",
+    resolvedAt: null,
+  },
+  {
+    id: "pred-apr-5",
+    prediction: "Craig Conover will take a break from Southern Charm after walking off the reunion. He will return, but not until Season 13.",
+    context: "Craig literally walked off the reunion soundstage saying 'I don't even know if I'm coming back anymore.' When a day-one cast member says the show might not be a good fit and that he would love to 'figure out a way to enjoy this again,' that is someone who needs a season off. Shep took breaks. Whitney disappears. Craig will step away for one cycle.",
+    authorKey: "bb",
+    showTags: ["southern-charm"],
+    createdAt: "2026-04-15T10:00:00Z",
+    status: "pending",
+    resolvedAt: null,
+  },
+  {
+    id: "pred-apr-6",
+    prediction: "The Below Deck Down Under RHOSLC crossover charter episode will be the most-watched episode of the entire season.",
+    context: "Franchise crossovers are ratings gold and the RHOSLC ladies are among the most entertaining charter guests imaginable. Captain Jason managing Housewives-level demands while his crew is mid-boatmance chaos is the content collision Bravo was built for.",
+    authorKey: "carly",
+    showTags: ["below-deck", "real-housewives-salt-lake-city"],
+    createdAt: "2026-04-11T13:00:00Z",
+    status: "pending",
+    resolvedAt: null,
+  },
+];
+
+// ================================================================
+// GENERATE KV ENTRIES
+// ================================================================
+
+function generateKvEntries() {
+  const entries = [];
+
+  // Load existing article index
+  const existingSeedPath = path.join(__dirname, "..", "kv-seed-entries.json");
+  let existingArticleSlugs = [];
+  let existingPredictionIds = [];
+
+  // Try to load from various possible seed files
+  for (const seedFile of ["kv-seed-entries.json", "content-kv-batch2.json", "content-kv-batch3.json"]) {
+    const fp = path.join(__dirname, "..", seedFile);
+    if (fs.existsSync(fp)) {
+      try {
+        const data = JSON.parse(fs.readFileSync(fp, "utf-8"));
+        const artIdx = data.find((e) => e.key === "articles:index");
+        if (artIdx) {
+          const slugs = JSON.parse(artIdx.value);
+          existingArticleSlugs = [...new Set([...existingArticleSlugs, ...slugs])];
+        }
+        const predIdx = data.find((e) => e.key === "predictions:index");
+        if (predIdx) {
+          const ids = JSON.parse(predIdx.value);
+          existingPredictionIds = [...new Set([...existingPredictionIds, ...ids])];
+        }
+      } catch (e) { /* skip */ }
+    }
+  }
+
+  // Merge article slugs
+  const newArticleSlugs = NEW_ARTICLES.map((a) => a.slug);
+  const allArticleSlugs = [...new Set([...existingArticleSlugs, ...newArticleSlugs])];
+
+  entries.push({
+    key: "articles:index",
+    value: JSON.stringify(allArticleSlugs),
+  });
+
+  // Add each article
+  for (const article of NEW_ARTICLES) {
+    entries.push({
+      key: `article:${article.slug}`,
+      value: JSON.stringify(article),
+    });
+  }
+
+  // Merge prediction IDs
+  const newPredictionIds = NEW_PREDICTIONS.map((p) => p.id);
+  const allPredictionIds = [...new Set([...existingPredictionIds, ...newPredictionIds])];
+
+  entries.push({
+    key: "predictions:index",
+    value: JSON.stringify(allPredictionIds),
+  });
+
+  // Add each prediction
+  for (const prediction of NEW_PREDICTIONS) {
+    entries.push({
+      key: `prediction:${prediction.id}`,
+      value: JSON.stringify(prediction),
+    });
+  }
+
+  return entries;
+}
+
+const entries = generateKvEntries();
+const outputPath = path.join(__dirname, "..", "content-kv-apr15.json");
+fs.writeFileSync(outputPath, JSON.stringify(entries, null, 2));
+
+console.log(`Generated ${entries.length} KV entries:`);
+console.log(`  - ${NEW_ARTICLES.length} articles`);
+console.log(`  - ${NEW_PREDICTIONS.length} predictions`);
+console.log(`  - 2 index updates`);
+console.log(`Output: ${outputPath}`);
+console.log("");
+console.log("To insert into KV, run:");
+console.log(`npx wrangler kv bulk put content-kv-apr15.json --namespace-id 446b2734022b4cb8bfe094b4fc462128 --remote`);
