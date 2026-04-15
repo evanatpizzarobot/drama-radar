@@ -53,7 +53,16 @@ Repo: github.com/evanatpizzarobot/drama-radar
 ## CURRENT FEATURES (live)
 - 26 original articles, 5 predictions
 - 22 RSS feeds across reality TV gossip sources
-- 18 show hubs with SEO intro content, status badges, air schedules
+- 19 show hubs with SEO intro content, status badges, air schedules (added RHORI)
+- 53 cast member profile pages across 8 Real Housewives franchises (Batch 2)
+  - /cast index page with search + show filter
+  - /cast/[slug] individual profiles with bio, storylines, co-stars, social links
+  - Person schema.org structured data on each profile
+  - Meet the Cast grid on every show hub page
+  - Admin API: POST /api/admin/cast, POST /api/admin/cast/bulk
+  - Public API: GET /api/cast, GET /api/cast/:slug
+  - KV storage: cast:{slug} in DRAMARADAR_ARTICLES, cast:index for the index
+  - Seed script: scripts/seed-cast.js generates cast-kv-entries.json for bulk KV insert
 - 7 author personas with avatars, bios, signoffs, individual pages with filtered articles
 - Drama Desk AI chat widget (Cloudflare Workers AI, Llama 3.1 8B, free)
 - Horoscope page with live API (freehoroscopeapi.com)
