@@ -16,7 +16,7 @@ export function RadarBackground() {
       aria-hidden="true"
     >
       {/* Radar scope container - centered, large */}
-      <div className="absolute left-1/2 top-[625px] -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-1/2 top-[610px] -translate-x-1/2 -translate-y-1/2">
         <div className="radar-scope relative h-[700px] w-[700px] sm:h-[800px] sm:w-[800px] lg:h-[900px] lg:w-[900px]">
           {/* Concentric rings */}
           <div className="radar-ring radar-ring-1" />
