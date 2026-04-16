@@ -197,6 +197,46 @@ const KNOWN_CAST_SLUGS = [
   "dani-dyer",
   "jana-craig",
   "tommy-fury",
+
+  // ---- Batch 5: Historical Legends (35) ----
+  // Real Housewives Legends
+  "nene-leakes",
+  "bethenny-frankel",
+  "vicki-gunvalson",
+  "tamra-judge",
+  "shannon-beador",
+  "kim-zolciak-biermann",
+  "kandi-burruss",
+  "kenya-moore",
+  "sheree-whitfield",
+  "ramona-singer",
+  "luann-de-lesseps",
+  "sonja-morgan",
+  "dorinda-medley",
+  "candiace-dillard-bassett",
+  "monique-samuels",
+  "jen-shah",
+  "brandi-glanville",
+  "garcelle-beauvais",
+  // VPR Legends
+  "tom-sandoval",
+  "raquel-leviss",
+  "ariana-madix",
+  "scheana-shay",
+  "katie-maloney",
+  "james-kennedy",
+  "stassi-schroeder",
+  // Pop Culture Legends
+  "snooki",
+  "kim-kardashian-west",
+  "kris-jenner",
+  "paris-hilton",
+  "tiffany-pollard",
+  "spencer-pratt",
+  "heidi-montag",
+  "kristin-cavallari",
+  "lauren-conrad",
+  "omarosa",
 ];
 
 export function generateStaticParams() {

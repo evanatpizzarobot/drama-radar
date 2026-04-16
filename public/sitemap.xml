@@ -334,6 +334,48 @@
   <url><loc>https://dramaradar.com/cast/dani-dyer/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://dramaradar.com/cast/jana-craig/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://dramaradar.com/cast/tommy-fury/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <!-- Historical Legends -->
+  <url><loc>https://dramaradar.com/cast/nene-leakes/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/bethenny-frankel/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/vicki-gunvalson/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/tamra-judge/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/shannon-beador/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kim-zolciak-biermann/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kandi-burruss/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kenya-moore/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/sheree-whitfield/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/ramona-singer/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/luann-de-lesseps/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/sonja-morgan/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/dorinda-medley/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/candiace-dillard-bassett/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/monique-samuels/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/jen-shah/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/brandi-glanville/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/garcelle-beauvais/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/tom-sandoval/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/raquel-leviss/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/ariana-madix/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/scheana-shay/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/katie-maloney/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/james-kennedy/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/stassi-schroeder/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/snooki/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kim-kardashian-west/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kris-jenner/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/paris-hilton/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/tiffany-pollard/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/spencer-pratt/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/heidi-montag/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/kristin-cavallari/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/lauren-conrad/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dramaradar.com/cast/omarosa/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- Show Hubs for new show tags -->
+  <url><loc>https://dramaradar.com/shows/real-housewives-orange-county/</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dramaradar.com/shows/jersey-shore/</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dramaradar.com/shows/the-hills/</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dramaradar.com/shows/keeping-up-kardashians/</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dramaradar.com/shows/flavor-of-love/</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
   <!-- April 15 Articles -->
   <url><loc>https://dramaradar.com/articles/rhobh-season-15-reunion-preview-dorit-kyle-erika/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://dramaradar.com/articles/rhoa-season-17-first-impressions-porsha-phaedra/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
