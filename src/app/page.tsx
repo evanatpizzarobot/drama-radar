@@ -111,7 +111,7 @@ export default function HomePage() {
           fetchBreaking(),
           fetchTrending(),
           fetchArticles({ featured: true, limit: 4 }),
-          fetchArticles({ limit: 8 }),
+          fetchArticles({ limit: 12 }),
           fetchFeed({ limit: 20 }),
         ]);
 
